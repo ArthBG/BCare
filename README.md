@@ -30,7 +30,7 @@ O aplicativo BCare é um projeto inovador que visa revolucionar a forma como os 
 - [Enrico Lona](https://github.com/enrico070)
 - [Matheus Côcco](https://github.com/matheushenrique564)
 - [Matheus Gomes](https://github.com/elmatheus)
-- [Pedro Isaque](https://github.com/PedroIsac564)
+- [Pedro Isac](https://github.com/PedroIsac564)
 
 ## Considerações Finais:
 O aplicativo BCare representa um marco significativo no setor de saúde, oferecendo uma abordagem inovadora e centrada no usuário para promover o bem-estar individual e comunitário. Com um forte compromisso com as normas ESG, esperamos não apenas fornecer serviços de saúde de alta qualidade, mas também contribuir positivamente para o meio ambiente, a sociedade e a governança em todos os níveis.
