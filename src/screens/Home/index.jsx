@@ -4,7 +4,8 @@ import styles from './styles'
 export default function Home() {
   return (
     <View style={styles.container}>
-        <Title title="Home" />
+        <Title title="BCare" />
+        <Text style={styles.text}>Cuide de si mesmo</Text>
     </View>
   )
 }
