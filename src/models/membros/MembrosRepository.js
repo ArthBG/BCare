@@ -33,3 +33,6 @@ export class MembrosRepository {
         this.members = this.members.filter((member) => member.id !== id);
     }
 }
+const memberRepository = new MembrosRepository();
+
+export default memberRepository;
