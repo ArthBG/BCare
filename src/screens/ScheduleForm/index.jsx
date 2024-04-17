@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { View, TextInput, Text, Touchable, ScrollView } from "react-native";
+import { View, TextInput, Text, TouchableOpacity, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Picker } from "@react-native-picker/picker";
@@ -8,7 +8,6 @@ import styles from "./styles";
 
 import Schedule from "../../models/Schedule";
 import scheduleRepository from "../../models/ScheduleRepository";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function ScheduleForm({ route }) {
   const { schedule, edit } = route.params;
@@ -20,11 +19,21 @@ export default function ScheduleForm({ route }) {
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState(new Date());
   const [isUpdate, setIsUpdate] = useState(edit);
-  const [mode, setMode] = useState("date");
   const [show, setShow] = useState(false);
+  const [showT, setShowT] = useState(false);
+  const [mode, setMode] = useState("date");
   const [errorMessage, setErrorMessage] = useState("");
 
   const navigation = useNavigation();
+
+  
+  const onChangeT = (event, selectedTime) => {
+    const currentTime = selectedTime || time;
+    setShowT(false);
+    setTime(currentTime);
+  }
+
+
 
   useEffect(() => {
     if (edit) {
@@ -90,16 +99,17 @@ export default function ScheduleForm({ route }) {
     setDate(newDate);
   };
 
-  const onTimeChange = (event, selectedTime) => {
-    const currentTime = selectedTime;
-    setShow(false);
-    setTime(currentTime);
-  };
+
 
   const showMode = (currentMode) => {
     setShow(true);
     setMode(currentMode);
   };
+
+  const showModeT = (currentMode) => {
+    setShowT(true);
+    setMode(currentMode);
+  }
 
   const clearInputs = () => {
     setIsUpdate(false);
@@ -128,7 +138,7 @@ export default function ScheduleForm({ route }) {
             value={userEmail}
             onChangeText={setUserEmail}
           />
-          <Picker
+          {/* <Picker
             style={styles.input}
             selectedValue={doctor}
             onValueChange={setDoctor}
@@ -137,7 +147,7 @@ export default function ScheduleForm({ route }) {
             <Picker.Item label="Dr. João" value="Dr. João" />
             <Picker.Item label="Dr. José" value="Dr. José" />
             <Picker.Item label="Dr. Maria" value="Dr. Maria" />
-          </Picker>
+          </Picker> */}
           <TextInput
             style={styles.input}
             placeholder="Descrição"
@@ -155,21 +165,25 @@ export default function ScheduleForm({ route }) {
           {show && (
             <DateTimePicker
               value={date}
-              mode={mode}
+              mode="date"
               display="spinner"
               onChange={onDateChange}
               style={styles.datePicker}
             />
           )}
+
+          <TouchableOpacity onPress={() => showMode(date)}>
           <Text style={styles.label}>Hora</Text>
+          </TouchableOpacity>
+          {showT && (
           <DateTimePicker
             value={time}
             mode="time"
             display="spinner"
-            onChange={onTimeChange}
+            onChange={onChangeT}
             style={styles.datePicker}
           />
-
+        )}
           {errorMessage ? (
             <Text style={styles.errorMessage}>{errorMessage}</Text>
           ) : null}
