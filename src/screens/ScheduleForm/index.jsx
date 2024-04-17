@@ -90,6 +90,12 @@ export default function ScheduleForm({ route }) {
     setDate(newDate);
   };
 
+  const onTimeChange = (event, selectedTime) => {
+    const currentTime = selectedTime;
+    setShow(false);
+    setTime(currentTime);
+  };
+
   const showMode = (currentMode) => {
     setShow(true);
     setMode(currentMode);
@@ -138,24 +144,32 @@ export default function ScheduleForm({ route }) {
             value={description}
             onChangeText={setDescription}
           />
-          <View style={styles.dateTime}>
+          <View style={styles.datePickerContainer}>
+            <TouchableOpacity onPress={() => showMode(date)}>
+              <Text style={styles.datePickerText}>
+                Selecione a data de conquista do seu planeta
+              </Text>
+            </TouchableOpacity>
+          </View>
+
+          {show && (
             <DateTimePicker
               value={date}
-              mode="date"
-              display="default"
-              onChange={(_, selectedDate) => {
-                setDate(selectedDate);
-              }}
+              mode={mode}
+              display="spinner"
+              onChange={onDateChange}
+              style={styles.datePicker}
             />
-            <DateTimePicker
-              value={time}
-              mode="time"
-              display="default"
-              onChange={(_, selectedTime) => {
-                setTime(selectedTime);
-              }}
-            />
-          </View>
+          )}
+          <Text style={styles.label}>Hora</Text>
+          <DateTimePicker
+            value={time}
+            mode="time"
+            display="spinner"
+            onChange={onTimeChange}
+            style={styles.datePicker}
+          />
+
           {errorMessage ? (
             <Text style={styles.errorMessage}>{errorMessage}</Text>
           ) : null}
