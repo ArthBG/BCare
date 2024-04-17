@@ -13,7 +13,7 @@ const TabRoutes = () => {
     <Tab.Navigator
       initialRouteName="Feed"
       screenOptions={{
-        tabBarActiveTintColor: '#e91e63',
+        tabBarActiveTintColor: '#bb0000',
         height: 50,
       }}
     >
