@@ -3,6 +3,7 @@ import Title from '../../components/Title'
 import styles from './styles'
 import { useNavigation } from '@react-navigation/native'
 import { useState } from 'react'
+import ESGComponents from '../../components/ESGComponents'
 
 
 export default function ESG() {
@@ -33,18 +34,7 @@ export default function ESG() {
 
           <View style={styles.navigationContainer}>
 
-          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("sla", {})}>
-              <Text style={styles.text}>Governança ambiental</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("sla", {})}>
-              <Text style={styles.text}>social</Text>
-            </TouchableOpacity>
-
-
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("sla", {})}>
-              <Text style={styles.text}>corporativa</Text>
-            </TouchableOpacity>
+            <ESGComponents />
 
           </View>
 
