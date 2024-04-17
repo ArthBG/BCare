@@ -1,5 +1,3 @@
-import Schedule from "./Schedule";
-
  class ScheduleRepository {
     constructor() {
         this.schedules = [];

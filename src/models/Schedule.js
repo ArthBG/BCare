@@ -1,8 +1,9 @@
 export default class Schedule {
-    constructor({ userName, userEmail , description, date, time }) {
+    constructor({ userName, userEmail , doctor, description, date, time }) {
         this.id = this.generateId();
         this.userName = userName;
         this.userEmail = userEmail;
+        this.doctor = doctor;
         this.description = description;
         this.date = date;
         this.time = time;
