@@ -157,7 +157,7 @@ export default function ScheduleForm({ route }) {
           <View style={styles.datePickerContainer}>
             <TouchableOpacity onPress={() => showMode(date)}>
               <Text style={styles.datePickerText}>
-                Selecione a data de conquista do seu planeta
+                Selecione a data que deseja agendar 
               </Text>
             </TouchableOpacity>
           </View>
@@ -172,8 +172,10 @@ export default function ScheduleForm({ route }) {
             />
           )}
 
-          <TouchableOpacity onPress={() => showMode(date)}>
-          <Text style={styles.label}>Hora</Text>
+          <TouchableOpacity onPress={() => showModeT(time)}>
+          <Text style={styles.label}>
+            Selecione o horário do agendamento
+          </Text>
           </TouchableOpacity>
           {showT && (
           <DateTimePicker
