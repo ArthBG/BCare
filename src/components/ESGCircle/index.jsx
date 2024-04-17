@@ -1,13 +1,9 @@
+// Desc: ESG Circle component
+// NAO EXPORTE ESSE COMPONENT, ELE DEVE SER USADO APENAS DENTRO DO ESGComponents.
+
 import React from 'react';
 import styles from './styles';
 import { View, Text, TouchableOpacity } from 'react-native';
-
-{/* 
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("sla", {})}>
-              <Text style={styles.text}>Governança ambiental</Text>
-            </TouchableOpacity> */}
-
-
 
 const ESGCircle = ({ color, text, style, route }) => {
     return (
