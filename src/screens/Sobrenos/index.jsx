@@ -3,18 +3,19 @@ import styles from "./styles";
 import Members from "../../data/Member";
 import memberRepository from "../../models/membros/MembrosRepository";
 import { useNavigation } from "@react-navigation/native";
+
 export default function Sobrenos({ route }) {
- /*  const navigation = useNavigation();
+  const navigation = useNavigation();
   const { data } = route.params;
 
-  const editMember = () => {
+  /* const editMember = () => {
     navigation.navigate("EditMember", { member: data, edit: true });
-  };
+  }; */
 
   const removeMember = () => {
     memberRepository.deleteMember(data.id);
     navigation.goBack();
-  }; */
+  }; 
 
   return (
     <View style={styles.container}>
@@ -50,7 +51,7 @@ export default function Sobrenos({ route }) {
                 <TouchableOpacity /* onPress={editMember} */>
                   <Text style={styles.editButton}>Editar</Text>
                 </TouchableOpacity>
-                <TouchableOpacity /* onPress={removeMember} */>
+                <TouchableOpacity onPress={removeMember} >
                   <Text style={styles.deleteButton}>Excluir</Text>
                 </TouchableOpacity>
               </View>
