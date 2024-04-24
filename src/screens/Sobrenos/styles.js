@@ -26,10 +26,12 @@ const styles = StyleSheet.create({
     containerMember: {
         flex: 1,
         padding: 10,
+        margin: 10,
         flexDirection: 'column',
         justifyContent: 'center',
+        borderRadius: 10,
         alignItems: 'center',
-        backgroundColor: '#F5FCFF',
+        backgroundColor: '#f14666',
     },
     imgGrupo: {
         width: 412,
@@ -41,11 +43,61 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         marginBottom: 10,
     },
-    textMember: {
+    textDescricao: {
         fontSize: 16,
         textAlign: 'center',
         margin: 10,
     },
+    textNome: {
+        fontSize: 20,
+        textAlign: 'center',
+        margin: 10,
+    },
+    textCargo: {
+        fontSize: 18,
+        textAlign: 'center',
+        margin: 10,
+    },
+    textGrupo: {
+        fontSize: 18,
+        textAlign: 'center',
+        margin: 10,
+    },
+    buttons: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: 10,
+    },
+    editButton:[
+        {
+            backgroundColor: '#6d012b',
+            color: '#fff',
+            padding: 10,
+            margin: 10,
+            borderRadius: 5,
+        }
+    ],
+    addButton:[
+        {
+            backgroundColor: '#008000',
+            color: '#fff',
+            padding: 10,
+            margin: 10,
+            borderRadius: 5,
+            textAlign: 'center',
+        }
+    ],
+    deleteButton: [
+        {
+            backgroundColor: '#ff0000',
+            color: '#fff',
+            padding: 10,
+            margin: 10,
+            borderRadius: 5,
+        }
+    ],
+    
 });
 
 export default styles;
