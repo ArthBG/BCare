@@ -6,7 +6,9 @@ export default function ESGAccessory() {
     <View>
       <Text>ESGAccessory</Text>
       {/* Pravel */}
-
+      <View>
+        <ModelClinic />
+      </View>
 
 
 
