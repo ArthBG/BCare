@@ -5,7 +5,7 @@ export default function ESGAccessory() {
   return (
     <View>
       <Text>ESGAccessory</Text>
-// Pravel
+      {/* Pravel */}
 
 
 
@@ -22,7 +22,7 @@ export default function ESGAccessory() {
 
 
 
-// Fervas 
+      {/* Fervas  */}
 
 
 
