@@ -1,4 +1,4 @@
-export class MembrosRepository {
+class MembrosRepository {
     constructor() {
         this.members = [];
     }
