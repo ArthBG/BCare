@@ -5,7 +5,12 @@ const styles = StyleSheet.create({
         marginTop: 150,
         marginBottom: 200,
     },
-
+    containerPage: {
+        flex: 1,
+    },
+    containerModel: {
+        flex: 1,
+    },
 
 });
 
