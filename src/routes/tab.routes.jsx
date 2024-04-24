@@ -7,7 +7,7 @@ import Category from "../screens/Category";
 import Profile from "../screens/Profile";
 import ESG from "../screens/ESG";
 import ScheduleForm from "../screens/ScheduleForm";
-import Detailing from "../screens/Detailing";
+import dateForm from "../screens/dateForm";
 
 import scheduleRepository from "../models/ScheduleRepository";
 
@@ -97,9 +97,9 @@ const TabRoutes = () => {
       />
       <Tab.Screen
         name="Detailing"
-        component={Detailing}
+        component={dateForm}
         options={{
-          tabBarLabel: "Detailing",
+          tabBarLabel: "dateForm",
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
               name="view-headline"

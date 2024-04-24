@@ -7,7 +7,6 @@ import {
   ScrollView,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import DateTimePicker from "@react-native-community/datetimepicker";
 import { Picker } from "@react-native-picker/picker";
 
 import styles from "./styles";
@@ -27,20 +26,12 @@ export default function ScheduleForm({ route }) {
 
   const navigation = useNavigation();
 
-  const onChangeT = (event, selectedTime) => {
-    const currentTime = selectedTime || time;
-    setShowT(false);
-    setTime(currentTime);
-  };
-
   useEffect(() => {
     if (edit) {
       setUserName(schedule.userName);
       setUserEmail(schedule.userEmail);
       setSpecialist(schedule.specialist);
       setDoctor(schedule.doctor);
-      setDate(schedule.date);
-      setTime(schedule.time);
     } else {
       clearInputs();
     }
@@ -66,8 +57,6 @@ export default function ScheduleForm({ route }) {
         userEmail,
         specialist,
         doctor,
-        date,
-        time
       );
       clearInputs();
     } else {
@@ -76,35 +65,11 @@ export default function ScheduleForm({ route }) {
         userEmail,
         specialist,
         doctor,
-        date,
-        time,
       });
       scheduleRepository.addSchedule(newSchedule);
       clearInputs();
     }
     navigation.navigate("ScheduleList");
-  };
-
-  const onDateChange = (event, selectedDate) => {
-    const currentDate = selectedDate;
-
-    setShow(false);
-    const newDate = new Date(
-      currentDate.getFullYear(),
-      selectedDate.getMonth(),
-      selectedDate.getDate()
-    );
-    setDate(newDate);
-  };
-
-  const showMode = (currentMode) => {
-    setShow(true);
-    setMode(currentMode);
-  };
-
-  const showModeT = (currentMode) => {
-    setShowT(true);
-    setMode(currentMode);
   };
 
   const clearInputs = () => {
@@ -113,8 +78,6 @@ export default function ScheduleForm({ route }) {
     setUserEmail("");
     setSpecialist("");
     setDoctor("");
-    setDate(new Date());
-    setTime(new Date());
   };
 
   return (
@@ -231,36 +194,6 @@ export default function ScheduleForm({ route }) {
               <Picker.Item label="Dr. Roberto Ordonha" value="Dr. Roberto Ordonha" />
             </Picker>
           ) : null}
-         {/*  <View style={styles.datePickerContainer}>
-            <TouchableOpacity onPress={() => showMode(date)}>
-              <Text style={styles.datePickerText}>
-                Selecione a data que deseja agendar
-              </Text>
-            </TouchableOpacity>
-          </View>
-
-          {show && (
-            <DateTimePicker
-              value={date}
-              mode="date"
-              display="spinner"
-              onChange={onDateChange}
-              style={styles.datePicker}
-            />
-          )}
-
-          <TouchableOpacity onPress={() => showModeT(time)}>
-            <Text style={styles.label}>Selecione o horário do agendamento</Text>
-          </TouchableOpacity>
-          {showT && (
-            <DateTimePicker
-              value={time}
-              mode="time"
-              display="spinner"
-              onChange={onChangeT}
-              style={styles.datePicker}
-            />
-          )} */}
           {errorMessage ? (
             <Text style={styles.errorMessage}>{errorMessage}</Text>
           ) : null}
