@@ -11,11 +11,12 @@ export default function ESGAccessory() {
   const [OrbitControls, events] = useControls();
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+  
   return (
     <View style={styles.containerPage}>
       <View {...events} style={styles.containerModel}>
         <Canvas>
-          <OrbitControls enablePan={false} />
+          <OrbitControls enablePan={false} enableZoom={false} minDistance={1000}  />
           <directionalLight position={[0, 5, 5]} args={['#fff', 2]} />
           <Suspense fallback={null}>
             <ModelClinic />
@@ -23,7 +24,7 @@ export default function ESGAccessory() {
         </Canvas>
       </View>
 
-      
+
       <View style={styles.container}>
         <ToggleSwitch isEnabled={isEnabled} toggleSwitch={toggleSwitch}/>
         <Text style={styles.text}>Luz</Text>
