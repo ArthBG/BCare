@@ -8,6 +8,7 @@ import Profile from "../screens/Profile";
 import ESG from "../screens/ESG";
 import ScheduleForm from "../screens/ScheduleForm";
 import Detailing from "../screens/Detailing";
+import Sobrenos from "../screens/Sobrenos";
 
 import scheduleRepository from "../models/ScheduleRepository";
 
@@ -43,6 +44,20 @@ const TabRoutes = () => {
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
               name="weather-hurricane"
+              color={color}
+              size={26}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Sobrenos"
+        component={Sobrenos}
+        options={{
+          tabBarLabel: "Sobrenos",
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons
+              name="account-group"
               color={color}
               size={26}
             />

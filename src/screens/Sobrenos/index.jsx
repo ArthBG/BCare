@@ -1,13 +1,15 @@
-import { View, Text, Image } from "react-native";
-import Title from "../../components/Title";
+import { View, Text, Image, Scrollview } from "react-native";
 import styles from "./styles";
 import { Members } from "../../data/Member";
+
 export default function Sobrenos() {
   return (
     <View style={styles.container}>
-      <Title title="Sobre-nós" />
-      <View style={styles.containerColumn}>
-        <Image src=""/>
+      <View style={styles.head}>
+        <Text style={styles.textPrincipal}>Tela Inicial</Text>
+      </View>
+      <Scrollview style={{ margin: 0 }}>
+        <Image source={require("../../../assets/pi.jpg")} />
         <Text style={styles.text}>
           Somos um grupo de desenvolvedores apaixonados por tecnologia e
           inovação. Nossa missão é criar soluções criativas e eficazes para
@@ -16,32 +18,19 @@ export default function Sobrenos() {
           aprendizado, e estamos comprometidos em entregar o melhor resultado
           possível em todos os nossos projetos.
         </Text>
-      </View>
-      <View style={styles.containerMembers}>
-        {
-          Members ? Members.map((member, index) => (
+        {Members ? (
+          Members.map((member, index) => (
             <View key={index} style={styles.containerMember}>
-              <Image
-                style={styles.image}
-                source={member.image}
-              />
-              <Text style={styles.textMember}>
-                {member.name}
-              </Text>
-              <Text style={styles.textMember}>
-                {member.cargo}
-              </Text>
-              <Text style={styles.textMember}>
-                {member.descripition}
-              </Text>
+              <Image style={styles.image} source={member.image} />
+              <Text style={styles.textMember}>{member.name}</Text>
+              <Text style={styles.textMember}>{member.cargo}</Text>
+              <Text style={styles.textMember}>{member.descripition}</Text>
             </View>
-          )) : (
-            <Text style={styles.text}>Sem membros para exibir</Text>
-          )
-        }
-
-      </View>
-
+          ))
+        ) : (
+          <Text style={styles.text}>Sem membros para exibir</Text>
+        )}
+      </Scrollview>
     </View>
   );
 }
