@@ -5,6 +5,29 @@ export default function ESGAccessory() {
   return (
     <View>
       <Text>ESGAccessory</Text>
+// Pravel
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Fervas 
+
+
+
+
+
     </View>
   )
 }
