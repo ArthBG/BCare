@@ -19,11 +19,21 @@ export default function ScheduleForm({ route }) {
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState(new Date());
   const [isUpdate, setIsUpdate] = useState(edit);
-  const [mode, setMode] = useState("date");
   const [show, setShow] = useState(false);
+  const [showT, setShowT] = useState(false);
+  const [mode, setMode] = useState("date");
   const [errorMessage, setErrorMessage] = useState("");
 
   const navigation = useNavigation();
+
+  
+  const onChangeT = (event, selectedTime) => {
+    const currentTime = selectedTime || time;
+    setShowT(false);
+    setTime(currentTime);
+  }
+
+
 
   useEffect(() => {
     if (edit) {
@@ -89,16 +99,17 @@ export default function ScheduleForm({ route }) {
     setDate(newDate);
   };
 
-  const onTimeChange = (event, selectedTime) => {
-    const currentTime = selectedTime;
-    setShow(false);
-    setTime(currentTime);
-  };
+
 
   const showMode = (currentMode) => {
     setShow(true);
     setMode(currentMode);
   };
+
+  const showModeT = (currentMode) => {
+    setShowT(true);
+    setMode(currentMode);
+  }
 
   const clearInputs = () => {
     setIsUpdate(false);
@@ -127,7 +138,7 @@ export default function ScheduleForm({ route }) {
             value={userEmail}
             onChangeText={setUserEmail}
           />
-          <Picker
+          {/* <Picker
             style={styles.input}
             selectedValue={doctor}
             onValueChange={setDoctor}
@@ -136,7 +147,7 @@ export default function ScheduleForm({ route }) {
             <Picker.Item label="Dr. João" value="Dr. João" />
             <Picker.Item label="Dr. José" value="Dr. José" />
             <Picker.Item label="Dr. Maria" value="Dr. Maria" />
-          </Picker>
+          </Picker> */}
           <TextInput
             style={styles.input}
             placeholder="Descrição"
@@ -146,7 +157,7 @@ export default function ScheduleForm({ route }) {
           <View style={styles.datePickerContainer}>
             <TouchableOpacity onPress={() => showMode(date)}>
               <Text style={styles.datePickerText}>
-                Selecione a data de conquista do seu planeta
+                Selecione a data que deseja agendar 
               </Text>
             </TouchableOpacity>
           </View>
@@ -154,21 +165,27 @@ export default function ScheduleForm({ route }) {
           {show && (
             <DateTimePicker
               value={date}
-              mode={mode}
+              mode="date"
               display="spinner"
               onChange={onDateChange}
               style={styles.datePicker}
             />
           )}
-          <Text style={styles.label}>Hora</Text>
+
+          <TouchableOpacity onPress={() => showModeT(time)}>
+          <Text style={styles.label}>
+            Selecione o horário do agendamento
+          </Text>
+          </TouchableOpacity>
+          {showT && (
           <DateTimePicker
             value={time}
             mode="time"
             display="spinner"
-            onChange={onTimeChange}
+            onChange={onChangeT}
             style={styles.datePicker}
           />
-
+        )}
           {errorMessage ? (
             <Text style={styles.errorMessage}>{errorMessage}</Text>
           ) : null}
