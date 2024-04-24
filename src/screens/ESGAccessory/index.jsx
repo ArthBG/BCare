@@ -3,6 +3,7 @@ import { Canvas } from '@react-three/fiber/native';
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native'
 import useControls from "r3f-native-orbitcontrols"
 import { ModelClinic } from '../../components/ModelClinic';
+import ToggleSwitch from '../../components/ToggleSwitch'
 
 import styles from './styles'
 
@@ -19,19 +20,10 @@ export default function ESGAccessory() {
           </Suspense>
         </Canvas>
       </View>
-      <View>
-        <Text>dsj</Text>
-        <Text>dsj</Text>
-        <Text>dsj</Text>
-        <Text>dsj</Text>
-        <Text>dsj</Text>
-
+      <View style={styles.container}>
+        <ToggleSwitch />
+        <Text style={styles.text}>Luz</Text>
       </View>
     </View>
-
-
-
-
-
   )
 }
