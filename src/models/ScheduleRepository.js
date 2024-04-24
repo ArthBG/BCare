@@ -19,12 +19,13 @@
         this.schedules = this.schedules.filter(schedule => schedule.id !== id);
     }
 
-    updateSchedule(id, userName, userEmail, description, date, time) {
+    updateSchedule(id, userName, userEmail,specialist,doctor, date, time) {
         const schedule = this.getSchedulesById(id);
         if (schedule) {
             schedule.userName = userName;
             schedule.userEmail = userEmail;
-            schedule.description = description;
+            schedule.specialist = specialist;
+            schedule.doctor = doctor;
             schedule.date = date;
             schedule.time = time;
         }

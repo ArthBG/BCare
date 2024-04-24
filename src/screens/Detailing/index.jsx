@@ -1,5 +1,6 @@
 import { TouchableOpacity, View, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { useState } from "react";
 
 import styles from "./styles";
 
@@ -8,6 +9,11 @@ import scheduleRepository from "../../models/ScheduleRepository";
 export default function Detailing({ route }) {
   const navigation = useNavigation();
   const { data } = route.params;
+  const [show, setShow] = useState(false);
+  const [showT, setShowT] = useState(false);
+  const [mode, setMode] = useState("date");
+  const [date, setDate] = useState(new Date());
+  const [time, setTime] = useState(new Date());
 
   const editSchedule = () => {
     navigation.navigate("EditSchedule", { schedule: data, edit: true });
