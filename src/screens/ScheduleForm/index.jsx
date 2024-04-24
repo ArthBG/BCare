@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { View, TextInput, Text, Touchable, ScrollView } from "react-native";
+import { View, TextInput, Text, TouchableOpacity, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Picker } from "@react-native-picker/picker";
@@ -8,7 +8,6 @@ import styles from "./styles";
 
 import Schedule from "../../models/Schedule";
 import scheduleRepository from "../../models/ScheduleRepository";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function ScheduleForm({ route }) {
   const { schedule, edit } = route.params;
