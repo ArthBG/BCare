@@ -5,7 +5,7 @@ import Model from "../../../assets/models/hospital.glb"
 export function ModelClinic(props) {
   const { nodes, materials } = useGLTF(Model)
   return (
-    <group rotation={[0.3, 4.5, 0]} {...props} dispose={null}>
+    <group rotation={[0.3, 4.5, 0]} position={[-24, 0, 0]} {...props} dispose={null}>
       <group scale={0.01}>
         <group position={[0, 876.868, 0]} rotation={[-Math.PI / 2, 0, 0]} scale={100}>
           <mesh
