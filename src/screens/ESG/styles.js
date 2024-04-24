@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
     infoContainer: {
-        padding: 20,
+        padding: 5  ,
     },
 });
 
