@@ -8,6 +8,7 @@ import Profile from "../screens/Profile";
 import ESG from "../screens/ESG";
 import ScheduleForm from "../screens/ScheduleForm";
 import Detailing from "../screens/Detailing";
+import ESGAcessory from "../screens/ESGAccessory";
 
 import scheduleRepository from "../models/ScheduleRepository";
 
@@ -36,13 +37,13 @@ const TabRoutes = () => {
       />
 
       <Tab.Screen
-        name="Profile"
-        component={Profile}
+        name="clinic"
+        component={ESGAcessory}
         options={{
-          tabBarLabel: "Profile",
+          tabBarLabel: "Clínica",
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
-              name="weather-hurricane"
+              name="hospital-building"
               color={color}
               size={26}
             />
