@@ -6,12 +6,14 @@ import { ModelClinic } from '../../components/ModelClinic';
 import ToggleSwitch from '../../components/ToggleSwitch';
 import Slider from '@react-native-community/slider';
 
+
 import styles from './styles'
 
 export default function ESGAccessory() {
   const [OrbitControls, events] = useControls();
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+  const [sliderValue, setSliderValue] = useState(0);
 
   return (
     <View style={styles.containerPage}>
@@ -30,13 +32,14 @@ export default function ESGAccessory() {
         minimumValue={0}
         maximumValue={1}
         minimumTrackTintColor="#3e3e3e"
-        maximumTrackTintColor="#000000"
+        maximumTrackTintColor="#767577"
         thumbTintColor="#bb0000"
+        onValueChange={setSliderValue}
       />
 
       <View style={styles.container}>
         <ToggleSwitch isEnabled={isEnabled} toggleSwitch={toggleSwitch} />
-        <Text style={styles.text}>Luz</Text>
+        <Text style={styles.text}>Luz: {sliderValue.toFixed(2)}</Text>
       </View>
     </View>
   )
