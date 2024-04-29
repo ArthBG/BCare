@@ -4,10 +4,11 @@ import { View, Text, TouchableOpacity, ScrollView } from 'react-native'
 import useControls from "r3f-native-orbitcontrols"
 import { ModelClinic } from '../../components/ModelClinic';
 import ToggleSwitch from '../../components/ToggleSwitch';
-import Slider from '@react-native-community/slider';
 
 
 import styles from './styles'
+import SliderInput from '../../components/SliderInput';
+
 
 export default function ESGAccessory() {
   const [OrbitControls, events] = useControls();
@@ -20,22 +21,14 @@ export default function ESGAccessory() {
       <View {...events} style={styles.containerModel}>
         <Canvas>
           <OrbitControls enablePan={false} enableZoom={false} minDistance={1000} />
-          <directionalLight position={[0, 5, 5]} args={['#fff', 2]} />
+          <directionalLight position={[0, 5, 5]} args={['#fff', 1.2]} />
           <Suspense fallback={null}>
             <ModelClinic />
           </Suspense>
         </Canvas>
       </View>
 
-      <Slider
-        style={{ width: 400, height: 40 }}
-        minimumValue={0}
-        maximumValue={1}
-        minimumTrackTintColor="#3e3e3e"
-        maximumTrackTintColor="#767577"
-        thumbTintColor="#bb0000"
-        onValueChange={setSliderValue}
-      />
+      < SliderInput Value={setSliderValue} />
 
       <View style={styles.container}>
         <ToggleSwitch isEnabled={isEnabled} toggleSwitch={toggleSwitch} />
