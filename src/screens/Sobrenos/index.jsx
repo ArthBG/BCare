@@ -8,14 +8,14 @@ export default function Sobrenos({ route }) {
   const navigation = useNavigation();
   const { data } = route.params;
 
-  /* const editMember = () => {
+  const editMember = () => {
     navigation.navigate("EditMember", { member: data, edit: true });
-  }; */
+  };
 
   const removeMember = () => {
     memberRepository.deleteMember(data.id);
     navigation.goBack();
-  }; 
+  };
 
   return (
     <View style={styles.container}>
@@ -48,10 +48,12 @@ export default function Sobrenos({ route }) {
               <Text style={styles.textCargo}>{member.cargo}</Text>
               <Text style={styles.textDescricao}>{member.descripition}</Text>
               <View style={styles.buttons}>
-                <TouchableOpacity /* onPress={editMember} */>
+
+                <TouchableOpacity onPress={editMember}>
                   <Text style={styles.editButton}>Editar</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={removeMember} >
+                
+                <TouchableOpacity onPress={removeMember}>
                   <Text style={styles.deleteButton}>Excluir</Text>
                 </TouchableOpacity>
               </View>
