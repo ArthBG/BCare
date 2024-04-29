@@ -5,6 +5,7 @@ import {
   Text,
   TouchableOpacity,
   ScrollView,
+  Image,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Picker } from "@react-native-picker/picker";
@@ -23,7 +24,6 @@ export default function ScheduleForm({ route }) {
   const [doctor, setDoctor] = useState("");
   const [isUpdate, setIsUpdate] = useState(edit);
   const [errorMessage, setErrorMessage] = useState("");
-  
 
   const navigation = useNavigation();
 
@@ -57,7 +57,7 @@ export default function ScheduleForm({ route }) {
         userName,
         userEmail,
         specialist,
-        doctor,
+        doctor
       );
       clearInputs();
     } else {
@@ -71,7 +71,7 @@ export default function ScheduleForm({ route }) {
       clearInputs();
     }
     let schedule1 = scheduleRepository.getAll();
-    navigation.navigate("ScheduleList", {schedule: schedule1, edit: edit});
+    navigation.navigate("ScheduleList", { schedule: schedule1, edit: edit });
   };
 
   const clearInputs = () => {
@@ -79,13 +79,34 @@ export default function ScheduleForm({ route }) {
     setUserName("");
     setUserEmail("");
     setSpecialist("");
-    setDoctor("")
+    setDoctor("");
   };
 
   return (
     <View style={styles.container}>
       <ScrollView>
         <Text style={styles.title}>Agendamento</Text>
+        <View style={styles.divColor}>
+        <View style={styles.divImg}>
+        <Image
+          source={require("../../../assets/logovdd.png")}
+          style={styles.image}
+        />
+         <Picker
+            selectedValue={specialist}
+            onValueChange={(itemValue) => setSpecialist(itemValue)}
+          >
+            <Picker.Item label="Selecione a especialidade" value="" />
+            <Picker.Item label="Cardiologista" value="Cardiologista" />
+            <Picker.Item label="Dermatologista" value="Dermatologista" />
+            <Picker.Item label="Endocrinologista" value="Endocrinologista" />
+            <Picker.Item label="Ginecologista" value="Ginecologista" />
+            <Picker.Item label="Ortopedista" value="Ortopedista" />
+            <Picker.Item label="Pediatra" value="Pediatra" />
+            <Picker.Item label="Psiquiatra" value="Psiquiatra" />
+          </Picker>
+        </View>
+        </View>
         <View style={styles.form}>
           <TextInput
             style={styles.input}
@@ -99,19 +120,7 @@ export default function ScheduleForm({ route }) {
             value={userEmail}
             onChangeText={setUserEmail}
           />
-          <Picker
-            selectedValue={specialist}
-            onValueChange={(itemValue) => setSpecialist(itemValue)}
-          >
-            <Picker.Item label="Selecione a especialidade" value="" />
-            <Picker.Item label="Cardiologista" value="Cardiologista" />
-            <Picker.Item label="Dermatologista" value="Dermatologista" />
-            <Picker.Item label="Endocrinologista" value="Endocrinologista" />
-            <Picker.Item label="Ginecologista" value="Ginecologista" />
-            <Picker.Item label="Ortopedista" value="Ortopedista" />
-            <Picker.Item label="Pediatra" value="Pediatra" />
-            <Picker.Item label="Psiquiatra" value="Psiquiatra" />
-          </Picker>
+         
 
           {specialist === "Cardiologista" ? (
             <Picker
@@ -136,9 +145,18 @@ export default function ScheduleForm({ route }) {
               onValueChange={(itemValue) => setDoctor(itemValue)}
             >
               <Picker.Item label="Selecione o médico" value="" />
-              <Picker.Item label="Dra. Sarah Thé Coelho" value="Dra. Sarah Thé Coelho" />
-              <Picker.Item label="Dra. Flávia M. Rapello" value="Dra. Flávia M. Rapello" />
-              <Picker.Item label="Dr. Caio Vieira de Campos" value="Dr. Caio Vieira de Campos" />
+              <Picker.Item
+                label="Dra. Sarah Thé Coelho"
+                value="Dra. Sarah Thé Coelho"
+              />
+              <Picker.Item
+                label="Dra. Flávia M. Rapello"
+                value="Dra. Flávia M. Rapello"
+              />
+              <Picker.Item
+                label="Dr. Caio Vieira de Campos"
+                value="Dr. Caio Vieira de Campos"
+              />
             </Picker>
           ) : null}
           {specialist === "Endocrinologista" ? (
@@ -147,9 +165,18 @@ export default function ScheduleForm({ route }) {
               onValueChange={(itemValue) => setDoctor(itemValue)}
             >
               <Picker.Item label="Selecione o médico" value="" />
-              <Picker.Item label="Dr. Marcio Chaves" value="Dr. Marcio Chaves" />
-              <Picker.Item label="Dr. Márcio Gambini" value="Dr. Márcio Gambini" />
-              <Picker.Item label="Dra. Caroline Schnoll" value="Dra. Caroline Schnoll" />
+              <Picker.Item
+                label="Dr. Marcio Chaves"
+                value="Dr. Marcio Chaves"
+              />
+              <Picker.Item
+                label="Dr. Márcio Gambini"
+                value="Dr. Márcio Gambini"
+              />
+              <Picker.Item
+                label="Dra. Caroline Schnoll"
+                value="Dra. Caroline Schnoll"
+              />
             </Picker>
           ) : null}
           {specialist === "Ginecologista" ? (
@@ -158,9 +185,18 @@ export default function ScheduleForm({ route }) {
               onValueChange={(itemValue) => setDoctor(itemValue)}
             >
               <Picker.Item label="Selecione o médico" value="" />
-              <Picker.Item label="Dra. Luíza Vidigal Sette" value="Dra. Luíza Vidigal Sette" />
-              <Picker.Item label="Dra. Luíza Queiroz" value="Dra. Luíza Queiroz" />
-              <Picker.Item label="Dr. Allan Nogueira da Silva" value="Dr. Allan Nogueira da Silva" />
+              <Picker.Item
+                label="Dra. Luíza Vidigal Sette"
+                value="Dra. Luíza Vidigal Sette"
+              />
+              <Picker.Item
+                label="Dra. Luíza Queiroz"
+                value="Dra. Luíza Queiroz"
+              />
+              <Picker.Item
+                label="Dr. Allan Nogueira da Silva"
+                value="Dr. Allan Nogueira da Silva"
+              />
             </Picker>
           ) : null}
           {specialist === "Ortopedista" ? (
@@ -168,10 +204,16 @@ export default function ScheduleForm({ route }) {
               selectedValue={doctor}
               onValueChange={(itemValue) => setDoctor(itemValue)}
             >
-              <Picker.Item label="Selecione o médico" value="Dr. Fernando Gouvea" />
+              <Picker.Item
+                label="Selecione o médico"
+                value="Dr. Fernando Gouvea"
+              />
               <Picker.Item label="Dr. Fernando Gouvea" value="" />
               <Picker.Item label="Dr. Lucas Prado" value="Dr. Lucas Prado" />
-              <Picker.Item label="Dr. André Lange Canhos" value="Dr. André Lange Canhos" />
+              <Picker.Item
+                label="Dr. André Lange Canhos"
+                value="Dr. André Lange Canhos"
+              />
             </Picker>
           ) : null}
           {specialist === "Pediatra" ? (
@@ -180,9 +222,18 @@ export default function ScheduleForm({ route }) {
               onValueChange={(itemValue) => setDoctor(itemValue)}
             >
               <Picker.Item label="Selecione o médico" value="" />
-              <Picker.Item label="Dra. Camila Ohomoto de Morais" value="Dra. Camila Ohomoto de Morais" />
-              <Picker.Item label="Dra. Juliana de Carvalho Campos" value="Dra. Juliana de Carvalho Campos" />
-              <Picker.Item label="Dr. Gabriel Venturelli" value="Dr. Gabriel Venturelli" />
+              <Picker.Item
+                label="Dra. Camila Ohomoto de Morais"
+                value="Dra. Camila Ohomoto de Morais"
+              />
+              <Picker.Item
+                label="Dra. Juliana de Carvalho Campos"
+                value="Dra. Juliana de Carvalho Campos"
+              />
+              <Picker.Item
+                label="Dr. Gabriel Venturelli"
+                value="Dr. Gabriel Venturelli"
+              />
             </Picker>
           ) : null}
           {specialist === "Psiquiatra" ? (
@@ -191,9 +242,18 @@ export default function ScheduleForm({ route }) {
               onValueChange={(itemValue) => setDoctor(itemValue)}
             >
               <Picker.Item label="Selecione o médico" value="" />
-              <Picker.Item label="Dr. Gabriel Reifur" value="Dr. Gabriel Reifur" />
-              <Picker.Item label="Dr. Jônatas Batista" value="Dr. Jônatas Batista" />
-              <Picker.Item label="Dr. Roberto Ordonha" value="Dr. Roberto Ordonha" />
+              <Picker.Item
+                label="Dr. Gabriel Reifur"
+                value="Dr. Gabriel Reifur"
+              />
+              <Picker.Item
+                label="Dr. Jônatas Batista"
+                value="Dr. Jônatas Batista"
+              />
+              <Picker.Item
+                label="Dr. Roberto Ordonha"
+                value="Dr. Roberto Ordonha"
+              />
             </Picker>
           ) : null}
           {errorMessage ? (
