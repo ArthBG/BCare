@@ -8,6 +8,7 @@ import Profile from "../screens/Profile";
 import ESG from "../screens/ESG";
 import ScheduleForm from "../screens/ScheduleForm";
 import dateForm from "../screens/dateForm";
+import ScheduleList from "../screens/ScheduleList";
 
 import scheduleRepository from "../models/ScheduleRepository";
 
@@ -86,6 +87,21 @@ const TabRoutes = () => {
         initialParams={{ schedule: {}, edit: false }}
         options={{
           tabBarLabel: "ScheduleForm",
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons
+              name="view-headline"
+              color={color}
+              size={26}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="ScheduleList"
+        component={ScheduleList}
+        initialParams={{ schedule: schedules, edit: false }}
+        options={{
+          tabBarLabel: "ScheduleList",
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
               name="view-headline"

@@ -23,6 +23,7 @@ export default function ScheduleForm({ route }) {
   const [doctor, setDoctor] = useState("");
   const [isUpdate, setIsUpdate] = useState(edit);
   const [errorMessage, setErrorMessage] = useState("");
+  
 
   const navigation = useNavigation();
 
@@ -69,7 +70,8 @@ export default function ScheduleForm({ route }) {
       scheduleRepository.addSchedule(newSchedule);
       clearInputs();
     }
-    navigation.navigate("ScheduleList");
+    let schedule1 = scheduleRepository.getAll();
+    navigation.navigate("ScheduleList", {schedule: schedule1, edit: edit});
   };
 
   const clearInputs = () => {
@@ -77,7 +79,7 @@ export default function ScheduleForm({ route }) {
     setUserName("");
     setUserEmail("");
     setSpecialist("");
-    setDoctor("");
+    setDoctor("")
   };
 
   return (
