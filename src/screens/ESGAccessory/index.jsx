@@ -32,7 +32,7 @@ export default function ESGAccessory() {
 
       <View style={styles.container}>
         <ToggleSwitch isEnabled={isEnabled} toggleSwitch={toggleSwitch} />
-        <Text style={styles.text}>Luz: {sliderValue.toFixed(2)}</Text>
+        <Text style={styles.text}>Luz: {sliderValue.toFixed(1)}</Text>
       </View>
     </View>
   )
