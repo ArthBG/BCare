@@ -48,11 +48,10 @@ export default function Sobrenos({ route }) {
               <Text style={styles.textCargo}>{member.cargo}</Text>
               <Text style={styles.textDescricao}>{member.descripition}</Text>
               <View style={styles.buttons}>
-
                 <TouchableOpacity onPress={editMember}>
                   <Text style={styles.editButton}>Editar</Text>
                 </TouchableOpacity>
-                
+
                 <TouchableOpacity onPress={removeMember}>
                   <Text style={styles.deleteButton}>Excluir</Text>
                 </TouchableOpacity>

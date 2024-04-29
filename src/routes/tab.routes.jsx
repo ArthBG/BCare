@@ -9,6 +9,8 @@ import ESG from "../screens/ESG";
 import ScheduleForm from "../screens/ScheduleForm";
 import Detailing from "../screens/Detailing";
 import Sobrenos from "../screens/Sobrenos";
+import Members from "../data/Member.js";
+import EditAddMember from "../screens/EditAddMember/index.jsx";
 
 import scheduleRepository from "../models/ScheduleRepository";
 
@@ -53,6 +55,7 @@ const TabRoutes = () => {
       <Tab.Screen
         name="Sobrenos"
         component={Sobrenos}
+        initialParams={{ data: { Members } }}
         options={{
           tabBarLabel: "Sobrenos",
           tabBarIcon: ({ color }) => (
@@ -70,6 +73,20 @@ const TabRoutes = () => {
         component={Category}
         options={{
           tabBarLabel: "Category",
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons
+              name="view-headline"
+              color={color}
+              size={26}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="EditAddMember"
+        component={EditAddMember}
+        options={{
+          tabBarLabel: "EditAddMember",
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
               name="view-headline"
