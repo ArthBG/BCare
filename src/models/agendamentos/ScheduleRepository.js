@@ -1,3 +1,4 @@
+ import Schedule from './Schedule.js';
  class ScheduleRepository {
     constructor() {
         this.schedules = [];
@@ -34,5 +35,15 @@
 }
 
 const scheduleRepository = new ScheduleRepository();
+//mockado pra estilizar
+const schedulemocked = new Schedule({
+    userName: 'João',
+    userEmail: 'joao@gmail.com',
+    doctor: 'Dr. Carlos',
+    specialist: 'Dermatologista',
+    date: '2021-09-21',
+    time: '14:00'
+});
+scheduleRepository.addSchedule(schedulemocked);
 
 export default scheduleRepository;

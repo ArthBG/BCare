@@ -22,11 +22,15 @@ export default function ScheduleList({route}) {
                 schedulesList.map((schedule) => (
                         <View key={schedule.id}>
                             <View style={styles.scheduleContainer}>   
-                            <Text>{schedule.specialist}</Text>
-                            <Text>{schedule.doctor}</Text>
+                            <View style={styles.scheduleDoctorImage}>
+                                <Text>Imagem</Text>
+                            </View>
+                            <Text style={styles.doctorText}>{schedule.doctor}</Text>
                             </View>
                             <Text>{schedule.userName}</Text>
                             <Text>{schedule.userEmail}</Text>
+                            <Text>{schedule.date}</Text>
+                            <Text>{schedule.time}</Text>
                             <TouchableOpacity onPress={() => handleDelete(schedule.id)}>
                                 <Text>Remover</Text>
                             </TouchableOpacity>
