@@ -6,6 +6,11 @@ const styles = StyleSheet.create({
         padding: 20,
         backgroundColor: "#fff",
     },
+    scheduleContainer: {
+        width: "100%",
+        backgroundColor: "#f14666",
+
+    }
 }
 );
 export default styles;

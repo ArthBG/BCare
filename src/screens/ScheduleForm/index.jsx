@@ -12,8 +12,8 @@ import { Picker } from "@react-native-picker/picker";
 
 import styles from "./styles";
 
-import Schedule from "../../models/Schedule";
-import scheduleRepository from "../../models/ScheduleRepository";
+import Schedule from "../../models/agendamentos/Schedule";
+import scheduleRepository from "../../models/agendamentos/ScheduleRepository";
 
 export default function ScheduleForm({ route }) {
   const { schedule, edit } = route.params;
@@ -86,12 +86,7 @@ export default function ScheduleForm({ route }) {
     <View style={styles.container}>
       <ScrollView>
         <Text style={styles.title}>Agendamento</Text>
-        <View style={styles.divColor}>
-        <View style={styles.divImg}>
-        <Image
-          source={require("../../../assets/logovdd.png")}
-          style={styles.image}
-        />
+      
          <Picker
             selectedValue={specialist}
             onValueChange={(itemValue) => setSpecialist(itemValue)}
@@ -105,8 +100,6 @@ export default function ScheduleForm({ route }) {
             <Picker.Item label="Pediatra" value="Pediatra" />
             <Picker.Item label="Psiquiatra" value="Psiquiatra" />
           </Picker>
-        </View>
-        </View>
         <View style={styles.form}>
           <TextInput
             style={styles.input}

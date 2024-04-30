@@ -9,8 +9,8 @@ import ESG from "../screens/ESG";
 import ScheduleForm from "../screens/ScheduleForm";
 import dateForm from "../screens/dateForm";
 import ScheduleList from "../screens/ScheduleList";
+import scheduleRepository from "../models/agendamentos/ScheduleRepository";
 
-import scheduleRepository from "../models/ScheduleRepository";
 
 const Tab = createBottomTabNavigator();
 
@@ -101,6 +101,7 @@ const TabRoutes = () => {
         component={ScheduleList}
         initialParams={{ schedule: schedules, edit: false }}
         options={{
+          display: "none",	
           tabBarLabel: "ScheduleList",
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
