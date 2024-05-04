@@ -14,7 +14,7 @@ export default function Home() {
           <View style={{ margin: "auto", alignItems: "center", marginBottom: 50 }}>
             <Image
               style={styles.image}
-              source={require("../../../assets/logovdd.png")}
+              source={require("../../../assets/logo.jpeg")}
             ></Image>
           </View>
           <View style={styles.containerFirst}>
