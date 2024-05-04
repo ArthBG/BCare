@@ -7,7 +7,6 @@ import Category from "../screens/Category";
 import Profile from "../screens/Profile";
 import ESG from "../screens/ESG";
 import ScheduleForm from "../screens/ScheduleForm";
-import dateForm from "../screens/dateForm";
 import ScheduleList from "../screens/ScheduleList";
 import scheduleRepository from "../models/agendamentos/ScheduleRepository";
 
@@ -106,20 +105,7 @@ const TabRoutes = () => {
           ),
         }}
       />
-      <Tab.Screen
-        name="Detailing"
-        component={dateForm}
-        options={{
-          tabBarLabel: "dateForm",
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons
-              name="calendar-account"
-              color={color}
-              size={26}
-            />
-          ),
-        }}
-      />
+
     </Tab.Navigator>
   );
 };
