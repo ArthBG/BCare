@@ -2,9 +2,11 @@ import { View, Text, Image } from "react-native";
 import Title from "../../components/Title";
 import styles from "./styles";
 import { Members } from "../../data/Member";
+import { ScrollView } from "react-native-gesture-handler";
 export default function Sobrenos() {
   return (
     <View style={styles.container}>
+      <ScrollView>
       <Title title="Sobre-nós" />
       <View style={styles.containerColumn}>
         <Image src=""/>
@@ -21,10 +23,10 @@ export default function Sobrenos() {
         {
           Members ? Members.map((member, index) => (
             <View key={index} style={styles.containerMember}>
-              <Image
-                style={styles.image}
-                source={member.image}
-              />
+               <Image
+               style={styles.image}
+              source={member.image}
+                />
               <Text style={styles.textMember}>
                 {member.name}
               </Text>
@@ -41,7 +43,7 @@ export default function Sobrenos() {
         }
 
       </View>
-
+      </ScrollView>
     </View>
   );
 }
