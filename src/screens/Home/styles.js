@@ -26,16 +26,30 @@ const styles = StyleSheet.create({
     backgroundColor: '#DDDDDD',
     borderRadius: 15,
   },
+  containerImage2:{
+    backgroundColor: '#FFFF',
+    width: 140,
+    borderBottomRightRadius: 15,
+  },
   containerImageAndText:{
     display: 'flex',
+    backgroundColor: '#E7E7E7',
+    borderRadius: 15,
+    width: "100%",
   },
   buttonInsider: {
     backgroundColor: '#BB0000',
-    padding: 10,
+    padding: 7,
     borderTopLeftRadius: 35,
     borderTopRightRadius: 15,
     borderBottomLeftRadius: 35,
     borderBottomRightRadius: 35,
+  },
+  textButtonInsider: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 16,
+    textAlign: 'center',
   },
   imageLoa: {
     width: 140,
@@ -97,10 +111,17 @@ const styles = StyleSheet.create({
   containerFooter: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 40,
+    marginTop: 30,
   },
   button: {
     backgroundColor: '#BB0000',
+    padding: 10,
+    borderRadius: 5,
+    width: '30%',
+    alignItems: 'center',
+  },
+  buttonmiddle: {
+    backgroundColor: '#22B78A',
     padding: 10,
     borderRadius: 5,
     width: '30%',

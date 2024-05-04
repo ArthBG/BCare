@@ -1,7 +1,9 @@
 import { View, Text, Image, ScrollView, TouchableOpacity, StyleSheet } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import styles from "./styles";
 
 export default function Home() {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -19,7 +21,7 @@ export default function Home() {
           <View style={styles.containerImage}>
           <Image style={styles.imageLoa} source={require('../../../assets/logovdd.png')} />
           </View>
-          <View style={{ marginTop: 60 }}>
+          <View style={{ marginTop: 80 }}>
           <View style={{ margin: 10 }}>
           <Text style={styles.textInicio}>Bem-vindo à BCare</Text>
           <Text style={styles.textInicio2}>Sua Clínica Online de Confiança!</Text>
@@ -33,17 +35,16 @@ export default function Home() {
           </View>
           <View style={styles.containerFirstt}>
             <View style={styles.containerImageAndText}>
-          <View style={styles.containerImage}>
+          <View style={styles.containerImage2}>
           <Image style={styles.imageLoa} source={require('../../../assets/logovdd.png')} />
           </View>
           <View style={{ position: 'absolute', left: 220}}>
-          <TouchableOpacity style={styles.buttonInsider}>
+          <TouchableOpacity style={styles.buttonInsider} onPress={() => navigation.navigate("ScheduleForm")}>
             <Text style={styles.textButtonInsider}>Agendar Consulta</Text>
           </TouchableOpacity>
           </View>
           </View>
-          <View style={{ marginTop: 60 }}>
-          <View style={{ margin: 10 }}>
+          <View style={{ marginLeft: 10, marginRight: 10, marginBottom: 10, marginTop: -15 }}>
           <Text style={styles.textInicio3}>Por que escolher a BCare?</Text>
           <Text style={styles.item1}>• Agendamento online simplificado</Text>
           <Text style={styles.item2}>• Consultas virtuais de qualidade</Text>
@@ -52,16 +53,12 @@ export default function Home() {
           <Text style={styles.item5}>• Atendimento personalizado</Text>
           </View>
           </View>
-          </View>
           <View style={styles.containerFooter}>
-            <TouchableOpacity style={styles.button}>
-              <Text style={styles.textButton}>Agendar Consulta</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
-              <Text style={styles.textButton}>Consultar Agenda</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Sobrenos")}>
               <Text style={styles.textButton}>Sobre a BCare</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.buttonmiddle} onPress={() => navigation.navigate("ScheduleList")}>
+              <Text style={styles.textButton}>Consultar Agenda</Text>
             </TouchableOpacity>
           </View>
         </View>

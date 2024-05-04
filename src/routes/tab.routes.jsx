@@ -3,9 +3,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 import Home from "../screens/Home";
-import Category from "../screens/Category";
-import Profile from "../screens/Profile";
 import ESG from "../screens/ESG";
+import Sobrenos from "../screens/Sobrenos";
 import ScheduleForm from "../screens/ScheduleForm";
 import dateForm from "../screens/dateForm";
 import ScheduleList from "../screens/ScheduleList";
@@ -36,32 +35,6 @@ const TabRoutes = () => {
       />
 
       <Tab.Screen
-        name="Profile"
-        component={Profile}
-        options={{
-          tabBarLabel: "Profile",
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="account" color={color} size={26} />
-          ),
-        }}
-      />
-
-      <Tab.Screen
-        name="Category"
-        component={Category}
-        options={{
-          tabBarLabel: "Category",
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons
-              name="view-headline"
-              color={color}
-              size={26}
-            />
-          ),
-        }}
-      />
-
-      <Tab.Screen
         name="ESG"
         component={ESG}
         options={{
@@ -74,6 +47,16 @@ const TabRoutes = () => {
               />
             ),
           },
+        }}
+      />
+      <Tab.Screen
+        name="Sobrenos"
+        component={Sobrenos}
+        options={{
+          tabBarLabel: "Sobrenos",
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="account" color={color} size={26} />
+          ),
         }}
       />
       <Tab.Screen
