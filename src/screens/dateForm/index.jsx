@@ -1,84 +1,68 @@
-import { TouchableOpacity, View, Text } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { View, Text, TouchableOpacity } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import { useNavigation } from "@react-navigation/native";
 
 import styles from "./styles";
 
 export default function Detailing({ route }) {
   const navigation = useNavigation();
   const { data } = route.params;
-  const [show, setShow] = useState(false);
-  const [showT, setShowT] = useState(false);
-  const [mode, setMode] = useState("date");
+
+  const [showDate, setShowDate] = useState(false);
+  const [showTime, setShowTime] = useState(false);
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState(new Date());
 
-  const onChangeT = (event, selectedTime) => {
+  const onDateChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShowDate(false);
+    setDate(currentDate);
+  };
+
+  const onTimeChange = (event, selectedTime) => {
     const currentTime = selectedTime || time;
-    setShowT(false);
+    setShowTime(false);
     setTime(currentTime);
   };
 
-  const onDateChange = (event, selectedDate) => {
-    const currentDate = selectedDate;
-
-    setShow(false);
-    const newDate = new Date(
-      currentDate.getFullYear(),
-      selectedDate.getMonth(),
-      selectedDate.getDate()
-    );
-    setDate(newDate);
+  const showDatePicker = () => {
+    setShowDate(true);
   };
 
-  const showMode = (currentMode) => {
-    setShow(true);
-    setMode(currentMode);
-  };
-
-  const showModeT = (currentMode) => {
-    setShowT(true);
-    setMode(currentMode);
-  };
-  const convertDataInPTBR = (data) => {
-    const date = new Date(data);
-    return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+  const showTimePicker = () => {
+    setShowTime(true);
   };
 
   return (
     <View style={styles.container}>
-      
-      {/* <View style={styles.datePickerContainer}>
-        <TouchableOpacity onPress={() => showMode(date)}>
+      <View style={styles.datePickerContainer}>
+        <TouchableOpacity onPress={showDatePicker}>
           <Text style={styles.datePickerText}>
             Selecione a data que deseja agendar
           </Text>
         </TouchableOpacity>
+        {showDate && (
+          <DateTimePicker
+            value={date}
+            mode="date"
+            display="spinner"
+            onChange={onDateChange}
+          />
+        )}
       </View>
 
-      {show && (
-        <DateTimePicker
-          value={date}
-          mode="date"
-          display="spinner"
-          onChange={onDateChange}
-          style={styles.datePicker}
-        />
-      )}
-
-      <TouchableOpacity onPress={() => showModeT(time)}>
+      <TouchableOpacity onPress={showTimePicker}>
         <Text style={styles.label}>Selecione o horário do agendamento</Text>
       </TouchableOpacity>
-      {showT && (
+      {showTime && (
         <DateTimePicker
           value={time}
           mode="time"
           display="spinner"
-          onChange={onChangeT}
-          style={styles.datePicker}
+          onChange={onTimeChange}
         />
-      )} */}
+      )}
     </View>
   );
 }
