@@ -15,6 +15,8 @@ import styles from "./styles";
 import Schedule from "../../models/agendamentos/Schedule";
 import scheduleRepository from "../../models/agendamentos/ScheduleRepository";
 
+import DateTimePicker from '@react-native-community/datetimepicker';
+
 export default function ScheduleForm({ route }) {
   const { schedule, edit } = route.params;
 
@@ -25,7 +27,16 @@ export default function ScheduleForm({ route }) {
   const [isUpdate, setIsUpdate] = useState(edit);
   const [errorMessage, setErrorMessage] = useState("");
 
+  const [date, setDate] = useState(new Date());
+  const [showDatePicker, setShowDatePicker] = useState(false);
+
+  const [time, setTime] = useState('');
+  const [showTimePicker, setShowTimePicker] = useState(false);
+
+
+
   const navigation = useNavigation();
+
 
   useEffect(() => {
     if (edit) {
@@ -81,6 +92,27 @@ export default function ScheduleForm({ route }) {
     setSpecialist("");
     setDoctor("");
   };
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShowDatePicker(false);
+    setDate(currentDate);
+    setShowTimePicker(true);
+  };
+
+  const onChangeTime = (event, selectedTime) => {
+    const currentTime = selectedTime || time;
+    setShowTimePicker(false);
+    setTime(currentTime);
+  }
+
+  const dataPiecker = () => {
+    setShowDatePicker(true);
+  }
+
+  console.log('essa é a data' + '' + date);
+  console.log('esse é o horario' + '' + time);
+
+
 
   return (
     <ScrollView>
@@ -250,9 +282,40 @@ export default function ScheduleForm({ route }) {
           ) : null}
         </View>
 
-        <View style={styles.timerPiecker}>
+        {
+          showDatePicker && (
+            <DateTimePicker
+              testID="dateTimePicker"
+              value={date}
+              mode={'date'}
+              is24Hour={true}
+              display="default"
+              onChange={onChange}
+            />
+          )
+        }
+        {
+          showTimePicker && (
+            <DateTimePicker
+              testID="dateTimePicker"
+              value={time}
+              mode={'time'}
+              is24Hour={true}
+              display="default"
+              onChange={onChangeTime}
+            />
+          )
+        }
 
-        </View>
+
+
+
+
+        <TouchableOpacity style={styles.dateAndTimerContainer} onPress={dataPiecker}>
+          <Text style={styles.button}>Escolha sua data da consulta</Text>
+        </TouchableOpacity>
+
+
 
       </View>
       <View style={styles.form}>
