@@ -250,7 +250,7 @@ export default function ScheduleForm({ route }) {
           ) : null}
         </View>
 
-        <View style={styles.divBtn}>
+        <View style={styles.timerPiecker}>
 
         </View>
 
