@@ -28,9 +28,11 @@ export default function ScheduleForm({ route }) {
   const [errorMessage, setErrorMessage] = useState("");
 
   const [date, setDate] = useState(new Date());
+  const [datePicker, setDatePicker] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
 
-  const [time, setTime] = useState('');
+  const [time, setTime] = useState(new Date());
+  const [timePicker, setTimePicker] = useState(new Date());
   const [showTimePicker, setShowTimePicker] = useState(false);
 
 
@@ -44,6 +46,8 @@ export default function ScheduleForm({ route }) {
       setUserEmail(schedule.userEmail);
       setSpecialist(schedule.specialist);
       setDoctor(schedule.doctor);
+      setDate(schedule.date);
+      setTime(schedule.time);
     } else {
       clearInputs();
     }
@@ -57,7 +61,7 @@ export default function ScheduleForm({ route }) {
   };
 
   const handleScheduleAction = () => {
-    if (!userName || !userEmail || !doctor || !specialist) {
+    if (!userName || !userEmail || !doctor || !specialist || !date || !time) {
       displayErrorMessage("Preencha todos os campos!");
       return;
     }
@@ -68,7 +72,9 @@ export default function ScheduleForm({ route }) {
         userName,
         userEmail,
         specialist,
-        doctor
+        doctor,
+        date,
+        time
       );
       clearInputs();
     } else {
@@ -77,6 +83,9 @@ export default function ScheduleForm({ route }) {
         userEmail,
         specialist,
         doctor,
+        date,
+        time
+
       });
       scheduleRepository.addSchedule(newSchedule);
       clearInputs();
@@ -91,18 +100,22 @@ export default function ScheduleForm({ route }) {
     setUserEmail("");
     setSpecialist("");
     setDoctor("");
+    setDate("");
+    setTime("");
   };
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShowDatePicker(false);
-    setDate(currentDate);
+    setDate(currentDate.toDateString());
+    setDatePicker(currentDate.toDateString());
     setShowTimePicker(true);
   };
 
   const onChangeTime = (event, selectedTime) => {
     const currentTime = selectedTime || time;
     setShowTimePicker(false);
-    setTime(currentTime);
+    setTime(currentTime.toTimeString());
+    setTimePicker(currentTime.toTimeString());
   }
 
   const dataPiecker = () => {
@@ -286,7 +299,7 @@ export default function ScheduleForm({ route }) {
           showDatePicker && (
             <DateTimePicker
               testID="dateTimePicker"
-              value={date}
+              value={datePicker}
               mode={'date'}
               is24Hour={true}
               display="default"
@@ -298,7 +311,7 @@ export default function ScheduleForm({ route }) {
           showTimePicker && (
             <DateTimePicker
               testID="dateTimePicker"
-              value={time}
+              value={timePicker}
               mode={'time'}
               is24Hour={true}
               display="default"
@@ -314,8 +327,6 @@ export default function ScheduleForm({ route }) {
         <TouchableOpacity style={styles.dateAndTimerContainer} onPress={dataPiecker}>
           <Text style={styles.button}>Escolha sua data da consulta</Text>
         </TouchableOpacity>
-
-
 
       </View>
       <View style={styles.form}>
