@@ -1,87 +1,115 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#FfFFFF",
-  },
-  containerall: {
-    paddingBottom: 20,
-    marginBottom: 20,
-
-  },
-  textPrincipal: {
-    textAlign: "center",
-    fontSize: 25,
-    margin: 10,
+    backgroundColor: '#fff',
   },
   head: {
-    backgroundColor: "#f14666",
-    width: "100%",
-
-    height: 59,
-    marginTop: 0,
+    backgroundColor: '#F14666',
+    padding: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  containerFirst:{
+    backgroundColor: '#F5F5F5',
+    borderRadius: 15,
+    marginBottom: 70,
+  },
+  containerFirstt:{
+    backgroundColor: '#F5F5F5',
+    borderRadius: 15,
+  },
+  containerImage:{
+    position: 'absolute',
+    top: -30,
+    backgroundColor: '#DDDDDD',
+    borderRadius: 15,
+  },
+  containerImageAndText:{
+    display: 'flex',
+  },
+  buttonInsider: {
+    backgroundColor: '#BB0000',
+    padding: 10,
+    borderTopLeftRadius: 35,
+    borderTopRightRadius: 15,
+    borderBottomLeftRadius: 35,
+    borderBottomRightRadius: 35,
+  },
+  imageLoa: {
+    width: 140,
+    height: 100,
+    marginTop: 20,
+  },
+  textPrincipal: {
+    color: '#000',
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  containerall: {
+    padding: 10,
   },
   image: {
-    width: 300,
-    height: 300,
-
-    alignItems: "center",
+    width: 250,
+    height: 240,
+    marginTop: 20,
   },
   textInicio: {
-    textAlign: "center",
-    fontSize: 23,
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginTop: 20,
   },
   textInicio2: {
-    textAlign: "center",
     fontSize: 18,
-    margin: 9,
-  },
-  textInicio3: {
-    textAlign: "center",
-    fontSize: 20,
-    margin: 9,
-    marginBottom: 25,
+    marginTop: 10,
   },
   text: {
-    fontSize: 15,
-    margin: 29,
-    justifyContent: "center",
-    textAlign: "justify",
-    marginBottom: 15,
+    fontSize: 16,
+    marginTop: 20,
+    lineHeight: 24,
+  },
+  textInicio3: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginTop: 40,
   },
   item1: {
-    fontSize: 20,
-    textAlign: "left",
-    marginLeft: 45,
-    margin: 2,
+    fontSize: 16,
+    marginTop: 10,
   },
   item2: {
-    fontSize: 20,
-    textAlign: "left",
-    marginLeft: 45,
-    margin: 2,
+    fontSize: 16,
+    marginTop: 10,
   },
   item3: {
-    fontSize: 20,
-    textAlign: "left",
-    marginLeft: 45,
-    margin: 2,
+    fontSize: 16,
+    marginTop: 10,
   },
   item4: {
-    fontSize: 20,
-    textAlign: "left",
-    marginLeft: 45,
-    margin: 2,
+    fontSize: 16,
+    marginTop: 10,
   },
   item5: {
-    fontSize: 20,
-    textAlign: "left",
-    marginLeft: 45,
-    margin: 2,
-    marginBottom: 30,
+    fontSize: 16,
+    marginTop: 10,
+  },
+  containerFooter: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 40,
+  },
+  button: {
+    backgroundColor: '#BB0000',
+    padding: 10,
+    borderRadius: 5,
+    width: '30%',
+    alignItems: 'center',
+  },
+  textButton: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 16,
   },
 });
 
