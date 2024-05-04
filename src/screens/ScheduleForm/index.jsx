@@ -263,9 +263,10 @@ export default function ScheduleForm({ route }) {
           value={userEmail}
           onChangeText={setUserEmail}
         />
-        <Text>{specialist === "" ? "Selecione a especialidade" : specialist}</Text>
+        <Text>
+          {specialist === "" ? "Selecione a especialidade" : specialist}
+        </Text>
         <Text>{doctor === "" ? "Selecione o médico" : doctor}</Text>
-        
       </View>
       {errorMessage ? (
         <Text style={styles.errorMessage}>{errorMessage}</Text>
