@@ -7,6 +7,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#FfFFFF",
   },
+  containerall: {
+    padding: 20,
+    marginBottom: 20,
+
+  },
   textPrincipal: {
     textAlign: "center",
     fontSize: 25,
@@ -14,7 +19,7 @@ const styles = StyleSheet.create({
   },
   head: {
     backgroundColor: "#f14666",
-    width: 412,
+    width: "100%",
 
     height: 59,
     marginTop: 0,

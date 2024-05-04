@@ -5,10 +5,11 @@ import styles from "./styles";
 export default function Home() {
   return (
     <View style={styles.container}>
+      <ScrollView style={{ margin: 0 }}>
       <View style={styles.head}>
         <Text style={styles.textPrincipal}>Tela Inicial</Text>
       </View>
-      <ScrollView style={{ margin: 0 }}>
+      <View style={styles.containerall}>
         <View style={{ margin: "auto", alignItems: "center" }}>
           <Image
             style={styles.image}
@@ -29,6 +30,18 @@ export default function Home() {
         <Text style={styles.item3}>• Variedade de especialidades médicas</Text>
         <Text style={styles.item4}>• Conveniência e acessibilidade</Text>
         <Text style={styles.item5}>• Atendimento personalizado</Text>
+        <View style={styles.containerFooter}>
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.textButton}>Agendar Consulta</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.textButton}>Consultar Agenda</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.textButton}>Sobre a BCare</Text>
+          </TouchableOpacity>
+        </View>
+        </View>
       </ScrollView>
     </View>
   );
