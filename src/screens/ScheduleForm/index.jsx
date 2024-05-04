@@ -83,13 +83,18 @@ export default function ScheduleForm({ route }) {
   };
 
   return (
-    <View style={styles.container}>
-      <ScrollView>
-        <Text style={styles.title}>Agendamento</Text>
-      
-         <Picker
+    <ScrollView>
+      <Text style={styles.title}>Agendamento</Text>
+      <View style={styles.Div1}>
+        <View style={styles.logoDiv}>
+          <Image
+            source={require("../../../assets/logovdd.png")}
+            style={styles.logo}
+          />
+          <Picker
             selectedValue={specialist}
             onValueChange={(itemValue) => setSpecialist(itemValue)}
+            style={styles.picker}
           >
             <Picker.Item label="Selecione a especialidade" value="" />
             <Picker.Item label="Cardiologista" value="Cardiologista" />
@@ -100,23 +105,10 @@ export default function ScheduleForm({ route }) {
             <Picker.Item label="Pediatra" value="Pediatra" />
             <Picker.Item label="Psiquiatra" value="Psiquiatra" />
           </Picker>
-        <View style={styles.form}>
-          <TextInput
-            style={styles.input}
-            placeholder="Nome"
-            value={userName}
-            onChangeText={setUserName}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Email"
-            value={userEmail}
-            onChangeText={setUserEmail}
-          />
-         
 
           {specialist === "Cardiologista" ? (
             <Picker
+              style={styles.picker}
               selectedValue={doctor}
               onValueChange={(itemValue) => setDoctor(itemValue)}
             >
@@ -132,8 +124,10 @@ export default function ScheduleForm({ route }) {
               />
             </Picker>
           ) : null}
+
           {specialist === "Dermatologista" ? (
             <Picker
+              style={styles.picker}
               selectedValue={doctor}
               onValueChange={(itemValue) => setDoctor(itemValue)}
             >
@@ -154,6 +148,7 @@ export default function ScheduleForm({ route }) {
           ) : null}
           {specialist === "Endocrinologista" ? (
             <Picker
+              style={styles.picker}
               selectedValue={doctor}
               onValueChange={(itemValue) => setDoctor(itemValue)}
             >
@@ -174,6 +169,7 @@ export default function ScheduleForm({ route }) {
           ) : null}
           {specialist === "Ginecologista" ? (
             <Picker
+              style={styles.picker}
               selectedValue={doctor}
               onValueChange={(itemValue) => setDoctor(itemValue)}
             >
@@ -194,6 +190,7 @@ export default function ScheduleForm({ route }) {
           ) : null}
           {specialist === "Ortopedista" ? (
             <Picker
+              style={styles.picker}
               selectedValue={doctor}
               onValueChange={(itemValue) => setDoctor(itemValue)}
             >
@@ -211,6 +208,7 @@ export default function ScheduleForm({ route }) {
           ) : null}
           {specialist === "Pediatra" ? (
             <Picker
+              style={styles.picker}
               selectedValue={doctor}
               onValueChange={(itemValue) => setDoctor(itemValue)}
             >
@@ -231,6 +229,7 @@ export default function ScheduleForm({ route }) {
           ) : null}
           {specialist === "Psiquiatra" ? (
             <Picker
+              style={styles.picker}
               selectedValue={doctor}
               onValueChange={(itemValue) => setDoctor(itemValue)}
             >
@@ -249,25 +248,42 @@ export default function ScheduleForm({ route }) {
               />
             </Picker>
           ) : null}
-          {errorMessage ? (
-            <Text style={styles.errorMessage}>{errorMessage}</Text>
-          ) : null}
-          <TouchableOpacity onPress={handleScheduleAction}>
-            {isUpdate ? (
-              <Text style={styles.button}>Atualizar</Text>
-            ) : (
-              <View style={styles.divBtn}>
-                <Text style={styles.button}>Agendar</Text>
-              </View>
-            )}
-          </TouchableOpacity>
-          {isUpdate && (
-            <TouchableOpacity onPress={clearInputs}>
-              <Text style={styles.button}>Cancelar</Text>
-            </TouchableOpacity>
-          )}
         </View>
-      </ScrollView>
-    </View>
+      </View>
+      <View style={styles.form}>
+        <TextInput
+          style={styles.input}
+          placeholder="Nome"
+          value={userName}
+          onChangeText={setUserName}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Email"
+          value={userEmail}
+          onChangeText={setUserEmail}
+        />
+        <Text>{specialist === "" ? "Selecione a especialidade" : specialist}</Text>
+        <Text>{doctor === "" ? "Selecione o médico" : doctor}</Text>
+        
+      </View>
+      {errorMessage ? (
+        <Text style={styles.errorMessage}>{errorMessage}</Text>
+      ) : null}
+      <TouchableOpacity style={styles.btnSubmit} onPress={handleScheduleAction}>
+        {isUpdate ? (
+          <Text style={styles.button}>Atualizar</Text>
+        ) : (
+          <View style={styles.divBtn}>
+            <Text style={styles.button}>Agendar</Text>
+          </View>
+        )}
+      </TouchableOpacity>
+      {isUpdate && (
+        <TouchableOpacity onPress={clearInputs}>
+          <Text style={styles.button}>Cancelar</Text>
+        </TouchableOpacity>
+      )}
+    </ScrollView>
   );
 }
