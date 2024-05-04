@@ -47,7 +47,6 @@ export default function ESGAccessory() {
         </Canvas>
       </View>
 
-
       <View style={styles.container}>
         <ToggleSwitch isEnabled={isEnabled} toggleSwitch={toggleSwitch} />
         {
