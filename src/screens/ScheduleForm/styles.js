@@ -32,6 +32,8 @@ const styles = StyleSheet.create({
   form: {
     padding: 20,
     backgroundColor: "#53E6DD",
+    justifyContent: "center",
+    textAlign: "center",
   },
   btnSubmit: {
     backgroundColor: "#22B78A",
@@ -43,8 +45,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     alignSelf: "center",
   },
-  button : {
+  button: {
     color: "#fff",
-  }
+  },
 });
 export default styles;
