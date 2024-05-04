@@ -5,7 +5,7 @@ import styles from "./styles";
 export default function Home() {
   return (
     <View style={styles.container}>
-      <ScrollView style={{ margin: 0 }}>
+      <ScrollView>
       <View style={styles.head}>
         <Text style={styles.textPrincipal}>Tela Inicial</Text>
       </View>

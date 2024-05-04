@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FfFFFF",
   },
   containerall: {
-    padding: 20,
+    paddingBottom: 20,
     marginBottom: 20,
 
   },
