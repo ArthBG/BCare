@@ -11,7 +11,6 @@ import dateForm from "../screens/dateForm";
 import ScheduleList from "../screens/ScheduleList";
 import scheduleRepository from "../models/agendamentos/ScheduleRepository";
 
-
 const Tab = createBottomTabNavigator();
 
 const TabRoutes = () => {
@@ -42,11 +41,7 @@ const TabRoutes = () => {
         options={{
           tabBarLabel: "Profile",
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons
-              name="weather-hurricane"
-              color={color}
-              size={26}
-            />
+            <MaterialCommunityIcons name="account" color={color} size={26} />
           ),
         }}
       />
@@ -73,7 +68,7 @@ const TabRoutes = () => {
           tabBarItemStyle: {
             tabBarIcon: ({ color }) => (
               <MaterialCommunityIcons
-                name="view-headline"
+                name="security-network"
                 color={color}
                 size={26}
               />
@@ -89,7 +84,7 @@ const TabRoutes = () => {
           tabBarLabel: "ScheduleForm",
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
-              name="view-headline"
+              name="form-select"
               color={color}
               size={26}
             />
@@ -101,11 +96,10 @@ const TabRoutes = () => {
         component={ScheduleList}
         initialParams={{ schedule: schedules, edit: false }}
         options={{
-          display: "none",	
           tabBarLabel: "ScheduleList",
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
-              name="view-headline"
+              name="format-list-bulleted"
               color={color}
               size={26}
             />
@@ -119,7 +113,7 @@ const TabRoutes = () => {
           tabBarLabel: "dateForm",
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
-              name="view-headline"
+              name="calendar-account"
               color={color}
               size={26}
             />
