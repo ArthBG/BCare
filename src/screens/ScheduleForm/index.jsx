@@ -106,24 +106,24 @@ export default function ScheduleForm({ route }) {
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShowDatePicker(false);
-    setDate(currentDate.toDateString());
-    setDatePicker(currentDate.toDateString());
+    setDate(currentDate.toLocaleDateString());
+    setDatePicker(currentDate);
     setShowTimePicker(true);
   };
 
   const onChangeTime = (event, selectedTime) => {
     const currentTime = selectedTime || time;
     setShowTimePicker(false);
-    setTime(currentTime.toTimeString());
-    setTimePicker(currentTime.toTimeString());
+    setTime(currentTime.toLocaleTimeString());
+    setTimePicker(currentTime);
   }
 
   const dataPiecker = () => {
     setShowDatePicker(true);
   }
 
-  console.log('essa é a data' + '' + date);
-  console.log('esse é o horario' + '' + time);
+  // console.log('essa é a data' + '' + date);
+  // console.log('esse é o horario' + '' + time);
 
 
 
