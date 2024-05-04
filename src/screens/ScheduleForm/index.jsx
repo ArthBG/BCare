@@ -122,8 +122,8 @@ export default function ScheduleForm({ route }) {
     setShowDatePicker(true);
   }
 
-  // console.log('essa é a data' + '' + date);
-  // console.log('esse é o horario' + '' + time);
+   console.log('essa é a data' + '' + date);
+  console.log('esse é o horario' + '' + time);
 
 
 
