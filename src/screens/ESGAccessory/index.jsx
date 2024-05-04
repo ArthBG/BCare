@@ -15,8 +15,8 @@ export default function ESGAccessory() {
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   const [sliderValue, setSliderValue] = useState(0.5);
-  
-  
+
+
 
   useEffect(() => {
     try {
@@ -39,7 +39,7 @@ export default function ESGAccessory() {
       <View {...events} style={styles.containerModel}>
         <Canvas>
           <OrbitControls enablePan={false} enableZoom={false} minDistance={1000} />
-           <directionalLight position={[0, 5, 5]} args={['#fff', sliderValue]} />
+          <directionalLight position={[0, 5, 5]} args={['#fff', sliderValue]} />
           <directionalLight scale={0} position={[0, 0, -20]} args={['#fff', sliderValue]} />
           <Suspense fallback={null}>
             <ModelClinic />
@@ -48,19 +48,21 @@ export default function ESGAccessory() {
       </View>
 
 
-
       <View style={styles.container}>
         <ToggleSwitch isEnabled={isEnabled} toggleSwitch={toggleSwitch} />
-        <Text style={styles.text}>Luz: {sliderValue.toFixed(1)}</Text>
+        {
+          isEnabled ? <Text style={styles.text}>Luz ligada : {sliderValue.toFixed(1)}</Text> : <Text style={styles.text}>Luz desligada</Text>
+        }
+
       </View>
 
-{
+      {
         isEnabled && (
           <View style={styles.container}>
             <SliderInput Value={setSliderValue} />
           </View>
         )
-}
+      }
 
 
 

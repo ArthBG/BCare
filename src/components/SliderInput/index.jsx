@@ -5,7 +5,7 @@ import Slider from '@react-native-community/slider';
 const SliderInput = ({ Value }) => {
     return (
         <Slider
-            style={{ width: 400, height: 40 }}
+            style={{ width: 360, height: 40 }}
             minimumValue={0.5}
             maximumValue={2}
             minimumTrackTintColor="#3e3e3e"
