@@ -249,6 +249,11 @@ export default function ScheduleForm({ route }) {
             </Picker>
           ) : null}
         </View>
+
+        <View style={styles.divBtn}>
+
+        </View>
+
       </View>
       <View style={styles.form}>
         <TextInput
