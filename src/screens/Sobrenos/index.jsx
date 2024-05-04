@@ -7,7 +7,7 @@ export default function Sobrenos() {
   return (
     <View style={styles.container}>
       <ScrollView>
-      <Title title="Sobre-nós" />
+      <Title title="Bcare" />
       <View style={styles.containerColumn}>
         <Image src=""/>
         <Text style={styles.text}>
@@ -27,7 +27,7 @@ export default function Sobrenos() {
                style={styles.image}
               source={member.image}
                 />
-              <Text style={styles.textMember}>
+              <Text style={styles.textMemberT}>
                 {member.name}
               </Text>
               <Text style={styles.textMember}>

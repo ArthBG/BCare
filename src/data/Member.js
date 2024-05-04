@@ -9,35 +9,35 @@ export const Members = [
      {
          name: "Caique Naimi",
          age: 17,
-         descripition: "Lucas é um desenvolvedor de software talentoso e apaixonado. Ele é conhecido por sua habilidade em criar soluções inovadoras para problemas complexos e por sua dedicação em ajudar sua equipe a alcançar seus objetivos.",
+         descripition: "Caique Naimi é um desenvolvedor de software talentoso e apaixonado. Ele é conhecido por sua habilidade em criar soluções inovadoras para problemas complexos e por sua dedicação em ajudar sua equipe a alcançar seus objetivos.",
          image: require("../../assets/images/naimi.jpg"),
          cargo: "Desenvolvedor"
      },
      {
          name: "Enrico Lona",
          age: 17,
-         descripition: "Enrico é um engenheiro de software talentoso com uma paixão por resolver problemas. Ele é conhecido por sua habilidade em pensar fora da caixa e por sua dedicação em entregar soluções de alta qualidade.",
+         descripition: "Enrico Lona é um engenheiro de software talentoso com uma paixão por resolver problemas. Ele é conhecido por sua habilidade em pensar fora da caixa e por sua dedicação em entregar soluções de alta qualidade.",
          image: require("../../assets/images/enrico.jpg"),
          cargo: "Desenvolvedor"
      },
      {
          name: "Matheus Gomes",
          age: 17,
-         descripition: "Matheus é um engenheiro de software experiente com uma paixão por inovação. Ele é conhecido por sua habilidade em criar soluções eficientes e eficazes para problemas complexos.",
+         descripition: "Matheus Gomes é um engenheiro de software experiente com uma paixão por inovação. Ele é conhecido por sua habilidade em criar soluções eficientes e eficazes para problemas complexos.",
          image: require("../../assets/images/pravel.jpg"),
          cargo: "Desenvolvedor"
      },
      {
-         name: "Matheus Cocco",
+         name: "Matheus Côcco",
          age: 17,
-         descripition: " Matheus é um desenvolvedor de software dedicado e altamente qualificado. Ele tem uma habilidade incrível para aprender novas tecnologias rapidamente e aplicá-las de maneira eficaz em seus projetos.",
+         descripition: " Matheus Côcco é um desenvolvedor de software dedicado e altamente qualificado. Ele tem uma habilidade incrível para aprender novas tecnologias rapidamente e aplicá-las de maneira eficaz em seus projetos.",
          image: require("../../assets/images/cocco.jpg"),
          cargo: "Desenvolvedor"
      },
      {
          name: "Pedro Isac",
          age: 17,
-         descripition: "Pedro é um desenvolvedor de software altamente motivado com uma paixão por aprender. Ele é conhecido por sua habilidade em trabalhar bem sob pressão e por sua dedicação em entregar projetos de alta qualidade.",
+         descripition: "Pedro Isac é um desenvolvedor de software altamente motivado com uma paixão por aprender. Ele é conhecido por sua habilidade em trabalhar bem sob pressão e por sua dedicação em entregar projetos de alta qualidade.",
          image: require("../../assets/images/pi.jpg"),
          cargo: "Desenvolvedor"
      },
