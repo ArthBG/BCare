@@ -1,8 +1,7 @@
 import { View, Text, Image } from "react-native";
-import Title from "../../components/Title";
 import styles from "./styles";
 import { Members } from "../../data/Member";
-import { ScrollView } from "react-native-gesture-handler";
+import { ScrollView } from "react-native";
 export default function Sobrenos() {
   return (
     <View style={styles.container}>

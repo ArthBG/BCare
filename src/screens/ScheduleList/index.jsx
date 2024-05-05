@@ -3,7 +3,7 @@ import scheduleRepository from '../../models/agendamentos/ScheduleRepository'
 import { View, Text, TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import styles from './styles'
-import { ScrollView } from 'react-native-gesture-handler'
+import { ScrollView } from 'react-native'
 
 export default function ScheduleList({route}) {
     const { schedule } = route.params;
