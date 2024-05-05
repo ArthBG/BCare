@@ -65,7 +65,7 @@ export default function ScheduleForm({ route }) {
     }
   
     // Verificar se o especialista já tem um horário marcado para a mesma data e horário
-    const specialistSchedule = await scheduleRepository.findScheduleBySpecialistDateTime(specialist, date, time);
+    const specialistSchedule = await scheduleRepository.findScheduleBySpecialistDateTime(doctor, date, time);
   
     if (specialistSchedule) {
       displayErrorMessage(`O especialista ${doctor} já tem um horário marcado para esta data e horário!`);

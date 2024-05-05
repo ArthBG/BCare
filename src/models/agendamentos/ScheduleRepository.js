@@ -32,8 +32,8 @@
         }
         return schedule;
     }
-    findScheduleBySpecialistDateTime(specialist, date, time) {
-        return this.schedules.find(schedule => schedule.specialist === specialist && schedule.date === date && schedule.time === time);
+    findScheduleBySpecialistDateTime(doctor, date, time) {
+        return this.schedules.find(schedule => schedule.doctor === doctor && schedule.date === date && schedule.time === time);
     }
 }
 
