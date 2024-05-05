@@ -162,8 +162,8 @@ export default function ScheduleForm({ route }) {
               />
               <Picker.Item label="Dr. Felipe Leal" value="Dr. Felipe Leal" />
               <Picker.Item
-                label="Dr. Alvaro Luiz P. Pantaleão"
-                value="Dr. Alvaro Luiz P. Pantaleão"
+                label="Dr. Romeu Alves Ramos Junior"
+                value="Dr. Romeu Alves Ramos Junior"
               />
             </Picker>
           ) : null}
@@ -237,11 +237,11 @@ export default function ScheduleForm({ route }) {
               selectedValue={doctor}
               onValueChange={(itemValue) => setDoctor(itemValue)}
             >
+              <Picker.Item label="Selecione o médico" value="" />
               <Picker.Item
-                label="Selecione o médico"
+                label="Dr. Fernando Gouvea"
                 value="Dr. Fernando Gouvea"
               />
-              <Picker.Item label="Dr. Fernando Gouvea" value="" />
               <Picker.Item label="Dr. Lucas Prado" value="Dr. Lucas Prado" />
               <Picker.Item
                 label="Dr. André Lange Canhos"
