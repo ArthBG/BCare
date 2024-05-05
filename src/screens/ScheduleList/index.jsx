@@ -35,33 +35,33 @@ export default function ScheduleList({ route }) {
                 <View style={styles.scheduleContainer}>
                   <View style={styles.scheduleDoctorImage}>
                     {
-                      (schedule.doctor = "Dra. Lilian Seffrin Sande" ? (
-                        <Image
-                          source={require("../../../assets/images/Lilian.jpeg")}
-                          style={styles.doctorImage}
-                        />
-                      ) : (
-                        (schedule.doctor = "Dr. Felipe Leal" ? (
-                          <Image
-                            source={require("../../../assets/images/felipe.jpeg")}
-                            style={styles.doctorImage}
-                          />
-                        ) : (
-                          (schedule.doctor = "Dr. Romeu Alves Ramos Junior" ? (
-                            <Image
-                              source={require("../../../assets/images/Romeu.jpeg")}
-                              style={styles.doctorImage}
-                            />
-                          ) : (
-                            (schedule.doctor = "Dra. Sarah Thé Coelho" ? (
-                              <Image
-                                source={require("../../../assets/images/sarah.jpeg")}
-                                style={styles.doctorImage}
-                              />
-                            ) : null)
-                          ))
-                        ))
-                      ))
+                      // (schedule.doctor = "Dra. Lilian Seffrin Sande" ? (
+                      //   <Image
+                      //     source={require("../../../assets/images/Lilian.jpeg")}
+                      //     style={styles.doctorImage}
+                      //   />
+                      // ) : (
+                      //   (schedule.doctor = "Dr. Felipe Leal" ? (
+                      //     <Image
+                      //       source={require("../../../assets/images/felipe.jpeg")}
+                      //       style={styles.doctorImage}
+                      //     />
+                      //   ) : (
+                      //     (schedule.doctor = "Dr. Romeu Alves Ramos Junior" ? (
+                      //       <Image
+                      //         source={require("../../../assets/images/Romeu.jpeg")}
+                      //         style={styles.doctorImage}
+                      //       />
+                      //     ) : (
+                      //       (schedule.doctor = "Dra. Sarah Thé Coelho" ? (
+                      //         <Image
+                      //           source={require("../../../assets/images/sarah.jpeg")}
+                      //           style={styles.doctorImage}
+                      //         />
+                      //       ) : null)
+                      //     ))
+                      //   ))
+                      // ))
                     }
                   </View>
                   <Text style={styles.doctorText}>{schedule.doctor}</Text>
