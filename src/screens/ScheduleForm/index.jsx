@@ -68,7 +68,7 @@ export default function ScheduleForm({ route }) {
     const specialistSchedule = await scheduleRepository.findScheduleBySpecialistDateTime(specialist, date, time);
   
     if (specialistSchedule) {
-      displayErrorMessage(`O especialista ${specialist} já tem um horário marcado para esta data e horário!`);
+      displayErrorMessage(`O especialista ${doctor} já tem um horário marcado para esta data e horário!`);
       return;
     }
 
