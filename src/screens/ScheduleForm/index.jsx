@@ -15,6 +15,8 @@ import styles from "./styles";
 import Schedule from "../../models/agendamentos/Schedule";
 import scheduleRepository from "../../models/agendamentos/ScheduleRepository";
 
+import DateTimePicker from '@react-native-community/datetimepicker';
+
 export default function ScheduleForm({ route }) {
   const { schedule, edit } = route.params;
 
@@ -25,7 +27,18 @@ export default function ScheduleForm({ route }) {
   const [isUpdate, setIsUpdate] = useState(edit);
   const [errorMessage, setErrorMessage] = useState("");
 
+  const [date, setDate] = useState(new Date());
+  const [datePicker, setDatePicker] = useState(new Date());
+  const [showDatePicker, setShowDatePicker] = useState(false);
+
+  const [time, setTime] = useState(new Date());
+  const [timePicker, setTimePicker] = useState(new Date());
+  const [showTimePicker, setShowTimePicker] = useState(false);
+
+
+
   const navigation = useNavigation();
+
 
   useEffect(() => {
     if (edit) {
@@ -33,6 +46,8 @@ export default function ScheduleForm({ route }) {
       setUserEmail(schedule.userEmail);
       setSpecialist(schedule.specialist);
       setDoctor(schedule.doctor);
+      setDate(schedule.date);
+      setTime(schedule.time);
     } else {
       clearInputs();
     }
@@ -46,7 +61,7 @@ export default function ScheduleForm({ route }) {
   };
 
   const handleScheduleAction = () => {
-    if (!userName || !userEmail || !doctor || !specialist) {
+    if (!userName || !userEmail || !doctor || !specialist || !date || !time) {
       displayErrorMessage("Preencha todos os campos!");
       return;
     }
@@ -57,7 +72,9 @@ export default function ScheduleForm({ route }) {
         userName,
         userEmail,
         specialist,
-        doctor
+        doctor,
+        date,
+        time
       );
       clearInputs();
     } else {
@@ -66,6 +83,9 @@ export default function ScheduleForm({ route }) {
         userEmail,
         specialist,
         doctor,
+        date,
+        time
+
       });
       scheduleRepository.addSchedule(newSchedule);
       clearInputs();
@@ -80,7 +100,32 @@ export default function ScheduleForm({ route }) {
     setUserEmail("");
     setSpecialist("");
     setDoctor("");
+    setDate("");
+    setTime("");
   };
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShowDatePicker(false);
+    setDate(currentDate.toLocaleDateString());
+    setDatePicker(currentDate);
+    setShowTimePicker(true);
+  };
+
+  const onChangeTime = (event, selectedTime) => {
+    const currentTime = selectedTime || time;
+    setShowTimePicker(false);
+    setTime(currentTime.toLocaleTimeString());
+    setTimePicker(currentTime);
+  }
+
+  const dataPiecker = () => {
+    setShowDatePicker(true);
+  }
+
+   console.log('essa é a data' + '' + date);
+  console.log('esse é o horario' + '' + time);
+
+
 
   return (
     <ScrollView>
@@ -249,6 +294,40 @@ export default function ScheduleForm({ route }) {
             </Picker>
           ) : null}
         </View>
+
+        {
+          showDatePicker && (
+            <DateTimePicker
+              testID="dateTimePicker"
+              value={datePicker}
+              mode={'date'}
+              is24Hour={true}
+              display="default"
+              onChange={onChange}
+            />
+          )
+        }
+        {
+          showTimePicker && (
+            <DateTimePicker
+              testID="dateTimePicker"
+              value={timePicker}
+              mode={'time'}
+              is24Hour={true}
+              display="default"
+              onChange={onChangeTime}
+            />
+          )
+        }
+
+
+
+
+
+        <TouchableOpacity style={styles.dateAndTimerContainer} onPress={dataPiecker}>
+          <Text style={styles.button}>Escolha sua data da consulta</Text>
+        </TouchableOpacity>
+
       </View>
       <View style={styles.form}>
         <TextInput
