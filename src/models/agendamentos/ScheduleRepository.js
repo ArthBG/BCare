@@ -41,7 +41,7 @@ const schedulemocked = new Schedule({
     userEmail: 'joao@gmail.com',
     doctor: 'Dr. Carlos',
     specialist: 'Dermatologista',
-    date: '2021-09-21',
+    date: '21-09-2021',
     time: '14:00'
 });
 scheduleRepository.addSchedule(schedulemocked);

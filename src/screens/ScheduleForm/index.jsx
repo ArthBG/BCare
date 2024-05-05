@@ -15,7 +15,7 @@ import styles from "./styles";
 import Schedule from "../../models/agendamentos/Schedule";
 import scheduleRepository from "../../models/agendamentos/ScheduleRepository";
 
-import DateTimePicker from '@react-native-community/datetimepicker';
+import DateTimePicker from "@react-native-community/datetimepicker";
 
 export default function ScheduleForm({ route }) {
   const { schedule, edit } = route.params;
@@ -35,13 +35,10 @@ export default function ScheduleForm({ route }) {
   const [timePicker, setTimePicker] = useState(new Date());
   const [showTimePicker, setShowTimePicker] = useState(false);
 
-
-
   const navigation = useNavigation();
 
-
   useEffect(() => {
-    if (edit) {
+    if (edit && schedule) {
       setUserName(schedule.userName);
       setUserEmail(schedule.userEmail);
       setSpecialist(schedule.specialist);
@@ -62,8 +59,8 @@ export default function ScheduleForm({ route }) {
   };
 
   const handleScheduleAction = () => {
-    if (!userName || !userEmail || !doctor || !specialist) // || !date || !time
-    {
+    if (!userName || !userEmail || !doctor || !specialist) {
+      // || !date || !time
       displayErrorMessage("Preencha todos os campos!");
       return;
     }
@@ -87,13 +84,11 @@ export default function ScheduleForm({ route }) {
         specialist,
         doctor,
         date,
-        time
-
+        time,
       });
       scheduleRepository.addSchedule(newSchedule);
       clearInputs();
     }
-    let schedule1 = scheduleRepository.getAll();
     navigation.navigate("Agenda");
   };
 
@@ -108,10 +103,10 @@ export default function ScheduleForm({ route }) {
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShowDatePicker(false);
-    if(edit == false){
-    setDate(currentDate.toLocaleDateString());
-    } else{
-    setDatePicker(currentDate);
+    if (edit == false) {
+      setDate(currentDate.toLocaleDateString());
+    } else {
+      setDatePicker(currentDate);
     }
     setShowTimePicker(true);
   };
@@ -121,16 +116,14 @@ export default function ScheduleForm({ route }) {
     setShowTimePicker(false);
     setTime(currentTime.toLocaleTimeString());
     setTimePicker(currentTime);
-  }
+  };
 
   const dataPiecker = () => {
     setShowDatePicker(true);
-  }
+  };
 
-   console.log('essa é a data' + '' + date);
-  console.log('esse é o horario' + '' + time);
-
-
+  console.log("essa é a data" + "" + date);
+  console.log("esse é o horario" + "" + time);
 
   return (
     <ScrollView>
@@ -300,39 +293,33 @@ export default function ScheduleForm({ route }) {
           ) : null}
         </View>
 
-        {
-          showDatePicker && (
-            <DateTimePicker
-              testID="dateTimePicker"
-              value={datePicker}
-              mode={'date'}
-              is24Hour={true}
-              display="default"
-              onChange={onChange}
-            />
-          )
-        }
-        {
-          showTimePicker && (
-            <DateTimePicker
-              testID="dateTimePicker"
-              value={timePicker}
-              mode={'time'}
-              is24Hour={true}
-              display="default"
-              onChange={onChangeTime}
-            />
-          )
-        }
+        {showDatePicker && (
+          <DateTimePicker
+            testID="dateTimePicker"
+            value={datePicker}
+            mode={"date"}
+            is24Hour={true}
+            display="default"
+            onChange={onChange}
+          />
+        )}
+        {showTimePicker && (
+          <DateTimePicker
+            testID="dateTimePicker"
+            value={timePicker}
+            mode={"time"}
+            is24Hour={true}
+            display="default"
+            onChange={onChangeTime}
+          />
+        )}
 
-
-
-
-
-        <TouchableOpacity style={styles.dateAndTimerContainer} onPress={dataPiecker}>
+        <TouchableOpacity
+          style={styles.dateAndTimerContainer}
+          onPress={dataPiecker}
+        >
           <Text style={styles.button}>Escolha sua data da consulta</Text>
         </TouchableOpacity>
-
       </View>
       <View style={styles.form}>
         <TextInput
