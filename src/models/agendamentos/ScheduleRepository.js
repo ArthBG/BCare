@@ -32,6 +32,9 @@
         }
         return schedule;
     }
+    findScheduleBySpecialistDateTime(specialist, date, time) {
+        return this.schedules.find(schedule => schedule.specialist === specialist && schedule.date === date && schedule.time === time);
+    }
 }
 
 const scheduleRepository = new ScheduleRepository();

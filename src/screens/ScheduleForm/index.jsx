@@ -58,12 +58,35 @@ export default function ScheduleForm({ route }) {
     }, 3000);
   };
 
-  const handleScheduleAction = () => {
+  const handleScheduleAction = async () => {
     if (!userName || !userEmail || !doctor || !specialist) {
-      // || !date || !time
       displayErrorMessage("Preencha todos os campos!");
       return;
     }
+  
+    // Verificar se o especialista já tem um horário marcado para a mesma data e horário
+    const specialistSchedule = await scheduleRepository.findScheduleBySpecialistDateTime(specialist, date, time);
+  
+    if (specialistSchedule) {
+      displayErrorMessage(`O especialista ${specialist} já tem um horário marcado para esta data e horário!`);
+      return;
+    }
+
+    // Se não houver conflito, prosseguir com a criação ou atualização do agendamento
+    const newSchedule = new Schedule(userName, userEmail, specialist, doctor, date, time);
+  
+    try {
+      if (isUpdate && schedule) {
+        await scheduleRepository.updateSchedule(schedule.id, newSchedule);
+      } else {
+        await scheduleRepository.createSchedule(newSchedule);
+      }
+      navigation.goBack(); // Voltar para a tela anterior após o sucesso
+    } catch (error) {
+      console.error("Erro ao salvar o agendamento:", error);
+      displayErrorMessage("Erro ao salvar o agendamento. Tente novamente mais tarde.");
+    }
+
 
     if (isUpdate) {
       scheduleRepository.updateSchedule(
