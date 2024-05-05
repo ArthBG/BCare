@@ -18,7 +18,7 @@ export default function ScheduleList({route}) {
         setSchedules(scheduleRepository.getAll());
     };
 
-    const handleUpdate = (id) => {
+    const handleUpdate = () => {
         navigation.navigate('Agendamento', { schedule: schedule, edit: true })
     };
 
@@ -41,7 +41,7 @@ export default function ScheduleList({route}) {
                             <TouchableOpacity onPress={() => handleDelete(schedule.id)}>
                                 <Text>Remover</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={() => handleUpdate(schedule.id)}>
+                            <TouchableOpacity onPress={handleUpdate}>
                                 <Text>Alterar</Text>
                             </TouchableOpacity>
                         </View>

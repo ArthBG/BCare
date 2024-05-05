@@ -48,6 +48,7 @@ export default function ScheduleForm({ route }) {
       setDoctor(schedule.doctor);
       setDate(schedule.date);
       setTime(schedule.time);
+      setIsUpdate(true);
     } else {
       clearInputs();
     }
@@ -61,7 +62,8 @@ export default function ScheduleForm({ route }) {
   };
 
   const handleScheduleAction = () => {
-    if (!userName || !userEmail || !doctor || !specialist || !date || !time) {
+    if (!userName || !userEmail || !doctor || !specialist) // || !date || !time
+    {
       displayErrorMessage("Preencha todos os campos!");
       return;
     }
@@ -78,6 +80,7 @@ export default function ScheduleForm({ route }) {
       );
       clearInputs();
     } else {
+      setIsUpdate(false);
       const newSchedule = new Schedule({
         userName,
         userEmail,
@@ -91,11 +94,10 @@ export default function ScheduleForm({ route }) {
       clearInputs();
     }
     let schedule1 = scheduleRepository.getAll();
-    navigation.navigate("ScheduleList", { schedule: schedule1, edit: edit });
+    navigation.navigate("Agenda");
   };
 
   const clearInputs = () => {
-    setIsUpdate(false);
     setUserName("");
     setUserEmail("");
     setSpecialist("");
@@ -106,8 +108,11 @@ export default function ScheduleForm({ route }) {
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShowDatePicker(false);
+    if(edit == false){
     setDate(currentDate.toLocaleDateString());
+    } else{
     setDatePicker(currentDate);
+    }
     setShowTimePicker(true);
   };
 
