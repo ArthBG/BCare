@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
 import scheduleRepository from '../../models/agendamentos/ScheduleRepository'
 import { View, Text, TouchableOpacity } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 import styles from './styles'
 
 export default function ScheduleList({route}) {
     const { schedule } = route.params;
+    const navigation = useNavigation();
     const [schedulesList, setSchedules] = useState(scheduleRepository.getAll());
 
     useEffect(() => {
@@ -15,6 +17,11 @@ export default function ScheduleList({route}) {
         scheduleRepository.removeSchedule(id);
         setSchedules(scheduleRepository.getAll());
     };
+
+    const handleUpdate = (id) => {
+        navigation.navigate('Agendamento', { schedule: schedule, edit: true })
+    };
+
     return (
         <View>
             {
@@ -33,6 +40,9 @@ export default function ScheduleList({route}) {
                             <Text>{schedule.time}</Text>
                             <TouchableOpacity onPress={() => handleDelete(schedule.id)}>
                                 <Text>Remover</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => handleUpdate(schedule.id)}>
+                                <Text>Alterar</Text>
                             </TouchableOpacity>
                         </View>
                     ))
