@@ -61,7 +61,7 @@ const TabRoutes = () => {
       <Tab.Screen
         name="Agendamento"
         component={ScheduleForm}
-        initialParams={{ schedule: {}, edit: false }}
+        initialParams={{ schedule: null, edit: false }}
         options={{
           tabBarLabel: "Agendamento",
           tabBarIcon: ({ color }) => (
@@ -76,7 +76,7 @@ const TabRoutes = () => {
       <Tab.Screen
         name="Agenda"
         component={ScheduleList}
-        initialParams={{ schedule: schedules, edit: false }}
+        initialParams={{ schedule: null, edit: false }}
         options={{
           tabBarLabel: "Agenda",
           tabBarIcon: ({ color }) => (
