@@ -50,10 +50,10 @@ export default function ScheduleList({route}) {
                             </View>
                             <View style={styles.scheduleContainerBtns}>
                             <TouchableOpacity onPress={() => handleDelete(schedule.id)} style={styles.btnremove}>
-                                <Text>Cancelar consulta</Text>
+                                <Text style={styles.texts}>Cancelar</Text>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={handleUpdate} style={styles.btnedit}>
-                                <Text>Alterar</Text>
+                                <Text style={styles.texts}>Alterar</Text>
                             </TouchableOpacity>
                             </View>
                         </View>

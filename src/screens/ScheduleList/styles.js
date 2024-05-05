@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
   texts: {
     fontSize: 16,
     color: "#000",
+    textAlign: "center",
     fontWeight: "bold",
   },
   doctorText: {
