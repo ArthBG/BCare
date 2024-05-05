@@ -29,6 +29,16 @@ const styles = StyleSheet.create({
     backgroundColor: "#22B78A",
     color: "#fff",
   },
+  dateAndTimerContainer: {
+    height: 50,
+    width: 300,
+    alignSelf: "center",
+    marginBottom: 20,
+    backgroundColor: "#22B78A",
+    color: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
   form: {
     padding: 20,
     backgroundColor: "#53E6DD",
