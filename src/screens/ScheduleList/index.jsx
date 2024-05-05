@@ -3,6 +3,7 @@ import scheduleRepository from '../../models/agendamentos/ScheduleRepository'
 import { View, Text, TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import styles from './styles'
+import { ScrollView } from 'react-native-gesture-handler'
 
 export default function ScheduleList({route}) {
     const { schedule } = route.params;
@@ -23,34 +24,47 @@ export default function ScheduleList({route}) {
     };
 
     return (
-        <View>
+        <View style={styles.container}>
+            <ScrollView>
+            {/* <Text>{schedule.userName}</Text>
+                            <Text>{schedule.userEmail}</Text> */}
             {
                 schedulesList.length > 0 ?
                 schedulesList.map((schedule) => (
                         <View key={schedule.id}>
+                            <View style={{ marginBottom: 70 }}>
                             <View style={styles.scheduleContainer}>   
                             <View style={styles.scheduleDoctorImage}>
                                 <Text>Imagem</Text>
                             </View>
                             <Text style={styles.doctorText}>{schedule.doctor}</Text>
+                            <Text style={styles.doctorSubText}>{schedule.specialist}</Text>
                             </View>
-                            <Text>{schedule.userName}</Text>
-                            <Text>{schedule.userEmail}</Text>
-                            <Text>{schedule.date}</Text>
-                            <Text>{schedule.time}</Text>
-                            <TouchableOpacity onPress={() => handleDelete(schedule.id)}>
-                                <Text>Remover</Text>
+                            
+                            <View style={styles.scheduleContainerSchedules}>
+                            <Text style={styles.Title}>Consultas marcadas</Text>
+                            <View style={styles.textsContainer}>
+                            <Text style={styles.texts}>• Dia: {schedule.date}</Text>
+                            <Text style={styles.texts}>Horário: {schedule.time}</Text>
+                            </View>
+                            </View>
+                            <View style={styles.scheduleContainerBtns}>
+                            <TouchableOpacity onPress={() => handleDelete(schedule.id)} style={styles.btnremove}>
+                                <Text>Cancelar consulta</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={handleUpdate}>
+                            <TouchableOpacity onPress={handleUpdate} style={styles.btnedit}>
                                 <Text>Alterar</Text>
                             </TouchableOpacity>
+                            </View>
+                        </View>
                         </View>
                     ))
                     :
                     <View>
-                        <Text>Nenhum agendamento cadastrado</Text>
+                        <Text>Nenhum agendamento realizado</Text>
                     </View>
             }
+            </ScrollView>
         </View>
     )
 }
