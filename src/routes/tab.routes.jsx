@@ -49,21 +49,21 @@ const TabRoutes = () => {
         }}
       />
       <Tab.Screen
-        name="Sobrenos"
+        name="Sobre Nós"
         component={Sobrenos}
         options={{
-          tabBarLabel: "Sobrenos",
+          tabBarLabel: "Sobre Nós",
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="account" color={color} size={26} />
           ),
         }}
       />
       <Tab.Screen
-        name="ScheduleForm"
+        name="Agendamento"
         component={ScheduleForm}
         initialParams={{ schedule: {}, edit: false }}
         options={{
-          tabBarLabel: "ScheduleForm",
+          tabBarLabel: "Agendamento",
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
               name="form-select"
@@ -74,11 +74,11 @@ const TabRoutes = () => {
         }}
       />
       <Tab.Screen
-        name="ScheduleList"
+        name="Agenda"
         component={ScheduleList}
         initialParams={{ schedule: schedules, edit: false }}
         options={{
-          tabBarLabel: "ScheduleList",
+          tabBarLabel: "Agenda",
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
               name="format-list-bulleted"
