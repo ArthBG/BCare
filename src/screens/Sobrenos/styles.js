@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#EAEAEA',
       },
       containerColumn: {
         flexDirection: 'column',
@@ -19,6 +19,19 @@ const styles = StyleSheet.create({
       },
       containerMembers: {
         alignSelf: 'center',    
+      },
+      containerColumnBcare: {
+        marginBottom: 20,
+      },
+      header: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        marginBottom: 10,
+      },
+      textTop: {
+        fontSize: 16,
+        marginBottom: 15,
+        lineHeight: 24,
       },
       text: {
         fontSize: 16,

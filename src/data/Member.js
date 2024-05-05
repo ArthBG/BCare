@@ -30,7 +30,7 @@ export const Members = [
      {
          name: "Matheus Côcco",
          age: 17,
-         descripition: " Matheus Côcco é um desenvolvedor de software dedicado e altamente qualificado. Ele tem uma habilidade incrível para aprender novas tecnologias rapidamente e aplicá-las de maneira eficaz em seus projetos.",
+         descripition: "Matheus Côcco é um desenvolvedor de software dedicado e altamente qualificado. Ele tem uma habilidade incrível para aprender novas tecnologias rapidamente e aplicá-las de maneira eficaz em seus projetos.",
          image: require("../../assets/images/cocco.jpg"),
          cargo: "Especialista em ESG"
      },
