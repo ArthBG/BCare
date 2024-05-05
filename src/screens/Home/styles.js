@@ -15,16 +15,31 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5F5F5',
     borderRadius: 15,
     marginBottom: 70,
+    shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.5,
+        shadowRadius: 5,
+        elevation: 5,
   },
   containerFirstt:{
     backgroundColor: '#F5F5F5',
     borderRadius: 15,
+    shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.5,
+        shadowRadius: 5,
+        elevation: 5,
   },
   containerImage:{
     position: 'absolute',
     top: -30,
     backgroundColor: '#DDDDDD',
     borderRadius: 15,
+    shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.5,
+        shadowRadius: 5,
+        elevation: 5,
   },
   containerImage2:{
     backgroundColor: '#FFFF',
@@ -33,9 +48,14 @@ const styles = StyleSheet.create({
   },
   containerImageAndText:{
     display: 'flex',
-    backgroundColor: '#E7E7E7',
+    backgroundColor: '#DFDFDF',
     borderRadius: 15,
     width: "100%",
+    shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.5,
+        shadowRadius: 5,
+        elevation: 5,
   },
   buttonInsider: {
     backgroundColor: '#BB0000',
@@ -54,7 +74,8 @@ const styles = StyleSheet.create({
   imageLoa: {
     width: 140,
     height: 100,
-    marginTop: 20,
+    margin: 5,
+    borderRadius: 15
   },
   textPrincipal: {
     color: '#000',
@@ -68,6 +89,7 @@ const styles = StyleSheet.create({
     width: 250,
     height: 240,
     marginTop: 20,
+    borderRadius: 90,
   },
   textInicio: {
     fontSize: 24,

@@ -19,7 +19,7 @@ export default function Home() {
           </View>
           <View style={styles.containerFirst}>
           <View style={styles.containerImage}>
-          <Image style={styles.imageLoa} source={require('../../../assets/logovdd.png')} />
+          <Image style={styles.imageLoa} source={require('../../../assets/images/hearthospi.png')} />
           </View>
           <View style={{ marginTop: 80 }}>
           <View style={{ margin: 10 }}>
@@ -39,7 +39,7 @@ export default function Home() {
           <Image style={styles.imageLoa} source={require('../../../assets/logovdd.png')} />
           </View>
           <View style={{ position: 'absolute', left: 220}}>
-          <TouchableOpacity style={styles.buttonInsider} onPress={() => navigation.navigate("ScheduleForm")}>
+          <TouchableOpacity style={styles.buttonInsider} onPress={() => navigation.navigate("Agendamento")}>
             <Text style={styles.textButtonInsider}>Agendar Consulta</Text>
           </TouchableOpacity>
           </View>
@@ -54,10 +54,10 @@ export default function Home() {
           </View>
           </View>
           <View style={styles.containerFooter}>
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Sobrenos")}>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Sobre Nós")}>
               <Text style={styles.textButton}>Sobre a BCare</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonmiddle} onPress={() => navigation.navigate("ScheduleList")}>
+            <TouchableOpacity style={styles.buttonmiddle} onPress={() => navigation.navigate("Agenda")}>
               <Text style={styles.textButton}>Consultar Agenda</Text>
             </TouchableOpacity>
           </View>
