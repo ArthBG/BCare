@@ -81,7 +81,6 @@ export default function ScheduleForm({ route }) {
       } else {
         await scheduleRepository.createSchedule(newSchedule);
       }
-      navigation.goBack(); // Voltar para a tela anterior após o sucesso
     } catch (error) {
       console.error("Erro ao salvar o agendamento:", error);
       displayErrorMessage("Erro ao salvar o agendamento. Tente novamente mais tarde.");
