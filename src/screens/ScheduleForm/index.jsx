@@ -63,8 +63,6 @@ export default function ScheduleForm({ route }) {
       displayErrorMessage("Preencha todos os campos!");
       return;
     }
-  
-    // Verificar se o especialista já tem um horário marcado para a mesma data e horário
     const specialistSchedule = await scheduleRepository.findScheduleBySpecialistDateTime(doctor, date, time);
   
     if (specialistSchedule) {
@@ -72,7 +70,6 @@ export default function ScheduleForm({ route }) {
       return;
     }
 
-    // Se não houver conflito, prosseguir com a criação ou atualização do agendamento
     const newSchedule = new Schedule(userName, userEmail, specialist, doctor, date, time);
   
     try {
