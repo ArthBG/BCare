@@ -3,15 +3,13 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 import Home from "../screens/Home";
-import Category from "../screens/Category";
-import Profile from "../screens/Profile";
 import ESG from "../screens/ESG";
+import Sobrenos from "../screens/Sobrenos";
 import ScheduleForm from "../screens/ScheduleForm";
 import Detailing from "../screens/Detailing";
 import ESGAcessory from "../screens/ESGAccessory";
-
-import scheduleRepository from "../models/ScheduleRepository";
-
+import ScheduleList from "../screens/ScheduleList";
+import scheduleRepository from "../models/agendamentos/ScheduleRepository";
 const Tab = createBottomTabNavigator();
 
 const TabRoutes = () => {
@@ -73,7 +71,7 @@ const TabRoutes = () => {
           tabBarItemStyle: {
             tabBarIcon: ({ color }) => (
               <MaterialCommunityIcons
-                name="view-headline"
+                name="security-network"
                 color={color}
                 size={26}
               />
@@ -82,14 +80,24 @@ const TabRoutes = () => {
         }}
       />
       <Tab.Screen
-        name="ScheduleForm"
-        component={ScheduleForm}
-        initialParams={{ schedule: {}, edit: false }}
+        name="Sobre Nós"
+        component={Sobrenos}
         options={{
-          tabBarLabel: "ScheduleForm",
+          tabBarLabel: "Sobre Nós",
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="account" color={color} size={26} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Agendamento"
+        component={ScheduleForm}
+        initialParams={{ schedule: null, edit: false }}
+        options={{
+          tabBarLabel: "Agendamento",
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
-              name="view-headline"
+              name="form-select"
               color={color}
               size={26}
             />
@@ -97,19 +105,21 @@ const TabRoutes = () => {
         }}
       />
       <Tab.Screen
-        name="Detailing"
-        component={Detailing}
+        name="Agenda"
+        component={ScheduleList}
+        initialParams={{ schedule: null, edit: false }}
         options={{
-          tabBarLabel: "Detailing",
+          tabBarLabel: "Agenda",
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
-              name="view-headline"
+              name="format-list-bulleted"
               color={color}
               size={26}
             />
           ),
         }}
       />
+
     </Tab.Navigator>
   );
 };
