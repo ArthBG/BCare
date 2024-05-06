@@ -6,7 +6,6 @@ import Home from "../screens/Home";
 import ESG from "../screens/ESG";
 import Sobrenos from "../screens/Sobrenos";
 import ScheduleForm from "../screens/ScheduleForm";
-import Detailing from "../screens/Detailing";
 import ESGAcessory from "../screens/ESGAccessory";
 import ScheduleList from "../screens/ScheduleList";
 import scheduleRepository from "../models/agendamentos/ScheduleRepository";
@@ -42,21 +41,6 @@ const TabRoutes = () => {
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
               name="hospital-building"
-              color={color}
-              size={26}
-            />
-          ),
-        }}
-      />
-
-      <Tab.Screen
-        name="Category"
-        component={Category}
-        options={{
-          tabBarLabel: "Category",
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons
-              name="view-headline"
               color={color}
               size={26}
             />
