@@ -20,9 +20,6 @@ const styles = StyleSheet.create({
     containerModel: {
         flex: 1,
     },
-    containerPage: {
-        flex: 1,
-    },
 
     text: {
         fontSize: 20,
@@ -33,14 +30,19 @@ const styles = StyleSheet.create({
 
     scroll: {
         maxHeight: 300,
-        borderTopColor: '#bb0000',
-        borderTopWidth: 3,
+        backgroundColor: '#fff',
+
     },
 
-    boder: {
-        borderTopColor: '#bb0000',
-        borderTopWidth: 3,
+    esgBorder: {
+        padding: 2,
+        backgroundColor: '#bb0000',
+        width: 590,
+        // borderColor: '#22B78A',
+        // borderTopWidth: 2,
+
     },
+
 
 
     esgIcon: {
@@ -55,11 +57,10 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         justifyContent: 'center',
         alignItems: 'center',
-        zIndex: 2,
-
-        // borderColor: '#000',
+        zIndex: 3,
+        // borderColor: '#22B78A',
         // borderTopWidth: 3,
-        // borderLeftWidth: 3,
+        // borderLeftWidth: 2,
 
     },
 
@@ -67,17 +68,6 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'flex-start',
         alignItems: 'flex-end',
-    },
-
-        esgInfo: {
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        margin: 10,
-        backgroundColor: '#fff',
-        padding: 10,
-        width: 390,
-        height: 70,
     },
 
     textESG: {

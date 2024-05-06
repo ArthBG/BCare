@@ -52,7 +52,10 @@ export default function ESGAccessory() {
         <View style={styles.esgIcon}>
           <Text style={styles.textESG}>ESG</Text>
         </View>
+        <View style={styles.esgBorder}></View>
         <ScrollView style={styles.scroll}>
+
+          
           <View style={styles.container}>
             <ToggleSwitch isEnabled={isEnabled} toggleSwitch={toggleSwitch} />
             {
@@ -69,7 +72,7 @@ export default function ESGAccessory() {
             )
           }
 
-          <View style={styles.esgInfo}>
+          <View style={styles.container}>
             <Text style={styles.text}>Energia Solar : 15% da clinica</Text>
           </View>
 
