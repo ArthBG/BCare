@@ -10,8 +10,6 @@ const PopUp = ({ doctor, data, time }) => {
   const [email, setEmail] = useState('');
   const handleSend = async () => {
     const resposeDoctor = await axios.get(`${apiURL}/doctors/name/${doctor}`);
-    const [month, day, year] = data.split('/');
-    const formattedDate = `${day}/${month}/${year}`;
     if (!name || !email) {
       alert('Preencha todos os campos')
       return
@@ -23,7 +21,7 @@ const PopUp = ({ doctor, data, time }) => {
         await axios.post(`${apiURL}/scheduling`, {
           user_id: userAlreadyExists[0].id,
           doctor_id: resposeDoctor.data.doctor[0].id,
-          date: formattedDate,
+          date: data,
           time: time
         });
         alert('Agendamento cadastrado com sucesso');
@@ -39,7 +37,7 @@ const PopUp = ({ doctor, data, time }) => {
         await axios.post(`${apiURL}/scheduling`, {
           user_id: response.data.user.id,
           doctor_id: resposeDoctor.data.doctor[0].id,
-          date: formattedDate,
+          date: data,
           time: time
         });
         alert('Agendamento cadastrado com sucesso');

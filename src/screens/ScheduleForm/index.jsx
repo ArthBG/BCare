@@ -42,23 +42,24 @@ export default function ScheduleForm({ route }) {
 
   const navigation = useNavigation();
 
-  useEffect(() => {
-    if (edit && schedule) {
-      setUserName(schedule.userName);
-      setUserEmail(schedule.userEmail);
-      setSpecialist(schedule.specialist);
-      setDoctor(schedule.doctor);
-      setDate(schedule.date);
-      setTime(schedule.time);
-      setIsUpdate(true);
-    } else {
-      clearInputs();
-    }
-  }, [schedule, edit]);
+  // useEffect(() => {
+  //   if (edit && schedule) {
+  //     setUserName(schedule.userName);
+  //     setUserEmail(schedule.userEmail);
+  //     setSpecialist(schedule.specialist);
+  //     setDoctor(schedule.doctor);
+  //     setDate(schedule.date);
+  //     setTime(schedule.time);
+  //     setIsUpdate(true);
+  //   } else {
+  //     clearInputs();
+  //   }
+  // }, [schedule, edit]);
 
   useEffect(() => {
     if (specialist) {
       getDoctors(specialist).then(setDoctors);
+      console.log(specialist);
     }
   }, [specialist]);
 
@@ -68,6 +69,11 @@ export default function ScheduleForm({ route }) {
       setErrorMessage("");
     }, 3000);
   };
+
+  function convertDate(inputFormat) {
+    const parts = inputFormat.split('/');
+    return new Date(parts[2], parts[1] - 1, parts[0]);
+  }
 
   const getDoctors = async (params) => {
     try {
@@ -84,12 +90,12 @@ export default function ScheduleForm({ route }) {
       displayErrorMessage("Preencha todos os campos!");
       return;
     }
-    if (new Date(date) < new Date()) {
+    if (new Date(convertDate(date)) < new Date()) {
       displayErrorMessage("Data inválida!");
       return;
-    } else {
-      console.log(date);
     }
+
+    console.log(new Date(convertDate(date)));
     setPopUp(true);
 
     // if (!userName || !userEmail || !doctor || !specialist) {
