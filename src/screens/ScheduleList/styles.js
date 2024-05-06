@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     backgroundColor: "#f14666",
   },
-  scheduleDoctorImage: {
+  doctorImage: {
     width: 160,
     padding: 10,
     height: 160,
