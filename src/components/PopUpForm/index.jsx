@@ -9,6 +9,9 @@ const PopUp = ({ doctor, data, time }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const handleSend = async () => {
+    const resposeDoctor = await axios.get(`${apiURL}/doctors/name/${doctor}`);
+    const [month, day, year] = data.split('/');
+    const formattedDate = `${day}/${month}/${year}`;
     if (!name || !email) {
       alert('Preencha todos os campos')
       return
@@ -16,31 +19,30 @@ const PopUp = ({ doctor, data, time }) => {
     const response = await axios.get(`${apiURL}/users/${name}/${email}`);
     if (response.data.status == 'success') {
       const userAlreadyExists = response.data.user;
-      const resposeDoctor = await axios.get(`${apiURL}/doctors/name/${doctor}`);
       try {
-        const [month, day, year] = data.split('/');
-        var formattedDate = `${day}/${month}/${year}`;
         await axios.post(`${apiURL}/scheduling`, {
           user_id: userAlreadyExists[0].id,
           doctor_id: resposeDoctor.data.doctor[0].id,
           date: formattedDate,
           time: time
         });
-        alert('Agendamento cadastrado com sucesso')
+        alert('Agendamento cadastrado com sucesso');
       } catch (error) {
-        console.log(userAlreadyExists[0].id, resposeDoctor.data.doctor[0].id, formattedDate, time);
-        alert('Erro ao cadastrar agendamento')
-        console.log(error);
+        alert('Erro ao cadastrar agendamento');
       }
-
-
     } else {
       try {
-        await axios.post(`${apiURL}/users`, {
+        const response = await axios.post(`${apiURL}/users`, {
           name,
           email
         })
-        alert('Usuário cadastrado com sucesso')
+        await axios.post(`${apiURL}/scheduling`, {
+          user_id: response.data.user.id,
+          doctor_id: resposeDoctor.data.doctor[0].id,
+          date: formattedDate,
+          time: time
+        });
+        alert('Agendamento cadastrado com sucesso');
 
       } catch (error) {
         if (error.response.data.message == "Email já cadastrado") {

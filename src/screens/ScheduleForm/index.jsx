@@ -84,9 +84,11 @@ export default function ScheduleForm({ route }) {
       displayErrorMessage("Preencha todos os campos!");
       return;
     }
-    if (date < new Date().toLocaleDateString()) {
+    if (new Date(date) < new Date()) {
       displayErrorMessage("Data inválida!");
       return;
+    } else {
+      console.log(date);
     }
     setPopUp(true);
 
@@ -279,7 +281,11 @@ export default function ScheduleForm({ route }) {
             <Text style={styles.button}>Cancelar</Text>
           </TouchableOpacity>
         )}
-        <PopUp doctor={doctor} data={date} time={time} />
+        {
+          popUp && (
+            <PopUp doctor={doctor} data={date} time={time} />
+          )
+        }
       </View>
     </ScrollView>
   );
