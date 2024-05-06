@@ -42,7 +42,7 @@ const scheduleRepository = new ScheduleRepository();
 const schedulemocked = new Schedule({
     userName: 'João',
     userEmail: 'joao@gmail.com',
-    doctor: 'Dr. Carlos',
+    doctor: 'Dra. Lilian Seffrin Sande',
     specialist: 'Dermatologista',
     date: '21-09-2021',
     time: '14:00'

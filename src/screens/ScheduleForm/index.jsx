@@ -76,7 +76,7 @@ export default function ScheduleForm({ route }) {
       if (isUpdate && schedule) {
         await scheduleRepository.updateSchedule(schedule.id, newSchedule);
       } else {
-        await scheduleRepository.createSchedule(newSchedule);
+        await scheduleRepository.addSchedule(newSchedule);
       }
     } catch (error) {
       console.error("Erro ao salvar o agendamento:", error);
