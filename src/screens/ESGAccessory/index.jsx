@@ -13,7 +13,9 @@ import SliderInput from '../../components/SliderInput';
 export default function ESGAccessory() {
   const [OrbitControls, events] = useControls();
   const [isEnabled, setIsEnabled] = useState(false);
+  const [isEnabledFalse, setIsEnabledFalse] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+  const toggleSwitchFalse = () => setIsEnabledFalse(previousState => !previousState);
   const [sliderValue, setSliderValue] = useState(0.5);
 
 
@@ -21,10 +23,8 @@ export default function ESGAccessory() {
   useEffect(() => {
     try {
       if (isEnabled) {
-        console.log('Luz ligada');
       } else {
         setSliderValue(0.5);
-        console.log('Luz desligada');
       }
     } catch (error) {
       console.error(error);
@@ -47,21 +47,48 @@ export default function ESGAccessory() {
         </Canvas>
       </View>
 
-      <View style={styles.container}>
-        <ToggleSwitch isEnabled={isEnabled} toggleSwitch={toggleSwitch} />
-        {
-          isEnabled ? <Text style={styles.text}>Luz ligada : {sliderValue.toFixed(1)}</Text> : <Text style={styles.text}>Luz desligada</Text>
-        }
+
+      <View style={styles.containerESG}>
+        <View style={styles.esgIcon}>
+          <Text style={styles.textESG}>ESG</Text>
+        </View>
+        <ScrollView style={styles.scroll}>
+          <View style={styles.container}>
+            <ToggleSwitch isEnabled={isEnabled} toggleSwitch={toggleSwitch} />
+            {
+              isEnabled ? <Text style={styles.text}>Luz ligada : {sliderValue.toFixed(1)}</Text> : <Text style={styles.text}>Luz desligada</Text>
+            }
+
+          </View>
+
+          {
+            isEnabled && (
+              <View style={styles.container}>
+                <SliderInput Value={setSliderValue} />
+              </View>
+            )
+          }
+
+          <View style={styles.esgInfo}>
+            <Text style={styles.text}>Energia Solar : 15% da clinica</Text>
+          </View>
+
+          <View style={styles.container}>
+
+          <ToggleSwitch isEnabled={isEnabledFalse} toggleSwitch={toggleSwitchFalse} />
+
+          <Text style={styles.text}>Ar condicionado</Text>
+
+          </View>
+
+
+
+          
+
+        </ScrollView>
 
       </View>
 
-      {
-        isEnabled && (
-          <View style={styles.container}>
-            <SliderInput Value={setSliderValue} />
-          </View>
-        )
-      }
 
 
 
