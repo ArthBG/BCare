@@ -1,10 +1,13 @@
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useState } from 'react';
 import axios from 'axios';
 
 import styles from './styles.js'
 
 const PopUp = ({ doctor, data, time }) => {
+  const navigation = useNavigation();
   const apiURL = process.env.EXPO_PUBLIC_API_URL;
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -24,7 +27,9 @@ const PopUp = ({ doctor, data, time }) => {
           date: data,
           time: time
         });
+        await AsyncStorage.setItem('@asyncStorage:user', JSON.stringify(userAlreadyExists[0]));
         alert('Agendamento cadastrado com sucesso');
+        navigation.navigate('Agenda');
       } catch (error) {
         alert('Erro ao cadastrar agendamento');
       }
@@ -40,7 +45,9 @@ const PopUp = ({ doctor, data, time }) => {
           date: data,
           time: time
         });
+        await AsyncStorage.setItem('@asyncStorage:user', JSON.stringify(response.data.user));
         alert('Agendamento cadastrado com sucesso');
+        navigation.navigate('Agenda');
 
       } catch (error) {
         if (error.response.data.message == "Email já cadastrado") {

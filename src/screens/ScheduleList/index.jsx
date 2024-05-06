@@ -1,73 +1,63 @@
 import { useEffect, useState } from "react";
 import scheduleRepository from "../../models/agendamentos/ScheduleRepository";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import styles from "./styles";
 import { ScrollView } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from "axios";
 
 export default function ScheduleList({ route }) {
   const { schedule } = route.params;
   const navigation = useNavigation();
-  const [schedulesList, setSchedules] = useState(scheduleRepository.getAll());
+  const [user, setUser] = useState({});
+  const [schedules, setSchedules] = useState(null);
+  const apiURL = process.env.EXPO_PUBLIC_API_URL;
 
   useEffect(() => {
-    setSchedules(scheduleRepository.getAll());
+    loadingStoredData();
   }, []);
+
+  const loadingStoredData = async () => {
+    const alreadyUser = await AsyncStorage.getItem('@asyncStorage:user');
+    if (!alreadyUser) {
+      alert('Usuário não encontrado');
+    }
+    setUser(JSON.parse(alreadyUser));
+    try {
+      const response = await axios.get(`${apiURL}/scheduling/user/${user.id}`);
+      setSchedules(response.data.scheduling);
+    } catch (error) {
+      console.error(error);
+      alert('Erro ao carregar agendamentos');
+    }
+
+  }
 
   const handleDelete = (id) => {
     scheduleRepository.removeSchedule(id);
-    setSchedules(scheduleRepository.getAll());
   };
 
   const handleUpdate = () => {
     navigation.navigate("Agendamento", { schedule: schedule, edit: true });
   };
 
+
+
+
   return (
     <View style={styles.container}>
       <ScrollView>
-        {/* <Text>{schedule.userName}</Text>
-                            <Text>{schedule.userEmail}</Text> */}
-        {schedulesList.length > 0 ? (
-          schedulesList.map((schedule) => (
+        {schedules ? schedules.map((schedule, index) => {
+          return (
             <View key={schedule.id}>
               <View style={{ marginBottom: 70 }}>
                 <View style={styles.scheduleContainer}>
                   <View style={styles.scheduleDoctorImage}>
-                    {
-                      // (schedule.doctor = "Dra. Lilian Seffrin Sande" ? (
-                      //   <Image
-                      //     source={require("../../../assets/images/Lilian.jpeg")}
-                      //     style={styles.doctorImage}
-                      //   />
-                      // ) : (
-                      //   (schedule.doctor = "Dr. Felipe Leal" ? (
-                      //     <Image
-                      //       source={require("../../../assets/images/felipe.jpeg")}
-                      //       style={styles.doctorImage}
-                      //     />
-                      //   ) : (
-                      //     (schedule.doctor = "Dr. Romeu Alves Ramos Junior" ? (
-                      //       <Image
-                      //         source={require("../../../assets/images/Romeu.jpeg")}
-                      //         style={styles.doctorImage}
-                      //       />
-                      //     ) : (
-                      //       (schedule.doctor = "Dra. Sarah Thé Coelho" ? (
-                      //         <Image
-                      //           source={require("../../../assets/images/sarah.jpeg")}
-                      //           style={styles.doctorImage}
-                      //         />
-                      //       ) : null)
-                      //     ))
-                      //   ))
-                      // ))
-                    }
+                    <Image width={100} height={100} style={styles.doctorImage} source={{ uri: schedule.picture }} />
                   </View>
-                  <Text style={styles.doctorText}>{schedule.doctor}</Text>
-                  <Text style={styles.doctorSubText}>
-                    {schedule.specialist}
-                  </Text>
+                  <Text style={styles.doctorText}>{schedule.doctor_name}</Text>
+                  <Text style={styles.doctorSubText}>{schedule.specialty}</Text>
                 </View>
 
                 <View style={styles.scheduleContainerSchedules}>
@@ -77,28 +67,10 @@ export default function ScheduleList({ route }) {
                     <Text style={styles.texts}>Horário: {schedule.time}</Text>
                   </View>
                 </View>
-                <View style={styles.scheduleContainerBtns}>
-                  <TouchableOpacity
-                    onPress={() => handleDelete(schedule.id)}
-                    style={styles.btnremove}
-                  >
-                    <Text style={styles.texts}>Cancelar</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={handleUpdate}
-                    style={styles.btnedit}
-                  >
-                    <Text style={styles.texts}>Alterar</Text>
-                  </TouchableOpacity>
-                </View>
               </View>
             </View>
-          ))
-        ) : (
-          <View>
-            <Text>Nenhum agendamento realizado</Text>
-          </View>
-        )}
+          );
+        }) : <Text style={styles.Title}>Nenhum agendamento encontrado</Text>}
       </ScrollView>
     </View>
   );
