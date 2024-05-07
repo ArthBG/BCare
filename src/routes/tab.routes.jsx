@@ -9,6 +9,9 @@ import ScheduleForm from "../screens/ScheduleForm";
 import ESGAcessory from "../screens/ESGAccessory";
 import ScheduleList from "../screens/ScheduleList";
 import scheduleRepository from "../models/agendamentos/ScheduleRepository";
+import Social from "../screens/Social";
+import Environmental from "../screens/Environmental";
+import Governance from "../screens/Governance";
 const Tab = createBottomTabNavigator();
 
 const TabRoutes = () => {
@@ -103,6 +106,23 @@ const TabRoutes = () => {
           ),
         }}
       />
+      <Tab.Screen name="Social" component={Social} options={{
+        tabBarItemStyle: {
+          display: 'none'
+        }
+      }} />
+
+      <Tab.Screen name="Environmental" component={Environmental} options={{
+        tabBarItemStyle: {
+          display: 'none'
+        }
+      }} />
+
+      <Tab.Screen name="Governance" component={Governance} options={{
+        tabBarItemStyle: {
+          display: 'none'
+        }
+      }} />
 
     </Tab.Navigator>
   );
