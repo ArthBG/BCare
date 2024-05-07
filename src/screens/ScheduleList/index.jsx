@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import React, { useCallback } from 'react';
 import scheduleRepository from "../../models/agendamentos/ScheduleRepository";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
@@ -6,32 +7,48 @@ import styles from "./styles";
 import { ScrollView } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from "axios";
+import { useFocusEffect } from '@react-navigation/native';
 
-export default function ScheduleList({ route }) {
-  const { schedule } = route.params;
+export default function ScheduleList() {
   const navigation = useNavigation();
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
   const [schedules, setSchedules] = useState(null);
   const apiURL = process.env.EXPO_PUBLIC_API_URL;
 
+  useFocusEffect(
+    React.useCallback(() => {
+      loading();
+    }, [])
+  );
+
   useEffect(() => {
-    loadingStoredData();
+    loading();
   }, []);
 
-  const loadingStoredData = async () => {
+  useEffect(() => {
+
+    if (user) {
+      loadSchedules();
+    }
+  }, [user]);
+
+  const loading = async () => {
     const alreadyUser = await AsyncStorage.getItem('@asyncStorage:user');
-    if (!alreadyUser) {
+    if (alreadyUser) {
+      setUser(JSON.parse(alreadyUser));
+    } else {
       alert('Usuário não encontrado');
     }
-    setUser(JSON.parse(alreadyUser));
+  }
+
+  const loadSchedules = async () => {
     try {
       const response = await axios.get(`${apiURL}/scheduling/user/${user.id}`);
       setSchedules(response.data.scheduling);
     } catch (error) {
       console.error(error);
-      alert('Erro ao carregar agendamentos');
+      alert(error.response.data.message);
     }
-
   }
 
   const handleDelete = (id) => {
@@ -59,7 +76,6 @@ export default function ScheduleList({ route }) {
                   <Text style={styles.doctorText}>{schedule.doctor_name}</Text>
                   <Text style={styles.doctorSubText}>{schedule.specialty}</Text>
                 </View>
-
                 <View style={styles.scheduleContainerSchedules}>
                   <Text style={styles.Title}>Consultas marcadas</Text>
                   <View style={styles.textsContainer}>

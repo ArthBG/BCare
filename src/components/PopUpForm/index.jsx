@@ -6,7 +6,7 @@ import axios from 'axios';
 
 import styles from './styles.js'
 
-const PopUp = ({ doctor, data, time }) => {
+const PopUp = ({ doctor, data, time, exitPopUp, clearInps }) => {
   const navigation = useNavigation();
   const apiURL = process.env.EXPO_PUBLIC_API_URL;
   const [name, setName] = useState('');
@@ -30,6 +30,8 @@ const PopUp = ({ doctor, data, time }) => {
         await AsyncStorage.setItem('@asyncStorage:user', JSON.stringify(userAlreadyExists[0]));
         alert('Agendamento cadastrado com sucesso');
         navigation.navigate('Agenda');
+        exitPopUp(false);
+        clearInps();
       } catch (error) {
         alert('Erro ao cadastrar agendamento');
       }
@@ -48,6 +50,8 @@ const PopUp = ({ doctor, data, time }) => {
         await AsyncStorage.setItem('@asyncStorage:user', JSON.stringify(response.data.user));
         alert('Agendamento cadastrado com sucesso');
         navigation.navigate('Agenda');
+        exitPopUp(false);
+        clearInps();
 
       } catch (error) {
         if (error.response.data.message == "Email já cadastrado") {

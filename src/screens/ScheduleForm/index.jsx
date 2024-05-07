@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import {
   View,
-  TextInput,
   Text,
   TouchableOpacity,
   ScrollView,
@@ -11,12 +10,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Picker } from "@react-native-picker/picker";
 import PopUp from "../../components/PopUpForm";
 import axios from "axios";
-
 import styles from "./styles";
-
-import Schedule from "../../models/agendamentos/Schedule";
-import scheduleRepository from "../../models/agendamentos/ScheduleRepository";
-
 import DateTimePicker from "@react-native-community/datetimepicker";
 
 export default function ScheduleForm({ route }) {
@@ -39,22 +33,6 @@ export default function ScheduleForm({ route }) {
   const [showTimePicker, setShowTimePicker] = useState(false);
 
   const [popUp, setPopUp] = useState(false);
-
-  const navigation = useNavigation();
-
-  // useEffect(() => {
-  //   if (edit && schedule) {
-  //     setUserName(schedule.userName);
-  //     setUserEmail(schedule.userEmail);
-  //     setSpecialist(schedule.specialist);
-  //     setDoctor(schedule.doctor);
-  //     setDate(schedule.date);
-  //     setTime(schedule.time);
-  //     setIsUpdate(true);
-  //   } else {
-  //     clearInputs();
-  //   }
-  // }, [schedule, edit]);
 
   useEffect(() => {
     if (specialist) {
@@ -90,64 +68,11 @@ export default function ScheduleForm({ route }) {
       displayErrorMessage("Preencha todos os campos!");
       return;
     }
-    if (new Date(convertDate(date)) < new Date()) {
+    if (new Date(date) < new Date()) {
       displayErrorMessage("Data inválida!");
       return;
     }
-
-    console.log(new Date(convertDate(date)));
     setPopUp(true);
-
-    // if (!userName || !userEmail || !doctor || !specialist) {
-    //   displayErrorMessage("Preencha todos os campos!");
-    //   return;
-    // }
-    // const specialistSchedule = await scheduleRepository.findScheduleBySpecialistDateTime(doctor, date, time);
-
-    // if (specialistSchedule) {
-    //   displayErrorMessage(`O especialista ${doctor} já tem um horário marcado para esta data e horário!`);
-    //   return;
-    // }
-
-    // const newSchedule = new Schedule(userName, userEmail, specialist, doctor, date, time);
-
-    // try {
-    //   if (isUpdate && schedule) {
-    //     await scheduleRepository.updateSchedule(schedule.id, newSchedule);
-    //   } else {
-    //     await scheduleRepository.createSchedule(newSchedule);
-    //   }
-    // } catch (error) {
-    //   console.error("Erro ao salvar o agendamento:", error);
-    //   displayErrorMessage("Erro ao salvar o agendamento. Tente novamente mais tarde.");
-    // }
-
-
-    // if (isUpdate) {
-    //   scheduleRepository.updateSchedule(
-    //     schedule.id,
-    //     userName,
-    //     userEmail,
-    //     specialist,
-    //     doctor,
-    //     date,
-    //     time
-    //   );
-    //   clearInputs();
-    // } else {
-    //   setIsUpdate(false);
-    //   const newSchedule = new Schedule({
-    //     userName,
-    //     userEmail,
-    //     specialist,
-    //     doctor,
-    //     date,
-    //     time,
-    //   });
-    //   scheduleRepository.addSchedule(newSchedule);
-    //   clearInputs();
-    // }
-    // navigation.navigate("Agenda");
   };
 
   const clearInputs = () => {
@@ -161,10 +86,11 @@ export default function ScheduleForm({ route }) {
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShowDatePicker(false);
+    const convertedDate = convertDate(currentDate.toLocaleDateString());
     if (edit == false) {
-      setDate(currentDate.toLocaleDateString());
+      setDate(convertedDate);
     } else {
-      setDatePicker(currentDate);
+      setDatePicker(convertedDate);
     }
     setShowTimePicker(true);
   };
@@ -179,9 +105,6 @@ export default function ScheduleForm({ route }) {
   const dataPiecker = () => {
     setShowDatePicker(true);
   };
-
-  console.log("essa é a data" + "" + date);
-  console.log("esse é o horario" + "" + time);
 
   return (
     <ScrollView>
@@ -252,24 +175,6 @@ export default function ScheduleForm({ route }) {
             <Text style={styles.button}>Escolha sua data da consulta</Text>
           </TouchableOpacity>
         </View>
-        {/* <View style={styles.form}>
-          <TextInput
-            style={styles.input}
-            placeholder="Nome"
-            value={userName}
-            onChangeText={setUserName}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Email"
-            value={userEmail}
-            onChangeText={setUserEmail}
-          />
-          <Text>
-            {specialist === "" ? "Selecione a especialidade" : specialist}
-          </Text>
-          <Text>{doctor === "" ? "Selecione o médico" : doctor}</Text>
-        </View> */}
         {errorMessage ? (
           <Text style={styles.errorMessage}>{errorMessage}</Text>
         ) : null}
@@ -289,7 +194,7 @@ export default function ScheduleForm({ route }) {
         )}
         {
           popUp && (
-            <PopUp doctor={doctor} data={date} time={time} />
+            <PopUp doctor={doctor} data={date} time={time} exitPopUp={setPopUp} clearInps={clearInputs} />
           )
         }
       </View>
