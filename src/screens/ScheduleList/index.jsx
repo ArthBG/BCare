@@ -68,7 +68,7 @@ export default function ScheduleList() {
 
 
 
-  return (
+   return (
     <View style={styles.container}>
       <ScrollView>
         {schedules.length > 0 ? schedules.map((schedule) => (

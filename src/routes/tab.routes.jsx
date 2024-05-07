@@ -6,9 +6,9 @@ import Home from "../screens/Home";
 import ESG from "../screens/ESG";
 import Sobrenos from "../screens/Sobrenos";
 import ScheduleForm from "../screens/ScheduleForm";
+import ESGAcessory from "../screens/ESGAccessory";
 import ScheduleList from "../screens/ScheduleList";
 import scheduleRepository from "../models/agendamentos/ScheduleRepository";
-
 const Tab = createBottomTabNavigator();
 
 const TabRoutes = () => {
@@ -29,6 +29,21 @@ const TabRoutes = () => {
           tabBarLabel: "Home",
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="home" color={color} size={26} />
+          ),
+        }}
+      />
+
+      <Tab.Screen
+        name="clinic"
+        component={ESGAcessory}
+        options={{
+          tabBarLabel: "Clínica",
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons
+              name="hospital-building"
+              color={color}
+              size={26}
+            />
           ),
         }}
       />
