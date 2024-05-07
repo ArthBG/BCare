@@ -12,7 +12,7 @@ import { useFocusEffect } from '@react-navigation/native';
 export default function ScheduleList() {
   const navigation = useNavigation();
   const [user, setUser] = useState(null);
-  const [schedules, setSchedules] = useState(null);
+  const [schedules, setSchedules] = useState([]);
   const apiURL = process.env.EXPO_PUBLIC_API_URL;
 
   useFocusEffect(
@@ -47,12 +47,18 @@ export default function ScheduleList() {
       setSchedules(response.data.scheduling);
     } catch (error) {
       console.error(error);
-      alert(error.response.data.message);
+      alert('Erro ao carregar agendamentos');
     }
   }
 
-  const handleDelete = (id) => {
-    scheduleRepository.removeSchedule(id);
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`${apiURL}/scheduling/${id}`);
+      await loadSchedules();
+    } catch (error) {
+      console.error(error);
+      alert(error.response.data.message);
+    }
   };
 
   const handleUpdate = () => {
@@ -65,28 +71,31 @@ export default function ScheduleList() {
   return (
     <View style={styles.container}>
       <ScrollView>
-        {schedules ? schedules.map((schedule, index) => {
-          return (
-            <View key={schedule.id}>
-              <View style={{ marginBottom: 70 }}>
-                <View style={styles.scheduleContainer}>
-                  <View style={styles.scheduleDoctorImage}>
-                    <Image width={100} height={100} style={styles.doctorImage} source={{ uri: schedule.picture }} />
-                  </View>
-                  <Text style={styles.doctorText}>{schedule.doctor_name}</Text>
-                  <Text style={styles.doctorSubText}>{schedule.specialty}</Text>
+        {schedules.length > 0 ? schedules.map((schedule) => (
+          <View key={schedule.id_agendamento}>
+            <View style={{ marginBottom: 70 }}>
+              <View style={styles.scheduleContainer}>
+                <View style={styles.scheduleDoctorImage}>
+                  <Image width={100} height={100} style={styles.doctorImage} source={{ uri: schedule.picture }} />
                 </View>
-                <View style={styles.scheduleContainerSchedules}>
-                  <Text style={styles.Title}>Consultas marcadas</Text>
-                  <View style={styles.textsContainer}>
-                    <Text style={styles.texts}>• Dia: {schedule.date}</Text>
-                    <Text style={styles.texts}>Horário: {schedule.time}</Text>
-                  </View>
+                <Text style={styles.doctorText}>{schedule.doctor_name}</Text>
+                <Text style={styles.doctorSubText}>{schedule.specialty}</Text>
+              </View>
+              <View style={styles.scheduleContainerSchedules}>
+                <Text style={styles.Title}>Consultas marcadas</Text>
+                <View style={styles.textsContainer}>
+                  <Text style={styles.texts}>• Dia: {schedule.date}</Text>
+                  <Text style={styles.texts}>Horário: {schedule.time}</Text>
                 </View>
               </View>
+              <View>
+                <TouchableOpacity onPress={() => handleDelete(schedule.id_agendamento)}>
+                  <Text>Remover</Text>
+                </TouchableOpacity>
+              </View>
             </View>
-          );
-        }) : <Text style={styles.Title}>Nenhum agendamento encontrado</Text>}
+          </View>
+        )) : <Text style={styles.Title}>Nenhum agendamento encontrado</Text>}
       </ScrollView>
     </View>
   );
