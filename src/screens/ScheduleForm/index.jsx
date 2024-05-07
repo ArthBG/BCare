@@ -1,13 +1,8 @@
-import { useState, useEffect } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  ScrollView,
-  Image,
-} from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, Text, TouchableOpacity, ScrollView, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Picker } from "@react-native-picker/picker";
+import ErrorMsg from "../../components/ErrorMsg"; 
 import PopUp from "../../components/PopUpForm";
 import axios from "axios";
 import styles from "./styles";
@@ -49,7 +44,7 @@ export default function ScheduleForm({ route }) {
   };
 
   function convertDate(inputFormat) {
-    const parts = inputFormat.split('/');
+    const parts = inputFormat.split("/");
     return new Date(parts[2], parts[1] - 1, parts[0]);
   }
 
@@ -59,9 +54,11 @@ export default function ScheduleForm({ route }) {
       return response.data.doctor;
     } catch (error) {
       console.error("Erro ao buscar os médicos:", error);
-      displayErrorMessage("Erro ao buscar os médicos. Tente novamente mais tarde.");
+      displayErrorMessage(
+        "Erro ao buscar os médicos. Tente novamente mais tarde."
+      );
     }
-  }
+  };
 
   const handleScheduleAction = async () => {
     if (!doctor || !specialist || !date || !time) {
@@ -130,22 +127,22 @@ export default function ScheduleForm({ route }) {
             <Picker.Item label="Psiquiatra" value="Psiquiatra" />
           </Picker>
 
-          {
-            specialist && (
-              <Picker
-                selectedValue={doctor}
-                onValueChange={(itemValue) => setDoctor(itemValue)}
-                style={styles.picker}
-              >
-                <Picker.Item label="Selecione o médico" value="" />
-                {
-                  doctors.map((doctor) => (
-                    <Picker.Item key={doctor.id} label={doctor.name} value={doctor.name} />
-                  ))
-                }
-              </Picker>
-            )
-          }
+          {specialist && (
+            <Picker
+              selectedValue={doctor}
+              onValueChange={(itemValue) => setDoctor(itemValue)}
+              style={styles.picker}
+            >
+              <Picker.Item label="Selecione o médico" value="" />
+              {doctors.map((doctor) => (
+                <Picker.Item
+                  key={doctor.id}
+                  label={doctor.name}
+                  value={doctor.name}
+                />
+              ))}
+            </Picker>
+          )}
 
           {showDatePicker && (
             <DateTimePicker
@@ -175,10 +172,11 @@ export default function ScheduleForm({ route }) {
             <Text style={styles.button}>Escolha sua data da consulta</Text>
           </TouchableOpacity>
         </View>
-        {errorMessage ? (
-          <Text style={styles.errorMessage}>{errorMessage}</Text>
-        ) : null}
-        <TouchableOpacity style={styles.btnSubmit} onPress={handleScheduleAction}>
+        {errorMessage ? <ErrorMsg msg={errorMessage} /> : null}
+        <TouchableOpacity
+          style={styles.btnSubmit}
+          onPress={handleScheduleAction}
+        >
           {isUpdate ? (
             <Text style={styles.button}>Atualizar</Text>
           ) : (
@@ -192,11 +190,15 @@ export default function ScheduleForm({ route }) {
             <Text style={styles.button}>Cancelar</Text>
           </TouchableOpacity>
         )}
-        {
-          popUp && (
-            <PopUp doctor={doctor} data={date} time={time} exitPopUp={setPopUp} clearInps={clearInputs} />
-          )
-        }
+        {popUp && (
+          <PopUp
+            doctor={doctor}
+            data={date}
+            time={time}
+            exitPopUp={setPopUp}
+            clearInps={clearInputs}
+          />
+        )}
       </View>
     </ScrollView>
   );

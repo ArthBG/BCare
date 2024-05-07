@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: '#EAEAEA',
+    backgroundColor: "#EAEAEA",
   },
   scheduleContainer: {
     width: "100%",
@@ -32,13 +32,13 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     borderRadius: 15,
     backgroundColor: "#53E6DD",
-    shadowColor: '#5CFFF5',
+    shadowColor: "#5CFFF5",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.5,
     shadowRadius: 5,
     elevation: 9,
   },
-  Title:{
+  Title: {
     textAlign: "center",
     fontSize: 20,
     marginTop: 10,
@@ -67,18 +67,23 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   btnremove: {
-    width: 150,
+    width: 90,
     padding: 10,
     borderRadius: 15,
     backgroundColor: "#f14666",
     textAlign: "center",
-  },  
-  btnedit : {
+  },
+  textBtn: {
+    color: "#FAFAFA",
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  btnedit: {
     width: 150,
     padding: 10,
     borderRadius: 15,
     backgroundColor: "#22B78A",
     textAlign: "center",
-  }
+  },
 });
 export default styles;
