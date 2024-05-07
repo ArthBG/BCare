@@ -1,181 +1,101 @@
 import { useEffect, useState } from "react";
+import React, { useCallback } from 'react';
 import scheduleRepository from "../../models/agendamentos/ScheduleRepository";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import styles from "./styles";
 import { ScrollView } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from "axios";
+import { useFocusEffect } from '@react-navigation/native';
 
-export default function ScheduleList({ route }) {
-  const { schedule } = route.params;
+export default function ScheduleList() {
   const navigation = useNavigation();
-  const [schedulesList, setSchedules] = useState(scheduleRepository.getAll());
+  const [user, setUser] = useState(null);
+  const [schedules, setSchedules] = useState([]);
+  const apiURL = process.env.EXPO_PUBLIC_API_URL;
+
+  useFocusEffect(
+    React.useCallback(() => {
+      loading();
+    }, [])
+  );
 
   useEffect(() => {
-    setSchedules(scheduleRepository.getAll());
+    loading();
   }, []);
 
-  const handleDelete = (id) => {
-    scheduleRepository.removeSchedule(id);
-    setSchedules(scheduleRepository.getAll());
+  useEffect(() => {
+
+    if (user) {
+      loadSchedules();
+    }
+  }, [user]);
+
+  const loading = async () => {
+    const alreadyUser = await AsyncStorage.getItem('@asyncStorage:user');
+    if (alreadyUser) {
+      setUser(JSON.parse(alreadyUser));
+    } else {
+      alert('Usuário não encontrado');
+    }
+  }
+
+  const loadSchedules = async () => {
+    try {
+      const response = await axios.get(`${apiURL}/scheduling/user/${user.id}`);
+      setSchedules(response.data.scheduling);
+    } catch (error) {
+      console.error(error);
+      alert('Erro ao carregar agendamentos');
+    }
+  }
+
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`${apiURL}/scheduling/${id}`);
+      await loadSchedules();
+    } catch (error) {
+      console.error(error);
+      alert(error.response.data.message);
+    }
   };
 
   const handleUpdate = () => {
     navigation.navigate("Agendamento", { schedule: schedule, edit: true });
   };
 
-  return (
+
+
+
+   return (
     <View style={styles.container}>
       <ScrollView>
-        {/* <Text>{schedule.userName}</Text>
-                            <Text>{schedule.userEmail}</Text> */}
-        {schedulesList.length > 0 ? (
-          schedulesList.map((schedule) => (
-            <View key={schedule.id}>
-              <View style={{ marginBottom: 70 }}>
-                <View style={styles.scheduleContainer}>
-                  <View style={styles.scheduleDoctorImage}>
-                    {schedule.doctor === "Dra. Lilian Seffrin Sande" ? (
-                      <Image
-                        source={require("../../../assets/images/lilian.jpeg")}
-                        style={styles.doctorImage}
-                      />
-                    ) : schedule.doctor === "Dr. Felipe Leal" ? (
-                      <Image
-                        source={require("../../../assets/images/felipe.jpeg")}
-                        style={styles.doctorImage}
-                      />
-                    ) : schedule.doctor === "Dr. Romeu Alves Ramos Junior" ? (
-                      <Image
-                        source={require("../../../assets/images/Romeu.jpeg")}
-                        style={styles.doctorImage}
-                      />
-                    ) : schedule.doctor === "Dra. Sarah Thé Coelho" ? (
-                      <Image
-                        source={require("../../../assets/images/sarah.jpeg")}
-                        style={styles.doctorImage}
-                      />
-                    ) : schedule.doctor === "Dra. Flávia M. Rapello" ? (
-                      <Image
-                        source={require("../../../assets/images/flavia.jpeg")}
-                        style={styles.doctorImage}
-                      />
-                    ) : schedule.doctor === "Dr. Caio Vieira de Campos" ? (
-                      <Image
-                        source={require("../../../assets/images/caio.jpeg")}
-                        style={styles.doctorImage}
-                      />
-                    ) : schedule.doctor === "Dr. Marcio Chaves" ? (
-                      <Image
-                        source={require("../../../assets/images/marcioChaves.jpeg")}
-                        style={styles.doctorImage}
-                      />
-                    ) : schedule.doctor === "Dr. Márcio Gambini" ? (
-                      <Image
-                        source={require("../../../assets/images/marcioGambini.jpg")}
-                        style={styles.doctorImage}
-                      />
-                    ) : schedule.doctor === "Dra. Caroline Schnoll" ? (
-                      <Image
-                        source={require("../../../assets/images/caroline.jpeg")}
-                        style={styles.doctorImage}
-                      />
-                    ) : schedule.doctor === "Dra. Luíza Vidigal Sette" ? (
-                      <Image
-                        source={require("../../../assets/images/luizaVidigal.jpeg")}
-                        style={styles.doctorImage}
-                      />
-                    ) : schedule.doctor === "Dra. Luíza Queiroz" ? (
-                      <Image
-                        source={require("../../../assets/images/luizaQueiroz.jpeg")}
-                        style={styles.doctorImage}
-                      />
-                    ) : schedule.doctor === "Dr. Allan Nogueira da Silva" ? (
-                      <Image
-                        source={require("../../../assets/images/Allan.jpeg")}
-                        style={styles.doctorImage}
-                      />
-                    ) : schedule.doctor === "Dr. Fernando Gouvea" ? (
-                      <Image
-                        source={require("../../../assets/images/fernando.jpeg")}
-                        style={styles.doctorImage}
-                      />
-                    ) : schedule.doctor === "Dr. Lucas Prado" ? (
-                      <Image
-                        source={require("../../../assets/images/lucasPrado.jpeg")}
-                        style={styles.doctorImage}
-                      />
-                    ) : schedule.doctor === "Dr. André Lange Canhos" ? (
-                      <Image
-                        source={require("../../../assets/images/andreLange.jpeg")}
-                        style={styles.doctorImage}
-                      />
-                    ) : schedule.doctor === "Dra. Camila Ohomoto de Morais" ? (
-                      <Image
-                        source={require("../../../assets/images/camila.jpeg")}
-                        style={styles.doctorImage}
-                      />
-                    ) : schedule.doctor ===
-                      "Dra. Juliana de Carvalho Campos" ? (
-                      <Image
-                        source={require("../../../assets/images/juliana.jpeg")}
-                        style={styles.doctorImage}
-                      />
-                    ) : schedule.doctor === "Dr. Gabriel Venturelli" ? (
-                      <Image
-                        source={require("../../../assets/images/GabrielVentuelli.jpeg")}
-                        style={styles.doctorImage}
-                      />
-                    ) : schedule.doctor === "Dr. Gabriel Reifur" ? (
-                      <Image
-                        source={require("../../../assets/images/gabrielReifur.jpeg")}
-                        style={styles.doctorImage}
-                      />
-                    ) : schedule.doctor === "Dr. Jônatas Batista" ? (
-                      <Image
-                        source={require("../../../assets/images/jonatas.jpeg")}
-                        style={styles.doctorImage}
-                      />
-                    ) : schedule.doctor === "Dr. Roberto Ordonha" ? (
-                      <Image
-                        source={require("../../../assets/images/roberto.jpg")}
-                        style={styles.doctorImage}
-                      />
-                    ) : null}
-                  </View>
-                  <Text style={styles.doctorSubText}>
-                    {schedule.specialist}
-                  </Text>
+        {schedules.length > 0 ? schedules.map((schedule) => (
+          <View key={schedule.id_agendamento}>
+            <View style={{ marginBottom: 70 }}>
+              <View style={styles.scheduleContainer}>
+                <View style={styles.scheduleDoctorImage}>
+                  <Image width={100} height={100} style={styles.doctorImage} source={{ uri: schedule.picture }} />
                 </View>
-
-                <View style={styles.scheduleContainerSchedules}>
-                  <Text style={styles.Title}>Consultas marcadas</Text>
-                  <View style={styles.textsContainer}>
-                    <Text style={styles.texts}>• Dia: {schedule.date}</Text>
-                    <Text style={styles.texts}>Horário: {schedule.time}</Text>
-                  </View>
-                </View>
-                <View style={styles.scheduleContainerBtns}>
-                  <TouchableOpacity
-                    onPress={() => handleDelete(schedule.id)}
-                    style={styles.btnremove}
-                  >
-                    <Text style={styles.texts}>Cancelar</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={handleUpdate}
-                    style={styles.btnedit}
-                  >
-                    <Text style={styles.texts}>Alterar</Text>
-                  </TouchableOpacity>
+                <Text style={styles.doctorText}>{schedule.doctor_name}</Text>
+                <Text style={styles.doctorSubText}>{schedule.specialty}</Text>
+              </View>
+              <View style={styles.scheduleContainerSchedules}>
+                <Text style={styles.Title}>Consultas marcadas</Text>
+                <View style={styles.textsContainer}>
+                  <Text style={styles.texts}>• Dia: {schedule.date}</Text>
+                  <Text style={styles.texts}>Horário: {schedule.time}</Text>
                 </View>
               </View>
+              <View>
+                <TouchableOpacity onPress={() => handleDelete(schedule.id_agendamento)}>
+                  <Text>Remover</Text>
+                </TouchableOpacity>
+              </View>
             </View>
-          ))
-        ) : (
-          <View>
-            <Text>Nenhum agendamento realizado</Text>
           </View>
-        )}
+        )) : <Text style={styles.Title}>Nenhum agendamento encontrado</Text>}
       </ScrollView>
     </View>
   );
