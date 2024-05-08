@@ -39,14 +39,14 @@ export default function ScheduleForm({ route }) {
     if (schedule_edit) {
       console.log(schedule_edit);
       setEdited(schedule_edit);
-      console.log("teste" + edited);
-      setSpecialist(edited.specialty);
-      setDoctor(edited.doctor_name);
-      setDate(edited.date);
-      setTime(edited.time)
-
+      console.log("testea" + edited);
+      setSpecialist(schedule_edit.specialty);
+      setDoctor(schedule_edit.doctor_name);
+      setDate(schedule_edit.date);
+      setTime(schedule_edit.time);
     }
-  }, [schedule_edit])
+  }, [schedule_edit]);
+
 
   const displayErrorMessage = (message) => {
     setPopupErrorMessage(message);
