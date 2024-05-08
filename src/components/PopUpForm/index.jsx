@@ -78,7 +78,7 @@ const PopUp = ({ doctor, data, time, exitPopUp, clearInps }) => {
     <View style={styles.screen}>
       <View style={styles.container}>
         {/* make a x bottom to close the popup */}
-        <View style={styles.exitButton} onPress={() => exitPopUp(false)}>
+        <View style={styles.exitButton} onPress={() => exitPopUp(true)}>
           <Text style={styles.exitButtonText}>X</Text>
         </View>
         <Text style={styles.title}>Insira seus dados</Text>
