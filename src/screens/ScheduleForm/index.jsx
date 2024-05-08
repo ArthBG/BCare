@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, TouchableOpacity, ScrollView, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Picker } from "@react-native-picker/picker";
 import ErrorMsg from "../../components/ErrorMsg";
 import PopUp from "../../components/PopUpForm";
+import { useFocusEffect } from "@react-navigation/native";
 import axios from "axios";
 import styles from "./styles";
 import DateTimePicker from "@react-native-community/datetimepicker";
@@ -38,14 +39,14 @@ export default function ScheduleForm({ route }) {
     if (schedule_edit) {
       console.log(schedule_edit);
       setEdited(schedule_edit);
-      console.log("teste" + edited);
-      setSpecialist(edited.specialty);
-      setDoctor(edited.doctor_name);
-      setDate(edited.date);
-      setTime(edited.time)
-
+      console.log("testea" + edited);
+      setSpecialist(schedule_edit.specialty);
+      setDoctor(schedule_edit.doctor_name);
+      setDate(schedule_edit.date);
+      setTime(schedule_edit.time);
     }
-  }, [schedule_edit])
+  }, [schedule_edit]);
+
 
   const displayErrorMessage = (message) => {
     setPopupErrorMessage(message);
