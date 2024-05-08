@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { View, Text, TouchableOpacity, ScrollView, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Picker } from "@react-native-picker/picker";
@@ -24,7 +24,7 @@ export default function ScheduleForm({ route }) {
   const [time, setTime] = useState(new Date());
   const [timePicker, setTimePicker] = useState(new Date());
   const [showTimePicker, setShowTimePicker] = useState(false);
-  const [popUp, setPopUp] = useState(false); 
+  const [popUp, setPopUp] = useState(false);
 
   useEffect(() => {
     if (specialist) {
@@ -65,7 +65,7 @@ export default function ScheduleForm({ route }) {
       displayErrorMessage("Data inválida!");
       return;
     }
-    setPopUp(true); 
+    setPopUp(true);
   };
 
   const clearInputs = () => {
