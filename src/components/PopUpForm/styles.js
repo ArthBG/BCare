@@ -21,18 +21,17 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: '#BB0000',
     justifyContent: 'center',
     alignItems: 'center',
   },
   exitButtonText: {
-    color: 'white',
-    fontSize: 20,
-    fontWeight: 'bold',
+    color: '#22B78A',
+    fontSize: 24,
+    fontWeight: 'bold'
   },
   container: {
     position: "absolute",
-    top: (windowHeight - 100) / 2,
+    top: (windowHeight - 400) / 2,
     left: (windowWidth - 350) / 2,
     backgroundColor: "#ffffff",
     padding: 20,
