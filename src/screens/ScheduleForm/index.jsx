@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity, ScrollView, Image , StyleSheet, Dimensions} from "react-native";
+import { View, Text, TouchableOpacity, ScrollView, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Picker } from "@react-native-picker/picker";
 import ErrorMsg from "../../components/ErrorMsg";
@@ -18,31 +18,13 @@ export default function ScheduleForm({ route }) {
   const [isUpdate, setIsUpdate] = useState(edit);
   const [popupErrorMessage, setPopupErrorMessage] = useState("");
   const [doctors, setDoctors] = useState([]);
-
   const [date, setDate] = useState(new Date());
   const [datePicker, setDatePicker] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
-
   const [time, setTime] = useState(new Date());
   const [timePicker, setTimePicker] = useState(new Date());
   const [showTimePicker, setShowTimePicker] = useState(false);
-
-  const [popUp, setPopUp] = useState(false);
-
-  const windowHeight = Dimensions.get("window").height;
-  const windowWidth = Dimensions.get("window").width;
-
-  const styles2 = StyleSheet.create({
-    backdrop: {
-      position: "absolute",
-      top: 0,
-      left: 0,
-      width: "100%",
-      height: "100%",
-      backgroundColor: "rgba(0, 0, 0, 0.5)", // Cor de fundo desfocada
-    },
-    // Restante do seu estilo existente...
-  });
+  const [popUp, setPopUp] = useState(false); 
 
   useEffect(() => {
     if (specialist) {
@@ -83,7 +65,7 @@ export default function ScheduleForm({ route }) {
       displayErrorMessage("Data inválida!");
       return;
     }
-    setPopUp(true);
+    setPopUp(true); 
   };
 
   const clearInputs = () => {
@@ -94,6 +76,7 @@ export default function ScheduleForm({ route }) {
     setDate("");
     setTime("");
   };
+
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShowDatePicker(false);
@@ -113,7 +96,7 @@ export default function ScheduleForm({ route }) {
     setTimePicker(currentTime);
   };
 
-  const dataPiecker = () => {
+  const dataPicker = () => {
     setShowDatePicker(true);
   };
 
@@ -181,7 +164,7 @@ export default function ScheduleForm({ route }) {
 
           <TouchableOpacity
             style={styles.dateAndTimerContainer}
-            onPress={dataPiecker}
+            onPress={dataPicker}
           >
             <Text style={styles.button}>Escolha sua data da consulta</Text>
           </TouchableOpacity>

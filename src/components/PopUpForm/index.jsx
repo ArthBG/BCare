@@ -4,6 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import ErrorMsg from "../ErrorMsg";
+import SuccessMsg from "../SuccessMsg";
 import styles from "./styles";
 
 const PopUp = ({ doctor, data, time, exitPopUp, clearInps }) => {
@@ -12,6 +13,7 @@ const PopUp = ({ doctor, data, time, exitPopUp, clearInps }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [popupErrorMessage, setPopupErrorMessage] = useState("");
+  const [popupSuccessMessage, setPopupSuccessMessage] = useState("");
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -56,7 +58,7 @@ const PopUp = ({ doctor, data, time, exitPopUp, clearInps }) => {
         );
       }
 
-      alert("Agendamento cadastrado com sucesso");
+      setPopupSuccessMessage("Agendamento cadastrado com sucesso");
       navigation.navigate("Agenda");
       exitPopUp(false);
       clearInps();
@@ -88,6 +90,7 @@ const PopUp = ({ doctor, data, time, exitPopUp, clearInps }) => {
         value={email}
       />
       {popupErrorMessage && <ErrorMsg msg={popupErrorMessage} />}
+      {popupSuccessMessage && <SuccessMsg msg={popupSuccessMessage} />}
 
       <TouchableOpacity onPress={handleSend} style={styles.button}>
         <Text style={styles.buttonText}>Continuar</Text>
