@@ -12,6 +12,10 @@ const styles = StyleSheet.create({
         height: 70,
 
     },
+    darkMode: {
+        backgroundColor: '#211B15',
+        color: '#fff',
+      },
 
     containerPage: {
         flex: 1,
