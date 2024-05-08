@@ -15,7 +15,6 @@ export default function ScheduleForm({ route }) {
   const [userEmail, setUserEmail] = useState("");
   const [specialist, setSpecialist] = useState("");
   const [doctor, setDoctor] = useState("");
-  const [isUpdate, setIsUpdate] = useState(edit);
   const [errorMessage, setErrorMessage] = useState("");
   const [doctors, setDoctors] = useState([]);
   const [date, setDate] = useState(new Date());
@@ -25,7 +24,7 @@ export default function ScheduleForm({ route }) {
   const [timePicker, setTimePicker] = useState(new Date());
   const [showTimePicker, setShowTimePicker] = useState(false);
   const [popUp, setPopUp] = useState(false);
-
+  const [popupErrorMessage, setPopupErrorMessage] = useState("");
   const [edited, setEdited] = useState([]);
   const navigation = useNavigation();
 

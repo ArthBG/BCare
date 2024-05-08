@@ -75,26 +75,28 @@ const PopUp = ({ doctor, data, time, exitPopUp, clearInps }) => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Insira seus dados</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={setName}
-        placeholder="Nome"
-        value={name}
-      />
-      <TextInput
-        style={styles.input}
-        onChangeText={setEmail}
-        placeholder="Email"
-        value={email}
-      />
-      {popupErrorMessage && <ErrorMsg msg={popupErrorMessage} />}
-      {popupSuccessMessage && <SuccessMsg msg={popupSuccessMessage} />}
+    <View style={styles.screen}>
+      <View style={styles.container}>
+        <Text style={styles.title}>Insira seus dados</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={setName}
+          placeholder="Nome"
+          value={name}
+        />
+        <TextInput
+          style={styles.input}
+          onChangeText={setEmail}
+          placeholder="Email"
+          value={email}
+        />
+        {popupErrorMessage && <ErrorMsg msg={popupErrorMessage} />}
+        {popupSuccessMessage && <SuccessMsg msg={popupSuccessMessage} />}
 
-      <TouchableOpacity onPress={handleSend} style={styles.button}>
-        <Text style={styles.buttonText}>Continuar</Text>
-      </TouchableOpacity>
+        <TouchableOpacity onPress={handleSend} style={styles.button}>
+          <Text style={styles.buttonText}>Continuar</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };

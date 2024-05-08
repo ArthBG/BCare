@@ -4,10 +4,18 @@ const windowHeight = Dimensions.get("window").height;
 const windowWidth = Dimensions.get("window").width;
 
 const styles = StyleSheet.create({
+  screen: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
   container: {
     position: "absolute",
-    top: (windowHeight - 500) / 2, 
-    left: (windowWidth - 350) / 2, 
+    top: (windowHeight - 500) / 2,
+    left: (windowWidth - 350) / 2,
     backgroundColor: "#ffffff",
     padding: 20,
     borderRadius: 10,
@@ -46,7 +54,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 16,
   },
- 
+
 });
 
 export default styles;
