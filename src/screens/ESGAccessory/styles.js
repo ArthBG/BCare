@@ -16,6 +16,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#211B15',
         color: '#fff',
       },
+      darkModeText: {
+        color: '#fff',
+      },
 
     containerPage: {
         flex: 1,
@@ -47,7 +50,14 @@ const styles = StyleSheet.create({
 
     },
 
+    containerDark: {
+        backgroundColor: '#2c2c2c',
+    },
 
+    containerESGDark: {
+        backgroundColor: '#1c1c1c',
+        maxHeight: 300,
+    },
 
     esgIcon: {
         backgroundColor: '#bb0000',

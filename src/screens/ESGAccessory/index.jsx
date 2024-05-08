@@ -18,7 +18,7 @@ export default function ESGAccessory() {
   const [isEnabledFalse, setIsEnabledFalse] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   const toggleSwitchFalse = () => setIsEnabledFalse(previousState => !previousState);
-  
+
 
   const toggleSwitchDayNight = () => setIsEnabledDayNight(previousState => !previousState);
 
@@ -59,43 +59,45 @@ export default function ESGAccessory() {
           <Text style={styles.textESG}>ESG</Text>
         </View>
         <View style={styles.esgBorder}></View>
-        <ScrollView style={styles.scroll}>
+        <ScrollView style={[styles.scroll, !isEnabledDayNight && styles.containerESGDark]}>
 
-          <View style={styles.container}>
+          <View style={[styles.container, !isEnabledDayNight && styles.containerDark]}>
 
             <ToggleSwitch isEnabled={isEnabledDayNight} toggleSwitch={toggleSwitchDayNight} />
             {
-              isEnabledDayNight ? <Text style={styles.text}><Fontisto name="day-sunny" size={22} color="Black" /> Dia</Text> : <Text style={styles.text}><Feather name="moon" size={22} color="Black" /> Noite</Text>
+              isEnabledDayNight ? <Text style={[styles.text, !isEnabledDayNight && styles.darkModeText]}><Fontisto name="day-sunny" size={22} color="Black" /> Dia</Text> : <Text style={[styles.text, !isEnabledDayNight && styles.darkModeText]}><Feather name="moon" size={22} color="Black" /> Noite</Text>
             }
 
           </View>
 
 
-          <View style={styles.container}>
+          <View style={[styles.container, !isEnabledDayNight && styles.containerDark]}>
             <ToggleSwitch isEnabled={isEnabled} toggleSwitch={toggleSwitch} />
             {
-              isEnabled ? <Text style={styles.text}>Luz ligada : {sliderValue.toFixed(1)}</Text> : <Text style={styles.text}>Luz desligada</Text>
+              isEnabled ? <Text style={[styles.text, !isEnabledDayNight && styles.darkModeText]}>Luz ligada : {sliderValue.toFixed(1)}</Text> : <Text style={[styles.text, !isEnabledDayNight && styles.darkModeText]}>Luz desligada</Text>
             }
 
           </View>
 
           {
             isEnabled && (
-              <View style={styles.container}>
+              <View style={[styles.container, !isEnabledDayNight && styles.containerDark]}>
                 <SliderInput Value={setSliderValue} />
               </View>
             )
           }
 
-          <View style={styles.container}>
-            <Text style={styles.text}>Energia Solar : 15% da clinica</Text>
+          <View style={[styles.container, !isEnabledDayNight && styles.containerDark]}>
+            {
+              isEnabledDayNight ? <Text style={[styles.text, !isEnabledDayNight && styles.darkModeText]}>Energia Solar : 15% da clinica</Text> : <Text style={[styles.text, !isEnabledDayNight && styles.darkModeText]}>Energia Solar : 0% da clinica</Text>
+            }
           </View>
 
-          <View style={styles.container}>
+          <View style={[styles.container, !isEnabledDayNight && styles.containerDark]}>
 
             <ToggleSwitch isEnabled={isEnabledFalse} toggleSwitch={toggleSwitchFalse} />
 
-            <Text style={styles.text}>Ar condicionado</Text>
+            <Text style={[styles.text, !isEnabledDayNight && styles.darkModeText]}>Ar condicionado</Text>
 
           </View>
 
