@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { View, Text, TouchableOpacity, ScrollView, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Picker } from "@react-native-picker/picker";
@@ -15,18 +15,15 @@ export default function ScheduleForm({ route }) {
   const [userEmail, setUserEmail] = useState("");
   const [specialist, setSpecialist] = useState("");
   const [doctor, setDoctor] = useState("");
-  // const [isUpdate, setIsUpdate] = useState(edit);
+  const [isUpdate, setIsUpdate] = useState(edit);
   const [errorMessage, setErrorMessage] = useState("");
   const [doctors, setDoctors] = useState([]);
-
   const [date, setDate] = useState(new Date());
   const [datePicker, setDatePicker] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
-
   const [time, setTime] = useState(new Date());
   const [timePicker, setTimePicker] = useState(new Date());
   const [showTimePicker, setShowTimePicker] = useState(false);
-
   const [popUp, setPopUp] = useState(false);
 
   const [edited, setEdited] = useState([]);
@@ -35,7 +32,6 @@ export default function ScheduleForm({ route }) {
   useEffect(() => {
     if (specialist) {
       getDoctors(specialist).then(setDoctors);
-      console.log(specialist);
     }
   }, [specialist]);
 
@@ -53,9 +49,9 @@ export default function ScheduleForm({ route }) {
   }, [schedule_edit])
 
   const displayErrorMessage = (message) => {
-    setErrorMessage(message);
+    setPopupErrorMessage(message);
     setTimeout(() => {
-      setErrorMessage("");
+      setPopupErrorMessage("");
     }, 3000);
   };
 
@@ -112,6 +108,7 @@ export default function ScheduleForm({ route }) {
     setDate("");
     setTime("");
   };
+
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShowDatePicker(false);
@@ -131,7 +128,7 @@ export default function ScheduleForm({ route }) {
     setTimePicker(currentTime);
   };
 
-  const dataPiecker = () => {
+  const dataPicker = () => {
     setShowDatePicker(true);
   };
 
@@ -199,12 +196,12 @@ export default function ScheduleForm({ route }) {
 
           <TouchableOpacity
             style={styles.dateAndTimerContainer}
-            onPress={dataPiecker}
+            onPress={dataPicker}
           >
             <Text style={styles.button}>Escolha sua data da consulta</Text>
           </TouchableOpacity>
         </View>
-        {errorMessage ? <ErrorMsg msg={errorMessage} /> : null}
+        {popupErrorMessage ? <ErrorMsg msg={popupErrorMessage} /> : null}
         <TouchableOpacity
           style={styles.btnSubmit}
           onPress={handleScheduleAction}
@@ -220,6 +217,7 @@ export default function ScheduleForm({ route }) {
             time={time}
             exitPopUp={setPopUp}
             clearInps={clearInputs}
+            errorMessage={popupErrorMessage}
           />
         )}
       </View>

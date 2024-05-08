@@ -50,20 +50,18 @@ const TabRoutes = () => {
           ),
         }}
       />
-
       <Tab.Screen
         name="ESG"
         component={ESG}
         options={{
-          tabBarItemStyle: {
-            tabBarIcon: ({ color }) => (
-              <MaterialCommunityIcons
-                name="security-network"
-                color={color}
-                size={26}
-              />
-            ),
-          },
+          tabBarLabel: "ESG",
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons
+              name="leaf"
+              color={color}
+              size={26}
+            />
+          ),
         }}
       />
       <Tab.Screen
@@ -106,24 +104,35 @@ const TabRoutes = () => {
           ),
         }}
       />
-      <Tab.Screen name="Social" component={Social} options={{
-        tabBarItemStyle: {
-          display: 'none'
-        }
-      }} />
+      <Tab.Screen
+        name="Social"
+        component={Social}
+        options={{
+          tabBarItemStyle: {
+            display: "none",
+          },
+        }}
+      />
 
-      <Tab.Screen name="Environmental" component={Environmental} options={{
-        tabBarItemStyle: {
-          display: 'none'
-        }
-      }} />
+      <Tab.Screen
+        name="Environmental"
+        component={Environmental}
+        options={{
+          tabBarItemStyle: {
+            display: "none",
+          },
+        }}
+      />
 
-      <Tab.Screen name="Governance" component={Governance} options={{
-        tabBarItemStyle: {
-          display: 'none'
-        }
-      }} />
-
+      <Tab.Screen
+        name="Governance"
+        component={Governance}
+        options={{
+          tabBarItemStyle: {
+            display: "none",
+          },
+        }}
+      />
     </Tab.Navigator>
   );
 };

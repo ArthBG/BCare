@@ -1,13 +1,10 @@
-import { useState } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-} from "react-native";
+import { useState, useEffect } from "react";
+import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
+import ErrorMsg from "../ErrorMsg";
+import SuccessMsg from "../SuccessMsg";
 import styles from "./styles";
 
 const PopUp = ({ doctor, data, time, exitPopUp, clearInps }) => {
@@ -15,12 +12,22 @@ const PopUp = ({ doctor, data, time, exitPopUp, clearInps }) => {
   const apiURL = process.env.EXPO_PUBLIC_API_URL;
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [popupErrorMessage, setPopupErrorMessage] = useState("");
+  const [popupSuccessMessage, setPopupSuccessMessage] = useState("");
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setPopupErrorMessage("");
+    }, 3000);
+
+    return () => clearTimeout(timeout);
+  }, [popupErrorMessage]);
 
   const handleSend = async () => {
     try {
       const resposeDoctor = await axios.get(`${apiURL}/doctors/name/${doctor}`);
       if (!name || !email) {
-        alert("Preencha todos os campos");
+        setPopupErrorMessage("Preencha todos os campos");
         return;
       }
 
@@ -51,7 +58,7 @@ const PopUp = ({ doctor, data, time, exitPopUp, clearInps }) => {
         );
       }
 
-      alert("Agendamento cadastrado com sucesso");
+      setPopupSuccessMessage("Agendamento cadastrado com sucesso");
       navigation.navigate("Agenda");
       exitPopUp(false);
       clearInps();
@@ -60,9 +67,9 @@ const PopUp = ({ doctor, data, time, exitPopUp, clearInps }) => {
         error.response &&
         error.response.data.message === "Email já cadastrado"
       ) {
-        alert("Email já cadastrado");
+        setPopupErrorMessage("Email já cadastrado");
       } else {
-        alert("Erro ao cadastrar agendamento");
+        setPopupErrorMessage("Erro ao cadastrar agendamento");
       }
     }
   };
@@ -82,7 +89,9 @@ const PopUp = ({ doctor, data, time, exitPopUp, clearInps }) => {
         placeholder="Email"
         value={email}
       />
-      
+      {popupErrorMessage && <ErrorMsg msg={popupErrorMessage} />}
+      {popupSuccessMessage && <SuccessMsg msg={popupSuccessMessage} />}
+
       <TouchableOpacity onPress={handleSend} style={styles.button}>
         <Text style={styles.buttonText}>Continuar</Text>
       </TouchableOpacity>
