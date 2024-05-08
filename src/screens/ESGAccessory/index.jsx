@@ -65,7 +65,7 @@ export default function ESGAccessory() {
 
             <ToggleSwitch isEnabled={isEnabledDayNight} toggleSwitch={toggleSwitchDayNight} />
             {
-              isEnabledDayNight ? <Text style={[styles.text, !isEnabledDayNight && styles.darkModeText]}><Fontisto name="day-sunny" size={22} color="Black" /> Dia</Text> : <Text style={[styles.text, !isEnabledDayNight && styles.darkModeText]}><Feather name="moon" size={22} color="Black" /> Noite</Text>
+              isEnabledDayNight ? <Text style={[styles.text, !isEnabledDayNight && styles.darkModeText]}><Fontisto name="day-sunny" size={22} /> Dia</Text> : <Text style={[styles.text, !isEnabledDayNight && styles.darkModeText]}><Feather name="moon" size={22}/> Noite</Text>
             }
 
           </View>
