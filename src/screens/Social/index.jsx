@@ -1,6 +1,7 @@
 import { View, Text, ScrollView, Image } from 'react-native'
 import React from 'react'
 import styles from './styles'
+import BackBtn from '../../components/backBtn';
 
 
 export default function Social() {
@@ -44,6 +45,7 @@ export default function Social() {
       <Image
                style={{ width: 200, height: 200, borderRadius: 10, alignSelf: "center", margin: 10 }}
               source={require("../../../assets/logo.jpeg")} />
+              <BackBtn text={"Voltar"}/>
       <View style={styles.footer}>
         <Text style={styles.footerText}>© 2024 BCare</Text>
       </View>
