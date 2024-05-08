@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, Text, TouchableOpacity, ScrollView, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Picker } from "@react-native-picker/picker";
-import ErrorMsg from "../../components/ErrorMsg"; 
+import ErrorMsg from "../../components/ErrorMsg";
 import PopUp from "../../components/PopUpForm";
 import axios from "axios";
 import styles from "./styles";
@@ -10,12 +10,12 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 
 export default function ScheduleForm({ route }) {
   const apiURL = process.env.EXPO_PUBLIC_API_URL;
-  const { schedule, edit } = route.params;
+  const { schedule_edit } = route.params;
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [specialist, setSpecialist] = useState("");
   const [doctor, setDoctor] = useState("");
-  const [isUpdate, setIsUpdate] = useState(edit);
+  // const [isUpdate, setIsUpdate] = useState(edit);
   const [errorMessage, setErrorMessage] = useState("");
   const [doctors, setDoctors] = useState([]);
 
@@ -29,12 +29,28 @@ export default function ScheduleForm({ route }) {
 
   const [popUp, setPopUp] = useState(false);
 
+  const [edited, setEdited] = useState([]);
+  const navigation = useNavigation();
+
   useEffect(() => {
     if (specialist) {
       getDoctors(specialist).then(setDoctors);
       console.log(specialist);
     }
   }, [specialist]);
+
+  useEffect(() => {
+    if (schedule_edit) {
+      console.log(schedule_edit);
+      setEdited(schedule_edit);
+      console.log("teste" + edited);
+      setSpecialist(edited.specialty);
+      setDoctor(edited.doctor_name);
+      setDate(edited.date);
+      setTime(edited.time)
+
+    }
+  }, [schedule_edit])
 
   const displayErrorMessage = (message) => {
     setErrorMessage(message);
@@ -69,7 +85,23 @@ export default function ScheduleForm({ route }) {
       displayErrorMessage("Data inválida!");
       return;
     }
-    setPopUp(true);
+    if (schedule_edit) {
+      try {
+        const response = await axios.get(`${apiURL}/doctors/name/${doctor}`);
+        await axios.put(`${apiURL}/scheduling/${edited.id_agendamento}`, {
+          doctor_id: response.data.doctor[0].id,
+          date: date,
+          time: time
+        });
+        navigation.navigate("Agenda");
+        clearInputs();
+      } catch (error) {
+        console.error(error);
+        alert('Ocorreu um erro')
+      }
+    } else {
+      setPopUp(true);
+    }
   };
 
   const clearInputs = () => {
@@ -84,11 +116,11 @@ export default function ScheduleForm({ route }) {
     const currentDate = selectedDate || date;
     setShowDatePicker(false);
     const convertedDate = convertDate(currentDate.toLocaleDateString());
-    if (edit == false) {
-      setDate(convertedDate);
-    } else {
-      setDatePicker(convertedDate);
-    }
+    // if (schedule_edit == false) {
+    setDate(convertedDate);
+    // } else {
+    // setDatePicker(convertedDate);
+    // }
     setShowTimePicker(true);
   };
 
@@ -177,19 +209,10 @@ export default function ScheduleForm({ route }) {
           style={styles.btnSubmit}
           onPress={handleScheduleAction}
         >
-          {isUpdate ? (
-            <Text style={styles.button}>Atualizar</Text>
-          ) : (
-            <View style={styles.divBtn}>
-              <Text style={styles.button}>Agendar</Text>
-            </View>
-          )}
+          <View style={styles.divBtn}>
+            <Text style={styles.button}>Agendar</Text>
+          </View>
         </TouchableOpacity>
-        {isUpdate && (
-          <TouchableOpacity onPress={clearInputs}>
-            <Text style={styles.button}>Cancelar</Text>
-          </TouchableOpacity>
-        )}
         {popUp && (
           <PopUp
             doctor={doctor}
