@@ -1,13 +1,16 @@
-import { View, Text, ScrollView } from 'react-native'
+import { View, Text, ScrollView, Image } from 'react-native'
 import React from 'react'
 import styles from './styles'
 
 
-export default function Environmental() {
+export default function Social() {
   return (
     <ScrollView style={styles.mainContainer}>
-      <Text style={styles.title}>Environmental Clinic</Text>
-
+      <Text style={styles.title}>BCare Social Clinic</Text>
+      <Image
+            style={{ width: 320, height: 200, borderRadius: 10, alignSelf: "center", margin: 10 }}
+            source={require("../../../assets/images/socialclinic.jpeg")}
+          />
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Compromisso com a Comunidade</Text>
         <Text style={styles.sectionText}>
@@ -38,9 +41,11 @@ export default function Environmental() {
           Programas de Treinamento: Oferecemos workshops e palestras educativas abertas à comunidade sobre temas de saúde relevantes.
         </Text>
       </View>
-
+      <Image
+               style={{ width: 200, height: 200, borderRadius: 10, alignSelf: "center", margin: 10 }}
+              source={require("../../../assets/logo.jpeg")} />
       <View style={styles.footer}>
-        <Text style={styles.footerText}>© 2024 Environmental Clinic</Text>
+        <Text style={styles.footerText}>© 2024 BCare</Text>
       </View>
     </ScrollView>
   );

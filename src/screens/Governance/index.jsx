@@ -6,7 +6,7 @@ import styles from './styles'
 export default function Governance() {
   return (
     <ScrollView style={styles.mainContainer}>
-      <Text style={styles.title}>Bcare Governance Clinic</Text>
+      <Text style={styles.title}>BCare Governance Clinic</Text>
       <Image
             style={{ width: 320, height: 200, borderRadius: 10, alignSelf: "center", margin: 10 }}
             source={require("../../../assets/images/govclinic.jpg")}
