@@ -37,7 +37,7 @@ const TabRoutes = () => {
       />
 
       <Tab.Screen
-        name="clinic"
+        name="Clinic"
         component={ESGAcessory}
         options={{
           tabBarLabel: "Clínica",
