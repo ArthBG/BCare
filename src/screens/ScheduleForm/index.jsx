@@ -37,9 +37,7 @@ export default function ScheduleForm({ route }) {
 
   useEffect(() => {
     if (schedule_edit) {
-      console.log(schedule_edit);
       setEdited(schedule_edit);
-      console.log("testea" + edited);
       setSpecialist(schedule_edit.specialty);
       setDoctor(schedule_edit.doctor_name);
       setDate(schedule_edit.date);
