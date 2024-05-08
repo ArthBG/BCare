@@ -57,7 +57,9 @@ export default function ScheduleList() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`${apiURL}/scheduling/${id}`);
+      await axios.delete(`${apiURL}/scheduling/${id}`, {
+
+      });
       await loadSchedules();
     } catch (error) {
       console.error(error);
@@ -65,9 +67,9 @@ export default function ScheduleList() {
     }
   };
 
-  const handleUpdate = () => {
-    navigation.navigate("Agendamento", { schedule: schedule, edit: true });
-  };
+  const handleUpdate = (schedule) => {
+    navigation.navigate('Agendamento', { schedule_edit: schedule })
+  }
 
   const formatDate = (date) => {
     const dateArray = date.split("-");
@@ -110,6 +112,9 @@ export default function ScheduleList() {
                       onPress={() => handleDelete(schedule.id_agendamento)}
                     >
                       <Text style={styles.textBtn}>Remover</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.btnremove} onPress={() => handleUpdate(schedule)}>
+                      <Text style={styles.textBtn}>Editar</Text>
                     </TouchableOpacity>
                   </View>
                 </View>
