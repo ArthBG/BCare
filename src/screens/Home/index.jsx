@@ -8,7 +8,6 @@ export default function Home() {
     <View style={styles.container}>
       <ScrollView>
         <View style={styles.head}>
-          <Text style={styles.textPrincipal}>Tela Inicial</Text>
         </View>
         <View style={styles.containerall}>
           <View style={{ margin: "auto", alignItems: "center", marginBottom: 50 }}>

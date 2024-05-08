@@ -6,8 +6,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#EAEAEA',
   },
   head: {
-    backgroundColor: '#F14666',
-    padding: 10,
+    backgroundColor: '#BB0000',
+    height: 30,
     alignItems: 'center',
     justifyContent: 'center',
   },
