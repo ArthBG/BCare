@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   },
   container: {
     position: "absolute",
-    top: (windowHeight - 500) / 2,
+    top: (windowHeight - 100) / 2,
     left: (windowWidth - 350) / 2,
     backgroundColor: "#ffffff",
     padding: 20,
