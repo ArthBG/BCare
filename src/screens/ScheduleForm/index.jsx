@@ -42,10 +42,9 @@ export default function ScheduleForm({ route }) {
       setSpecialist(edited.specialty);
       setDoctor(edited.doctor_name);
       setDate(edited.date);
-      setTime(edited.time)
-
+      setTime(edited.time);
     }
-  }, [schedule_edit])
+  }, [schedule_edit]);
 
   const displayErrorMessage = (message) => {
     setPopupErrorMessage(message);
@@ -86,13 +85,13 @@ export default function ScheduleForm({ route }) {
         await axios.put(`${apiURL}/scheduling/${edited.id_agendamento}`, {
           doctor_id: response.data.doctor[0].id,
           date: date,
-          time: time
+          time: time,
         });
         navigation.navigate("Agenda");
         clearInputs();
       } catch (error) {
         console.error(error);
-        alert('Ocorreu um erro')
+        alert("Ocorreu um erro");
       }
     } else {
       setPopUp(true);
@@ -133,8 +132,8 @@ export default function ScheduleForm({ route }) {
 
   return (
     <ScrollView>
-      <Text style={styles.title}>Agendamento</Text>
       <View style={styles.Div1}>
+        <Text style={styles.title}>Agendamento</Text>
         <View style={styles.logoDiv}>
           <Image
             source={require("../../../assets/logovdd.png")}
@@ -199,12 +198,18 @@ export default function ScheduleForm({ route }) {
           >
             <Text style={styles.button}>Escolha sua data da consulta</Text>
           </TouchableOpacity>
+          <Image
+            source={require("../../../assets/images/formHospital.png")}
+            style={styles.img}
+          />
         </View>
+
         {popupErrorMessage ? <ErrorMsg msg={popupErrorMessage} /> : null}
         <TouchableOpacity
           style={styles.btnSubmit}
           onPress={handleScheduleAction}
         >
+         
           <View style={styles.divBtn}>
             <Text style={styles.button}>Agendar</Text>
           </View>

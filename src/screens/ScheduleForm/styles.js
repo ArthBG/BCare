@@ -1,18 +1,26 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#EAEAEA',
-  },
   title: {
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 20,
     textAlign: "center",
+    color: "#333",
   },
   Div1: {
     backgroundColor: "#f14666",
+    borderRadius: 10,
+    marginBottom: 20,
+    padding: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   logo: {
     width: 200,
@@ -28,6 +36,9 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     backgroundColor: "#22B78A",
     color: "#fff",
+    borderRadius: 7,
+    justifyContent: "center",
+    alignItems: "center",
   },
   dateAndTimerContainer: {
     height: 50,
@@ -36,14 +47,15 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     backgroundColor: "#22B78A",
     color: "#fff",
+    borderRadius: 7,
     alignItems: "center",
     justifyContent: "center",
   },
   form: {
     padding: 20,
     backgroundColor: "#53E6DD",
-    justifyContent: "center",
-    textAlign: "center",
+    borderRadius: 10,
+    marginBottom: 20,
   },
   btnSubmit: {
     backgroundColor: "#22B78A",
@@ -58,5 +70,13 @@ const styles = StyleSheet.create({
   button: {
     color: "#fff",
   },
+  img: {
+    width: 300,
+    height: 220,
+    alignSelf: "center",
+    marginTop: 30,
+    marginBottom: 30,
+  },
 });
+
 export default styles;
