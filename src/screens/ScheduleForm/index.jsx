@@ -133,10 +133,9 @@ export default function ScheduleForm({ route }) {
   return (
     <ScrollView>
       <View style={styles.Div1}>
-        <Text style={styles.title}>Agendamento</Text>
         <View style={styles.logoDiv}>
           <Image
-            source={require("../../../assets/logovdd.png")}
+            source={require("../../../assets/images/logobranco.png")}
             style={styles.logo}
           />
           <Picker
