@@ -31,6 +31,16 @@ export default function ScheduleList() {
     }
   }, [user]);
 
+
+  const formatDate = (date1) => {
+    const date = new Date(date1);
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    const formattedDate = `${day}/${month}/${year}`;
+    return formattedDate;
+  }
+
   const loading = async () => {
     try {
       const alreadyUser = await AsyncStorage.getItem("@asyncStorage:user");
@@ -71,10 +81,6 @@ export default function ScheduleList() {
     navigation.navigate('Agendamento', { schedule_edit: schedule })
   }
 
-  const formatDate = (date) => {
-    const dateArray = date.split("-");
-    return `${dateArray[2]}/${dateArray[1]}/${dateArray[0]}`;
-  };
 
   return (
     <View style={styles.container}>
@@ -122,7 +128,7 @@ export default function ScheduleList() {
             </View>
           ))
         ) : (
-          <ErrorMsg msg="Nenhum agendamento encontrado" /> 
+          <ErrorMsg msg="Nenhum agendamento encontrado" />
         )}
       </ScrollView>
     </View>
