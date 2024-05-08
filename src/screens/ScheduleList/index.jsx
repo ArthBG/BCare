@@ -1,18 +1,18 @@
-import { useEffect, useState } from "react";
-import React, { useCallback } from "react";
-import scheduleRepository from "../../models/agendamentos/ScheduleRepository";
+import React, { useEffect, useState } from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import styles from "./styles";
 import { ScrollView } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { useFocusEffect } from "@react-navigation/native";
+import ErrorMsg from "../../components/ErrorMsg";
+import styles from "./styles";
 
 export default function ScheduleList() {
   const navigation = useNavigation();
   const [user, setUser] = useState(null);
   const [schedules, setSchedules] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
   const apiURL = process.env.EXPO_PUBLIC_API_URL;
 
   useFocusEffect(
@@ -32,11 +32,16 @@ export default function ScheduleList() {
   }, [user]);
 
   const loading = async () => {
-    const alreadyUser = await AsyncStorage.getItem("@asyncStorage:user");
-    if (alreadyUser) {
-      setUser(JSON.parse(alreadyUser));
-    } else {
-      alert("Usuário não encontrado");
+    try {
+      const alreadyUser = await AsyncStorage.getItem("@asyncStorage:user");
+      if (alreadyUser) {
+        setUser(JSON.parse(alreadyUser));
+      } else {
+        setErrorMessage("Usuário não encontrado");
+      }
+    } catch (error) {
+      console.error(error);
+      setErrorMessage("Erro ao carregar usuário");
     }
   };
 
@@ -46,7 +51,7 @@ export default function ScheduleList() {
       setSchedules(response.data.scheduling);
     } catch (error) {
       console.error(error);
-      alert("Erro ao carregar agendamentos");
+      setErrorMessage("Erro ao carregar agendamentos");
     }
   };
 
@@ -56,7 +61,7 @@ export default function ScheduleList() {
       await loadSchedules();
     } catch (error) {
       console.error(error);
-      alert(error.response.data.message);
+      setErrorMessage(error.response.data.message);
     }
   };
 
@@ -72,6 +77,7 @@ export default function ScheduleList() {
   return (
     <View style={styles.container}>
       <ScrollView>
+        {errorMessage ? <ErrorMsg msg={errorMessage} /> : null}
         {schedules.length > 0 ? (
           schedules.map((schedule) => (
             <View key={schedule.id_agendamento}>
@@ -111,7 +117,7 @@ export default function ScheduleList() {
             </View>
           ))
         ) : (
-          <Text style={styles.Title}>Nenhum agendamento encontrado</Text>
+          <ErrorMsg msg="Nenhum agendamento encontrado" /> 
         )}
       </ScrollView>
     </View>

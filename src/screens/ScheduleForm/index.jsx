@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity, ScrollView, Image } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView, Image , StyleSheet, Dimensions} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Picker } from "@react-native-picker/picker";
-import ErrorMsg from "../../components/ErrorMsg"; 
+import ErrorMsg from "../../components/ErrorMsg";
 import PopUp from "../../components/PopUpForm";
 import axios from "axios";
 import styles from "./styles";
@@ -16,7 +16,7 @@ export default function ScheduleForm({ route }) {
   const [specialist, setSpecialist] = useState("");
   const [doctor, setDoctor] = useState("");
   const [isUpdate, setIsUpdate] = useState(edit);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [popupErrorMessage, setPopupErrorMessage] = useState("");
   const [doctors, setDoctors] = useState([]);
 
   const [date, setDate] = useState(new Date());
@@ -29,17 +29,31 @@ export default function ScheduleForm({ route }) {
 
   const [popUp, setPopUp] = useState(false);
 
+  const windowHeight = Dimensions.get("window").height;
+  const windowWidth = Dimensions.get("window").width;
+
+  const styles2 = StyleSheet.create({
+    backdrop: {
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      backgroundColor: "rgba(0, 0, 0, 0.5)", // Cor de fundo desfocada
+    },
+    // Restante do seu estilo existente...
+  });
+
   useEffect(() => {
     if (specialist) {
       getDoctors(specialist).then(setDoctors);
-      console.log(specialist);
     }
   }, [specialist]);
 
   const displayErrorMessage = (message) => {
-    setErrorMessage(message);
+    setPopupErrorMessage(message);
     setTimeout(() => {
-      setErrorMessage("");
+      setPopupErrorMessage("");
     }, 3000);
   };
 
@@ -172,7 +186,7 @@ export default function ScheduleForm({ route }) {
             <Text style={styles.button}>Escolha sua data da consulta</Text>
           </TouchableOpacity>
         </View>
-        {errorMessage ? <ErrorMsg msg={errorMessage} /> : null}
+        {popupErrorMessage ? <ErrorMsg msg={popupErrorMessage} /> : null}
         <TouchableOpacity
           style={styles.btnSubmit}
           onPress={handleScheduleAction}
@@ -197,6 +211,7 @@ export default function ScheduleForm({ route }) {
             time={time}
             exitPopUp={setPopUp}
             clearInps={clearInputs}
+            errorMessage={popupErrorMessage}
           />
         )}
       </View>

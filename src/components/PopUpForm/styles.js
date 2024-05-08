@@ -1,7 +1,13 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
+
+const windowHeight = Dimensions.get("window").height;
+const windowWidth = Dimensions.get("window").width;
 
 const styles = StyleSheet.create({
   container: {
+    position: "absolute",
+    top: (windowHeight - 500) / 2, 
+    left: (windowWidth - 350) / 2, 
     backgroundColor: "#ffffff",
     padding: 20,
     borderRadius: 10,
@@ -13,6 +19,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.27,
     shadowRadius: 4.65,
     elevation: 6,
+    width: 350,
   },
   title: {
     fontSize: 20,
@@ -39,6 +46,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 16,
   },
+ 
 });
 
 export default styles;
