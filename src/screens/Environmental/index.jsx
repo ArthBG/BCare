@@ -9,39 +9,35 @@ export default function Environmental() {
       <Text style={styles.title}>Environmental Clinic</Text>
 
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>About Us</Text>
+        <Text style={styles.sectionTitle}>Compromisso Ambiental</Text>
         <Text style={styles.sectionText}>
-          Welcome to Environmental Clinic, where we prioritize health and wellness in harmony with nature.
-          Our team of experts is committed to providing sustainable healthcare solutions for you and your family.
+          Na Clínica de Agendamento, estamos comprometidos com a proteção do meio ambiente e a promoção da sustentabilidade em todas as nossas operações e práticas. Valorizamos a saúde não apenas dos nossos pacientes, mas também do planeta.
         </Text>
       </View>
 
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Our Services</Text>
+        <Text style={styles.sectionTitle}>Práticas Sustentáveis</Text>
         <Text style={styles.sectionText}>
-          - Preventive Care{'\n'}
-          - Holistic Treatments{'\n'}
-          - Natural Therapies{'\n'}
-          - Wellness Workshops{'\n'}
-          - Eco-friendly Practices
+          Redução de Resíduos: Implementamos estratégias para reduzir o uso de materiais descartáveis e adotamos práticas de reciclagem e compostagem.
+          Eficiência Energética: Utilizamos tecnologias e equipamentos energeticamente eficientes para minimizar nosso consumo de energia.
+          Transporte Sustentável: Incentivamos o uso de transporte público, bicicletas ou carros compartilhados pelos nossos funcionários e pacientes.
+          Preservação da Água: Adotamos medidas para reduzir o consumo de água e promovemos o uso consciente desse recurso vital.
         </Text>
       </View>
 
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Contact Us</Text>
+        <Text style={styles.sectionTitle}>Políticas Ambientais</Text>
         <Text style={styles.sectionText}>
-          Address: 123 Green Avenue{'\n'}
-          Phone: (123) 456-7890{'\n'}
-          Email: info@environmentalclinic.com
+          Certificações Sustentáveis: Buscamos certificações ambientais reconhecidas que validem nossos esforços em prol da sustentabilidade.
+          Educação e Conscientização: Promovemos a conscientização ambiental entre os nossos colaboradores, pacientes e comunidade local.
+          Parcerias com Fornecedores Sustentáveis: Preferimos colaborar com fornecedores que compartilham nosso compromisso com práticas sustentáveis.
         </Text>
       </View>
 
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Opening Hours</Text>
+        <Text style={styles.sectionTitle}>Impacto Positivo na Comunidade</Text>
         <Text style={styles.sectionText}>
-          Monday - Friday: 9:00 AM - 6:00 PM{'\n'}
-          Saturday: 10:00 AM - 4:00 PM{'\n'}
-          Sunday: Closed
+          Além de cuidar do meio ambiente, procuramos ter um impacto positivo na comunidade onde estamos inseridos. Estamos abertos ao diálogo com stakeholders e engajados em iniciativas sociais que promovam o bem-estar geral.
         </Text>
       </View>
 
