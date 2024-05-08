@@ -1,13 +1,16 @@
-import { View, Text, ScrollView } from 'react-native'
+import { View, Text, ScrollView, Image } from 'react-native'
 import React from 'react'
 import styles from './styles'
 
 
-export default function Environmental() {
+export default function Governance() {
   return (
     <ScrollView style={styles.mainContainer}>
-      <Text style={styles.title}>Environmental Clinic</Text>
-
+      <Text style={styles.title}>Bcare Governance Clinic</Text>
+      <Image
+            style={{ width: 320, height: 200, borderRadius: 10, alignSelf: "center", margin: 10 }}
+            source={require("../../../assets/images/govclinic.jpg")}
+          />
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Princípios de Governança</Text>
         <Text style={styles.sectionText}>
@@ -30,16 +33,18 @@ export default function Environmental() {
           Código de Conduta: Todos os funcionários e parceiros são orientados por um código de conduta claro e abrangente.
         </Text>
       </View>
-
+  
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Políticas Anti-Corrupção</Text>
         <Text style={styles.sectionText}>
           A Tolerância Zero à Corrupção: Implementamos políticas rigorosas de combate à corrupção em todas as áreas da nossa operação.
         </Text>
       </View>
-
+      <Image
+               style={{ width: 200, height: 200, borderRadius: 10, alignSelf: "center", margin: 10 }}
+              source={require("../../../assets/logo.jpeg")} />
       <View style={styles.footer}>
-        <Text style={styles.footerText}>© 2024 Environmental Clinic</Text>
+        <Text style={styles.footerText}>© 2024 BCare</Text>
       </View>
     </ScrollView>
   );
