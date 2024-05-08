@@ -68,9 +68,12 @@ const PopUp = ({ doctor, data, time, exitPopUp, clearInps }) => {
         error.response.data.message === "Email já cadastrado"
       ) {
         setPopupErrorMessage("Email já cadastrado");
+      } else if (error.response && error.response.data.message === "Doutor já possui agendamento marcado para a mesma data e horário") {
+        setPopupErrorMessage("Doutor já possui agendamento marcado para a mesma data e horário");
       } else {
         setPopupErrorMessage("Erro ao cadastrar agendamento");
       }
+
     }
   };
 
