@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     width: 300,
     height: 220,
     alignSelf: "center",
-    marginTop: 30,
+    marginTop: 20,
     marginBottom: 30,
   },
 });
